@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-TW">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -17,7 +17,7 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"blavince.github.io","root":"/","scheme":"Pisces","version":"8.0.0-rc.2","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+    var CONFIG = {"hostname":"blavince.github.io","root":"/","scheme":"Gemini","version":"8.0.0-rc.2","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":"flat | mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
   <meta name="description" content="因為想記錄自己的學習過程, 經過評估後,決定透過 Github + Hexo 的方式來架設個人部落格; 雖然有幾點限制:">
@@ -26,9 +26,9 @@
 <meta property="og:url" content="https://blavince.github.io/2020/05/22/HowToBuildPrivateBlog/index.html">
 <meta property="og:site_name" content="blavince&#39;s BLOG">
 <meta property="og:description" content="因為想記錄自己的學習過程, 經過評估後,決定透過 Github + Hexo 的方式來架設個人部落格; 雖然有幾點限制:">
-<meta property="og:locale" content="zh_TW">
+<meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-05-22T09:07:00.000Z">
-<meta property="article:modified_time" content="2020-05-25T11:35:52.171Z">
+<meta property="article:modified_time" content="2020-05-28T11:34:43.851Z">
 <meta property="article:author" content="blavince">
 <meta name="twitter:card" content="summary">
 
@@ -41,7 +41,7 @@
     sidebar: "",
     isHome : false,
     isPost : true,
-    lang   : 'zh-TW'
+    lang   : 'en'
   };
 </script>
 
@@ -85,7 +85,10 @@
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
   <div class="site-nav-toggle">
-    <div class="toggle" aria-label="切換導航欄">
+    <div class="toggle" aria-label="Toggle navigation bar">
+        <span class="toggle-line toggle-line-first"></span>
+        <span class="toggle-line toggle-line-middle"></span>
+        <span class="toggle-line toggle-line-last"></span>
     </div>
   </div>
 
@@ -96,6 +99,7 @@
       <h1 class="site-title">blavince's BLOG</h1>
       <span class="logo-line-after"><i></i></span>
     </a>
+      <p class="site-subtitle" itemprop="description">Giving is a reward in itself.</p>
   </div>
 
   <div class="site-nav-right">
@@ -106,6 +110,20 @@
 
 
 
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
 
 
 
@@ -118,6 +136,7 @@
     <i class="fa fa-arrow-up"></i>
     <span>0%</span>
   </div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
 
 
     <main class="main">
@@ -131,11 +150,11 @@
     
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://blavince.github.io/2020/05/22/HowToBuildPrivateBlog/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="https://raw.githubusercontent.com/blavince/blavince.github.io/master/avatar.jpg">
       <meta itemprop="name" content="blavince">
       <meta itemprop="description" content="">
     </span>
@@ -153,16 +172,16 @@
               <span class="post-meta-item-icon">
                 <i class="far fa-calendar"></i>
               </span>
-              <span class="post-meta-item-text">發表於</span>
+              <span class="post-meta-item-text">Posted on</span>
 
-              <time title="創建時間：2020-05-22 17:07:00" itemprop="dateCreated datePublished" datetime="2020-05-22T17:07:00+08:00">2020-05-22</time>
+              <time title="Created: 2020-05-22 17:07:00" itemprop="dateCreated datePublished" datetime="2020-05-22T17:07:00+08:00">2020-05-22</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
-                <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2020-05-25 19:35:52" itemprop="dateModified" datetime="2020-05-25T19:35:52+08:00">2020-05-25</time>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-05-28 19:34:43" itemprop="dateModified" datetime="2020-05-28T19:34:43+08:00">2020-05-28</time>
               </span>
 
           
@@ -231,6 +250,7 @@
 輸入 <a href="https://github.com/" target="_blank" rel="noopener">Github</a> 帳號、密碼並等待push完成, 就完成了!<br>最後確認是不是部署成功 <a href="https://blavince.github.io/">blavince’s BLOG</a> 了.</li>
 </ol>
 <p><em>*注意: <font color=#800000>本地資料夾很重要</font>!!! 如同原始碼, 而 clone 下來的僅是被編譯的檔案, 無法修改! <font color=#800000>要好好保存</font>!</em></p>
+<p>引用文章: <a href="https://ed521.github.io/2019/07/hexo-install/" target="_blank" rel="noopener">瑪利歐的部落格</a></p>
 
     </div>
 
@@ -244,6 +264,13 @@
 
 
         
+    <div class="post-nav">
+      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2020/05/28/HexhoMarkdown/" rel="next" title="Hexo 編輯文章常用 Markdown 基本語法">
+      Hexo 編輯文章常用 Markdown 基本語法 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
       </footer>
     
   </article>
@@ -293,10 +320,10 @@
 
       <ul class="sidebar-nav motion-element">
         <li class="sidebar-nav-toc">
-          文章目錄
+          Table of Contents
         </li>
         <li class="sidebar-nav-overview">
-          本站概要
+          Overview
         </li>
       </ul>
 
@@ -308,19 +335,39 @@
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="blavince"
+      src="https://raw.githubusercontent.com/blavince/blavince.github.io/master/avatar.jpg">
   <p class="site-author-name" itemprop="name">blavince</p>
   <div class="site-description" itemprop="description"></div>
 </div>
 <div class="site-state-wrap motion-element">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
-          <a href="/archives">
-          <span class="site-state-item-count">1</span>
-          <span class="site-state-item-name">文章</span>
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">2</span>
+          <span class="site-state-item-name">posts</span>
         </a>
       </div>
   </nav>
 </div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://www.github.com/" title="GitHub → https:&#x2F;&#x2F;www.github.com" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.google.com/" title="Google → https:&#x2F;&#x2F;www.google.com&#x2F;" rel="noopener" target="_blank"><i class="fab fa-google fa-fw"></i>Google</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.facebook.com/" title="FB Page → https:&#x2F;&#x2F;www.facebook.com&#x2F;" rel="noopener" target="_blank"><i class="fab fa-facebook fa-fw"></i>FB Page</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.youtube.com/" title="YouTube → https:&#x2F;&#x2F;www.youtube.com&#x2F;" rel="noopener" target="_blank"><i class="fab fa-youtube fa-fw"></i>YouTube</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://blavince.github.io/" title="blavince&#39;s BLOG → https:&#x2F;&#x2F;blavince.github.io"><i class=" fa-fw"></i>blavince's BLOG</a>
+      </span>
+  </div>
 
 
 
@@ -349,7 +396,7 @@
   </span>
   <span class="author" itemprop="copyrightHolder">blavince</span>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 強力驅動
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
   </div>
 
         
@@ -379,6 +426,8 @@
 
 
 <script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
 
 
 
