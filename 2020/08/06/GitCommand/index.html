@@ -36,7 +36,7 @@
 <meta property="og:image" content="https://i.imgur.com/4A4y2oi.png">
 <meta property="og:image" content="https://i.imgur.com/7dUshKR.png">
 <meta property="article:published_time" content="2020-08-06T06:39:00.000Z">
-<meta property="article:modified_time" content="2020-08-06T10:51:42.622Z">
+<meta property="article:modified_time" content="2020-08-07T06:35:28.431Z">
 <meta property="article:author" content="blavince">
 <meta property="article:tag" content="Git">
 <meta name="twitter:card" content="summary">
@@ -193,10 +193,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2020-08-06 14:39:00 / Modified: 18:51:42" itemprop="dateCreated datePublished" datetime="2020-08-06T14:39:00+08:00">2020-08-06</time>
+              <time title="Created: 2020-08-06 14:39:00" itemprop="dateCreated datePublished" datetime="2020-08-06T14:39:00+08:00">2020-08-06</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-08-07 14:35:28" itemprop="dateModified" datetime="2020-08-07T14:35:28+08:00">2020-08-07</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -221,9 +227,9 @@
         <p><img src="https://i.imgur.com/5qRjhut.png" alt=""><br>網路上有許多好用的 GUI 軟體工具來操作 Git,<br>但我常用的基礎功能, 習慣用命令行 (Command line) 的方式來操作.</p>
 <a id="more"></a>
 
-<h1 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a><font color=#0000FF>一、前言</font></h1><p>首先要認識三個關鍵字, 分散式版本控制就是透過這個概念來實現.</p>
+<h1 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a><font color=#0000FF>一、前言</font></h1><p>先來認識這三個關鍵字, 因為分散式版本控制就是透過這個概念來實現.</p>
 <ol>
-<li><font color=#FF6600><strong>Repository</strong></font>: 想像成一個倉庫, 將完整的程式碼和開發歷程存放在裡面; 分成 remote 和 local repository 兩個倉庫, 彼此間透過 pull 和 push 來互動.</li>
+<li><font color=#FF6600><strong>Repository</strong></font>: 想像成一個倉庫, 將完整的程式碼和開發歷程存放在裡面; 分成 remote 和 local 兩個 repository, 彼此間透過 pull 和 push 來互動.</li>
 <li><font color=#FF6600><strong>Pull</strong></font>: 將 local repository 和 remote repository 的差異 (commit) <font color=#008000>拉下來</font>.</li>
 <li><font color=#FF6600><strong>Push</strong></font>: 將 local repository 和 remote repository 的差異 (commit) <font color=#0000ff>推上去</font>.</li>
 </ol>
@@ -231,14 +237,14 @@
 
 <h1 id="二、常用指令"><a href="#二、常用指令" class="headerlink" title="二、常用指令"></a><font color=#0000FF>二、常用指令</font></h1><p>列出常用的 Git 指令 (順序無直接關聯性):</p>
 <p><font color=#000000>1. </font><code>git init</code><font color=#FF6600> 對資料夾進行 git 初始化, 產生一個隱藏資料夾 .git/ 負責紀錄各種資訊</font>.<br><font color=#000000>2. </font><code>git clone</code><font color=#FF6600> clone(克隆) 複製一個 repository 下來</font>.<br><font color=#000000>3. </font><code>git pull</code><font color=#FF6600> 將 remote repository 和 local repository 的差異 commit 拉下來</font>.<br><font color=#000000>4. </font><code>git log</code><font color=#FF6600> 印出 repository 所有 commit. (只顯示最後一個: git log -1)</font>.<br><font color=#000000>5. </font><code>git show</code><font color=#FF6600> 印出 commit 的內容. ((顯示最後一個: git show -1))</font>.<br><font color=#000000>6. </font><code>git status</code><font color=#FF6600> 印出當前 repository 的狀態</font>.<br><font color=#000000>7. </font><code>git diff</code><font color=#FF6600> 印出當前 repository 狀態和最後 commit 狀態下的差異</font>.<br><font color=#000000>8. </font><code>git add</code><font color=#FF6600> 將有差異或者要新增的檔案加入</font>.<br><font color=#000000>9. </font><code>git commit</code><font color=#FF6600> 將有差異或者要新增的檔案都加入完畢之後, 把這些做成一個 commit</font>.<br><font color=#000000>10. </font><code>git branch</code><font color=#FF6600> git 分支指令.(顯示當前處在哪一個分支: git branch -ra)</font>.<br><font color=#000000>11. </font><code>git push</code><font color=#FF6600> 將 remote repository 和 local repository 的差異 commit 推上去</font>.<br><font color=#000000>12. </font><code>git checkout</code><font color=#FF6600>將特定的檔案退回最後的 commit 的狀態或者切換分支 (branch)</font>.<br><font color=#000000>13. </font><code>git reset</code><font color=#FF6600>將當前 repository 退回特定的 commit 的狀態. (例如: git reset –hard commit_ID)</font>.<br><font color=#000000>14. </font><code>git revert</code><font color=#FF6600>可以將 commit 還原</font>.<br><font color=#000000>15. </font><code>git stash/ git stash pop</code><font color=#FF6600>將修改到一半的差異檔案先暫存起來/ 拋出來, 修改到一半時要切換分支特別好用</font>.<br><font color=#000000>16. </font><code>git format-patch</code><font color=#FF6600>將 commit 輸出成 patch 供其他 repostory 使用</font>.<br><font color=#000000>17. </font><code>git apply</code><font color=#FF6600>將差異性檔案帶入目前的 repository</font>.<br><font color=#000000>18. </font><code>git am</code><font color=#FF6600>將 patch 檔的資訊完整 commit 進 repository</font>.</p>
-<h1 id="三、實例操作"><a href="#三、實例操作" class="headerlink" title="三、實例操作"></a><font color=#0000FF>三、實例操作</font></h1><p>搭配自己架設的 Git 伺服器 <a href="https://blavince.github.io/2020/08/06/BuildPrivateGitServer/#more">(<font color=#0000FF>Ubuntu 18.04 LTS + Gitea 架設個人 Git 伺服器</font>)</a> 進行操作. </p>
-<h2 id="建立-Repository"><a href="#建立-Repository" class="headerlink" title="建立 Repository :"></a><font color=#d2691e>建立 Repository </font>:</h2><p><font color=#000000>1. </font><font color=#00bfff>Clone 已存在的 repository</font>:</p>
+<h1 id="三、實例操作"><a href="#三、實例操作" class="headerlink" title="三、實例操作"></a><font color=#0000FF>三、實例操作</font></h1><p>搭配自己架設的 Git 伺服器 <a href="https://blavince.github.io/2020/08/05/BuildPrivateGitServer/">(<font color=#0000FF>Ubuntu 18.04 LTS + Gitea 架設個人 Git 伺服器</font>)</a> 進行操作. </p>
+<h2 id="建立-Repository"><a href="#建立-Repository" class="headerlink" title="建立 Repository :"></a><font color=#d2691e>建立 Repository </font>:</h2><p>這裡提供兩種建立的方式:<br><font color=#000000>1. </font><font color=#00bfff>Clone remote repository 到 local 端</font>:</p>
 <ol>
 <li>打開 repository 的頁面後, 找到 Http/ssh 的連結 (如下圖):<br><img src="https://i.imgur.com/iRPHEdI.png" alt=""></li>
 <li>複製其中的連結然後鍵入命令:<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone http:&#x2F;&#x2F;172.21.140.140:80&#x2F;towen.lai&#x2F;SeleniumCSharp.git</span><br></pre></td></tr></table></figure>
 輸入<strong>帳號</strong>與<strong>密碼</strong>後就開始從 remote repository clone 一份下來.<br><img src="https://i.imgur.com/buA4Iuz.png" alt=""></li>
 </ol>
-<p><font color=#000000>2. </font><font color=#00bfff>建立一個新的 repository</font>:</p>
+<p><font color=#000000>2. </font><font color=#00bfff>建立新的 repository</font>:</p>
 <ol>
 <li>從右上角 <strong>＋新增儲存庫</strong></li>
 <li>輸入儲存庫名稱: test </li>
@@ -256,9 +262,10 @@
 <li><code>git remote add origin http://172.21.140.140:80/towen.lai/test.git</code></li>
 <li><code>git push -u origin master</code></li>
 </ol>
-<h2 id="操作-Repository"><a href="#操作-Repository" class="headerlink" title="操作 Repository:"></a><font color=#d2691e>操作 Repository</font>:</h2><p><font color=#000000>1. </font><font color=#00bfff>無任何改變時輸入 <code>git status</code></font>:<br>提示: nothing to commit, working tree clean<br><img src="https://i.imgur.com/qjvnnco.png" alt=""><br><font color=#000000>2. </font><font color=#00bfff>對 README.txt 做修改後輸入<code>git status</code></font>:<br>下圖出現<font color=#FF0000>紅色字</font>, 提示 README.txt 被修改了<br><img src="https://i.imgur.com/gc2G2hR.png" alt=""><br><font color=#000000>3. </font><font color=#00bfff>輸入<code>git diff</code> 看 README.txt 的差異</font>:<br><img src="https://i.imgur.com/wkkV1TB.png" alt=""><br><font color=#000000>4. </font><font color=#00bfff>接下來如上面的流程 <code>git add README.txt</code> 、 <code>git commit -m &quot;insert string test&quot;</code> 、 <code>git push</code> 將 commit push 到 remote repository</font>.<br><font color=#000000>5. </font><font color=#00bfff>若 remote repository 比 local repository 有更新的 commit 時輸入 <code>git pull</code></font>:<br>將 local repository 更新到和 remote repository 一樣.<br><img src="https://i.imgur.com/4A4y2oi.png" alt=""><br><font color=#000000>6. </font><font color=#00bfff>輸入 <code>git log</code> 看開發歷程</font>:<br>顯示這個 repository 的開發歷程 (由 commit 堆成)<br><img src="https://i.imgur.com/7dUshKR.png" alt=""></p>
+<h2 id="操作-Repository"><a href="#操作-Repository" class="headerlink" title="操作 Repository:"></a><font color=#d2691e>操作 Repository</font>:</h2><p><font color=#000000>1. </font><font color=#00bfff>無任何修改時輸入 <code>git status</code></font>:<br>提示: nothing to commit, working tree clean<br><img src="https://i.imgur.com/qjvnnco.png" alt=""><br><font color=#000000>2. </font><font color=#00bfff>對 README.txt 做修改後輸入<code>git status</code></font>:<br>下圖出現<font color=#FF0000>紅色字</font>, 提示 README.txt 被修改了<br><img src="https://i.imgur.com/gc2G2hR.png" alt=""><br><font color=#000000>3. </font><font color=#00bfff>輸入<code>git diff</code> 看 README.txt 的差異</font>:<br>提示: 有兩行綠色的 +, 代表新增了以下兩行:<br><font color=#008000>+</font><br><font color=#008000>+ test</font><br><img src="https://i.imgur.com/wkkV1TB.png" alt=""><br><font color=#000000>4. </font><font color=#00bfff>接下來如上面的流程將 commit push 到 remote repository</font>.<br>  <code>git add README.txt</code> 、<br>  <code>git commit -m &quot;insert string test&quot;</code> 、<br>  <code>git push</code></p>
+<p><font color=#000000>5. </font><font color=#00bfff>若 remote repository 比 local repository 有更新的 commit 時輸入 <code>git pull</code></font>:<br>將 local repository 更新到和 remote repository 一樣.<br><img src="https://i.imgur.com/4A4y2oi.png" alt=""><br><font color=#000000>6. </font><font color=#00bfff>輸入 <code>git log</code> 看開發歷程</font>:<br>顯示這個 repository 的開發歷程 (由 commit 堆成)<br><img src="https://i.imgur.com/7dUshKR.png" alt=""></p>
 <blockquote>
-<p><strong>HINT:</strong><br>不管是 <code>git push</code> 還是 <code>git pull</code> 在互動前都要注意會不會發生 conflict, 如果有的話就要先處理好之後再做操作.</p>
+<p><strong>HINT:</strong><br>不管 <code>git push</code> 還是 <code>git pull</code> 在互動前都要注意 conflict (專案多人開發, 修改到同一支檔案) 的情況, 如果有的話就要先將 conflict 處理好後再操作.</p>
 </blockquote>
 <p><em>*以上內容都是自己的理解, 如果有誤煩請指教!</em></p>
 
@@ -361,7 +368,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-count">6</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
