@@ -35,7 +35,7 @@
 <meta property="og:image" content="https://i.imgur.com/DTusoWh.png">
 <meta property="og:image" content="https://i.imgur.com/aLmSWrx.png">
 <meta property="article:published_time" content="2020-08-08T07:17:00.000Z">
-<meta property="article:modified_time" content="2020-08-08T05:00:11.894Z">
+<meta property="article:modified_time" content="2020-08-10T08:31:40.064Z">
 <meta property="article:author" content="blavince">
 <meta property="article:tag" content="C#">
 <meta property="article:tag" content="Winform">
@@ -194,10 +194,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2020-08-08 15:17:00 / Modified: 13:00:11" itemprop="dateCreated datePublished" datetime="2020-08-08T15:17:00+08:00">2020-08-08</time>
+              <time title="Created: 2020-08-08 15:17:00" itemprop="dateCreated datePublished" datetime="2020-08-08T15:17:00+08:00">2020-08-08</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-08-10 16:31:40" itemprop="dateModified" datetime="2020-08-10T16:31:40+08:00">2020-08-10</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -222,19 +228,28 @@
         <p><img src="https://i.imgur.com/aLmSWrx.png" alt=""></p>
 <p>使用者界面, 又稱 用戶介面 或 人機互動界面 (User Interface 或 User Machine Interface，簡稱 UI).<br>因為 Winform 自帶的 UI 實在硬梆梆, 所以在可變更的範圍內設計自己喜歡的 UI.</p>
 <a id="more"></a>
-
-<h1 id="窗體客制化"><a href="#窗體客制化" class="headerlink" title="窗體客制化"></a><font color=#0000FF>窗體客制化</font></h1><ul>
-<li><font color=#FF6600>取消窗框</font>:<br>參考 <a href="https://blavince.github.io/2020/08/07/VisualStudioCSharpWinform/"><font color=#0000FF>Visual studio + C# 建立 Winform 專案</font></a> 建立 Winform 專案.<br>將 Form1 的窗體屬性 (FormBoarderStyle) 從默認的 <strong>Sizable</strong> 改成 <font color=#FF0000><strong>None</strong></font>:<br><img src="https://i.imgur.com/Ld69RhV.png" alt=""><br>可以看到窗體的邊框不見了,<br><img src="https://i.imgur.com/jPk3JDe.png" alt=""><blockquote>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a><font color=#0000FF>前言</font></h1><p>參考 <a href="https://blavince.github.io/2020/08/07/VisualStudioCSharpWinform/"><font color=#0000FF>Visual studio + C# 建立 Winform 專案</font></a> 建立 Winform 專案. </p>
+<h1 id="本文"><a href="#本文" class="headerlink" title="本文"></a><font color=#0000FF>本文</font></h1><ol>
+<li>窗體客制化</li>
+<li>善用 Panel 控件排版</li>
+<li>控件客制化</li>
+<li>互動代碼</li>
+</ol>
+<h1 id="1-窗體客制化"><a href="#1-窗體客制化" class="headerlink" title="1. 窗體客制化"></a><font color=#0000FF>1. 窗體客制化</font></h1><ul>
+<li><font color=#FF6600>取消窗框</font>:</li>
+</ul>
+<p>將 Form1 的窗體屬性 (FormBoarderStyle) 從默認的 <strong>Sizable</strong> 改成 <font color=#FF0000><strong>None</strong></font>:<br><img src="https://i.imgur.com/Ld69RhV.png" alt=""><br>可以看到窗體的邊框不見了,<br><img src="https://i.imgur.com/jPk3JDe.png" alt=""></p>
+<blockquote>
 <p><strong>運行後, 會發現應用程式無法移動也無法關閉, 這部分在文章後面會編寫相關代碼.</strong></p>
 </blockquote>
-<h1 id="善用-Panel-控件排版"><a href="#善用-Panel-控件排版" class="headerlink" title="善用 Panel 控件排版"></a><font color=#0000FF>善用 Panel 控件排版</font></h1></li>
+<h1 id="2-善用-Panel-控件排版"><a href="#2-善用-Panel-控件排版" class="headerlink" title="2. 善用 Panel 控件排版"></a><font color=#0000FF>2. 善用 Panel 控件排版</font></h1><ul>
 <li><font color=#FF6600>Panel 控件 + Dock 屬性</font>:<br>控件的 <strong>Dock 屬性</strong>可以選擇靠齊 (上、下、左、右、填滿或者無). 使用 panel 控件搭配 Dock 屬性可以輕易地整齊排版.<br>從工具箱拉 panel 控件做以下修改作為標題欄:<ul>
 <li><font color=#1e90ff>BackColor</font>: 41, 44, 50</li>
 <li><font color=#1e90ff>Dock</font>: Top<br><img src="https://i.imgur.com/Ug5CDlm.png" alt=""></li>
 </ul>
 </li>
 </ul>
-<h1 id="控件客制化"><a href="#控件客制化" class="headerlink" title="控件客制化"></a><font color=#0000FF>控件客制化</font></h1><p>可以在控件屬性直接修改, 也可以在代碼內再做修改.</p>
+<h1 id="3-控件客制化"><a href="#3-控件客制化" class="headerlink" title="3. 控件客制化"></a><font color=#0000FF>3. 控件客制化</font></h1><p>可以在控件屬性直接修改, 也可以在代碼內再做修改.</p>
 <ol>
 <li><font color=#FF6600>修改 Form1 </font>:<ul>
 <li><font color=#1e90ff>BackColor</font>: 41, 53, 65</li>
@@ -265,8 +280,8 @@
 </li>
 </ol>
 <p><img src="https://i.imgur.com/XME8YTv.png" alt=""></p>
-<h1 id="互動代碼"><a href="#互動代碼" class="headerlink" title="互動代碼"></a><font color=#0000FF>互動代碼</font></h1><ul>
-<li><font color=#FF6600>標題欄拖曳窗體</font>:<br>編寫代碼賦予標題欄拖曳時可以移動窗體, 透過 panel1 的三個滑鼠事件來達成這個功能:</li>
+<h1 id="4-互動代碼"><a href="#4-互動代碼" class="headerlink" title="4. 互動代碼"></a><font color=#0000FF>4. 互動代碼</font></h1><ul>
+<li><font color=#FF6600>標題欄拖曳窗體</font>:<br>編寫代碼賦予標題欄拖曳時可以移動窗體, 透過 panel1 的三個滑鼠事件達成這個功能:</li>
 </ul>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">bool</span> beginMove = <span class="literal">false</span>;</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">int</span> currentXPosition;</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">int</span> currentYPosition;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">panel1_MouseDown</span><span class="params">(object sender, MouseEventArgs e)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (e.Button == MouseButtons.Left)</span><br><span class="line">    &#123;</span><br><span class="line">        beginMove = <span class="literal">true</span>;</span><br><span class="line">        currentXPosition = MousePosition.X; <span class="comment">//滑鼠的 X 座標為當前窗體左上角 X 座標參考</span></span><br><span class="line">        currentYPosition = MousePosition.Y; <span class="comment">//滑鼠的 Y 座標為當前窗體左上角 Y 座標參考</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">panel1_MouseMove</span><span class="params">(object sender, MouseEventArgs e)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (beginMove)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">this</span>.Left += MousePosition.X - currentXPosition; <span class="comment">//根據滑鼠的 X 座標確定窗體的 X 座標</span></span><br><span class="line">        <span class="keyword">this</span>.Top += MousePosition.Y - currentYPosition; <span class="comment">//根據滑鼠的 Y 座標確定窗體的 Y 座標</span></span><br><span class="line">        currentXPosition = MousePosition.X;</span><br><span class="line">        currentYPosition = MousePosition.Y;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">panel1_MouseUp</span><span class="params">(object sender, MouseEventArgs e)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (e.Button == MouseButtons.Left)</span><br><span class="line">    &#123;</span><br><span class="line">        currentXPosition = <span class="number">0</span>; <span class="comment">//設定初始狀態</span></span><br><span class="line">        currentYPosition = <span class="number">0</span>; <span class="comment">//設定初始狀態</span></span><br><span class="line">        beginMove = <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <blockquote>
@@ -300,7 +315,10 @@
     <a href="/2020/08/07/VisualStudioCSharpWinform/" rel="prev" title="Visual studio + C# 建立 Winform 專案">
       <i class="fa fa-chevron-left"></i> Visual studio + C# 建立 Winform 專案
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2020/08/10/WinformUICustomized2/" rel="next" title="Winform UI 客制化(二) - 分頁">
+      Winform UI 客制化(二) - 分頁 <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -360,7 +378,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#窗體客制化"><span class="nav-number">1.</span> <span class="nav-text">窗體客制化</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#善用-Panel-控件排版"><span class="nav-number">2.</span> <span class="nav-text">善用 Panel 控件排版</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#控件客制化"><span class="nav-number">3.</span> <span class="nav-text">控件客制化</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#互動代碼"><span class="nav-number">4.</span> <span class="nav-text">互動代碼</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#本文"><span class="nav-number">2.</span> <span class="nav-text">本文</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#1-窗體客制化"><span class="nav-number">3.</span> <span class="nav-text">1. 窗體客制化</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-善用-Panel-控件排版"><span class="nav-number">4.</span> <span class="nav-text">2. 善用 Panel 控件排版</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-控件客制化"><span class="nav-number">5.</span> <span class="nav-text">3. 控件客制化</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-互動代碼"><span class="nav-number">6.</span> <span class="nav-text">4. 互動代碼</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -376,7 +394,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">6</span>
+          <span class="site-state-item-count">7</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
