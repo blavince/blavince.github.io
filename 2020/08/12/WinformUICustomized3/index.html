@@ -33,7 +33,7 @@
 <meta property="og:image" content="https://i.imgur.com/sQMmldS.png">
 <meta property="og:image" content="https://i.imgur.com/RMrpHXY.png">
 <meta property="article:published_time" content="2020-08-12T10:28:00.000Z">
-<meta property="article:modified_time" content="2020-08-12T00:52:19.532Z">
+<meta property="article:modified_time" content="2020-08-12T01:02:53.240Z">
 <meta property="article:author" content="blavince">
 <meta property="article:tag" content="C#">
 <meta property="article:tag" content="Winform">
@@ -194,7 +194,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2020-08-12 18:28:00 / Modified: 08:52:19" itemprop="dateCreated datePublished" datetime="2020-08-12T18:28:00+08:00">2020-08-12</time>
+              <time title="Created: 2020-08-12 18:28:00 / Modified: 09:02:53" itemprop="dateCreated datePublished" datetime="2020-08-12T18:28:00+08:00">2020-08-12</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -233,7 +233,7 @@
 
 <h1 id="2-資源檔"><a href="#2-資源檔" class="headerlink" title="2. 資源檔"></a><font color=#0000FF>2. 資源檔</font></h1><ol>
 <li><font color=#FF6600>新增資源檔</font><br>對解決方案點擊滑鼠右鍵: <font color=#008000> <strong>加入(D)</strong></font> → <font color=#008000><strong>新增項目(W)</strong></font>  → <font color=#008000><strong>資源檔</strong></font> → <font color=#008000><strong>新增(A)</strong></font>, 新增 Resource1.resx.<br><img src="https://i.imgur.com/GLDyh0w.png" alt=""></li>
-<li><font color=#FF6600>新增圖檔</font><br>點擊 Resource1.resx 後, <font color=#008000> <strong>加入資源檔(R)</strong></font> → <font color=#008000><strong>加入現有檔案(E)</strong></font>  →  選擇rbt.png  →  <font color=#008000><strong>開啟(O)</strong></font>.<br><img src="https://i.imgur.com/HHMdrxZ.png" alt=""><h1 id="3-使用"><a href="#3-使用" class="headerlink" title="3. 使用"></a><font color=#0000FF>3. 使用</font></h1>在UserControl.cs　加入 panel1 、 panel2 及 pictureBox 層疊,<br><img src="https://i.imgur.com/sQMmldS.png" alt=""></li>
+<li><font color=#FF6600>新增圖檔</font><br>點擊 Resource1.resx 後, <font color=#008000> <strong>加入資源檔(R)</strong></font> → <font color=#008000><strong>加入現有檔案(E)</strong></font>  →  選擇rbt.png  →  <font color=#008000><strong>開啟(O)</strong></font>.<br><img src="https://i.imgur.com/HHMdrxZ.png" alt=""><h1 id="3-使用"><a href="#3-使用" class="headerlink" title="3. 使用"></a><font color=#0000FF>3. 使用</font></h1>在UserControl1.cs　加入 panel1 、 panel2 及 pictureBox1 層疊,<br><img src="https://i.imgur.com/sQMmldS.png" alt=""></li>
 </ol>
 <p>然後在 <code>UserControl1_Load</code> 加入:</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">UserControl1_Load</span><span class="params">(object sender, EventArgs e)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;</span><br><span class="line">    pictureBox1.Image = WindowsFormsApp1.Resource1.rbt;</span><br><span class="line">    </span><br><span class="line">    panel1.Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(<span class="number">0</span>, <span class="number">0</span>, panel1.Width, panel1.Height, <span class="number">220</span>, <span class="number">220</span>));</span><br><span class="line">    panel2.Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(<span class="number">0</span>, <span class="number">0</span>, panel2.Width, panel2.Height, <span class="number">200</span>, <span class="number">200</span>));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
