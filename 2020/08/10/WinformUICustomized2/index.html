@@ -22,7 +22,7 @@
 
   <meta name="description" content="設計 UI 時, 將功能分門別類擺在不同分頁,利用 panel + UserControl 的方式來達成這個目的.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Winform UI 客制化(二) - 分頁">
+<meta property="og:title" content="Winform UI 客製化(二) - 分頁">
 <meta property="og:url" content="https://blavince.github.io/2020/08/10/WinformUICustomized2/index.html">
 <meta property="og:site_name" content="blavince&#39;s BLOG">
 <meta property="og:description" content="設計 UI 時, 將功能分門別類擺在不同分頁,利用 panel + UserControl 的方式來達成這個目的.">
@@ -33,7 +33,7 @@
 <meta property="og:image" content="https://i.imgur.com/kaE6aLD.png">
 <meta property="og:image" content="https://i.imgur.com/laU7G3s.png">
 <meta property="article:published_time" content="2020-08-10T00:27:00.000Z">
-<meta property="article:modified_time" content="2020-08-12T00:08:11.320Z">
+<meta property="article:modified_time" content="2020-08-12T00:53:06.321Z">
 <meta property="article:author" content="blavince">
 <meta property="article:tag" content="C#">
 <meta property="article:tag" content="Winform">
@@ -54,7 +54,7 @@
   };
 </script>
 
-  <title>Winform UI 客制化(二) - 分頁 | blavince's BLOG</title>
+  <title>Winform UI 客製化(二) - 分頁 | blavince's BLOG</title>
   
 
 
@@ -183,7 +183,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Winform UI 客制化(二) - 分頁
+          Winform UI 客製化(二) - 分頁
         </h1>
 
         <div class="post-meta">
@@ -200,7 +200,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-08-12 08:08:11" itemprop="dateModified" datetime="2020-08-12T08:08:11+08:00">2020-08-12</time>
+                <time title="Modified: 2020-08-12 08:53:06" itemprop="dateModified" datetime="2020-08-12T08:53:06+08:00">2020-08-12</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -225,13 +225,13 @@
       
         <p><img src="https://i.imgur.com/kaE6aLD.png" alt=""><br>設計 UI 時, 將功能分門別類擺在不同分頁,<br>利用 panel + UserControl 的方式來達成這個目的.</p>
 <a id="more"></a>
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a><font color=#0000FF>前言</font></h1><p>延續 <a href="https://blavince.github.io/2020/08/08/WinformUICustomized1/"><font color=#0000FF>Winform UI 客制化(一) - 窗體</font></a></p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a><font color=#0000FF>前言</font></h1><p>延續 <a href="https://blavince.github.io/2020/08/08/WinformUICustomized1/"><font color=#0000FF>Winform UI 客製化(一) - 窗體</font></a></p>
 <h1 id="本文"><a href="#本文" class="headerlink" title="本文"></a><font color=#0000FF>本文</font></h1><ol>
-<li>善用 panel 控件做好排版</li>
+<li>善用 panel 控件做排版</li>
 <li>panel 容器內新增 UserControl </li>
 <li>切換分頁功能.</li>
 </ol>
-<h1 id="1-善用-panel-控件做好排版"><a href="#1-善用-panel-控件做好排版" class="headerlink" title="1. 善用 panel 控件做好排版"></a><font color=#0000FF>1. 善用 panel 控件做好排版</font></h1><ol>
+<h1 id="1-善用-panel-控件做排版"><a href="#1-善用-panel-控件做排版" class="headerlink" title="1. 善用 panel 控件做排版"></a><font color=#0000FF>1. 善用 panel 控件做排版</font></h1><ol>
 <li><p><font color=#FF6600>修改 Form1 (窗體) </font>:</p>
 <ul>
 <li><font color=#1e90ff>BackColor</font>: 41, 53, 65</li>
@@ -278,7 +278,7 @@
 </li>
 </ol>
 <blockquote>
-<p><font color=#800080><strong>做專案時, 控件名稱記得要做有意義的命名喔!</strong></font></p>
+<p><font color=#800080><strong>做專案時, 控件名稱要做有意義的命名喔!</strong></font></p>
 </blockquote>
 <h1 id="2-panel-容器內新增-UserControl"><a href="#2-panel-容器內新增-UserControl" class="headerlink" title="2. panel 容器內新增 UserControl"></a><font color=#0000FF>2. panel 容器內新增 UserControl</font></h1><p>對解決方案點擊滑鼠右鍵: <font color=#008000> <strong>加入(D)</strong></font> → <font color=#008000><strong>新增項目(W)</strong></font><br><img src="https://i.imgur.com/BoLknDk.png" alt=""><br> → <font color=#008000><strong>使用者控制項</strong></font> → <font color=#008000><strong>新增(A)</strong></font>, 新增 UserControl1.cs<br><img src="https://i.imgur.com/DXfHznz.png" alt=""><br>重複上述動作再新增 UserControl2.cs, 並調整參數如下: </p>
 <ol>
@@ -323,12 +323,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/08/08/WinformUICustomized1/" rel="prev" title="Winform UI 客制化(一) - 窗體">
-      <i class="fa fa-chevron-left"></i> Winform UI 客制化(一) - 窗體
+    <a href="/2020/08/08/WinformUICustomized1/" rel="prev" title="Winform UI 客製化(一) - 窗體">
+      <i class="fa fa-chevron-left"></i> Winform UI 客製化(一) - 窗體
     </a></div>
       <div class="post-nav-item">
-    <a href="/2020/08/12/WinformUICustomized3/" rel="next" title="Winform UI 客制化(三) - 資源檔">
-      Winform UI 客制化(三) - 資源檔 <i class="fa fa-chevron-right"></i>
+    <a href="/2020/08/12/WinformUICustomized3/" rel="next" title="Winform UI 客製化(三) - 資源檔">
+      Winform UI 客製化(三) - 資源檔 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -389,7 +389,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#本文"><span class="nav-number">2.</span> <span class="nav-text">本文</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#1-善用-panel-控件做好排版"><span class="nav-number">3.</span> <span class="nav-text">1. 善用 panel 控件做好排版</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-panel-容器內新增-UserControl"><span class="nav-number">4.</span> <span class="nav-text">2. panel 容器內新增 UserControl</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-切換分頁功能"><span class="nav-number">5.</span> <span class="nav-text">3. 切換分頁功能</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#本文"><span class="nav-number">2.</span> <span class="nav-text">本文</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#1-善用-panel-控件做排版"><span class="nav-number">3.</span> <span class="nav-text">1. 善用 panel 控件做排版</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-panel-容器內新增-UserControl"><span class="nav-number">4.</span> <span class="nav-text">2. panel 容器內新增 UserControl</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-切換分頁功能"><span class="nav-number">5.</span> <span class="nav-text">3. 切換分頁功能</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
