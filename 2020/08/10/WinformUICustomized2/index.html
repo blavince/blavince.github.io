@@ -32,9 +32,12 @@
 <meta property="og:image" content="https://i.imgur.com/DXfHznz.png">
 <meta property="og:image" content="https://i.imgur.com/kaE6aLD.png">
 <meta property="og:image" content="https://i.imgur.com/laU7G3s.png">
-<meta property="article:published_time" content="2020-08-10T00:27:38.000Z">
-<meta property="article:modified_time" content="2020-08-10T08:40:13.174Z">
+<meta property="article:published_time" content="2020-08-10T00:27:00.000Z">
+<meta property="article:modified_time" content="2020-08-12T00:08:11.320Z">
 <meta property="article:author" content="blavince">
+<meta property="article:tag" content="C#">
+<meta property="article:tag" content="Winform">
+<meta property="article:tag" content="Visual studio">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://i.imgur.com/kaE6aLD.png">
 
@@ -189,9 +192,24 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2020-08-10 08:27:38 / Modified: 16:40:13" itemprop="dateCreated datePublished" datetime="2020-08-10T08:27:38+08:00">2020-08-10</time>
+              <time title="Created: 2020-08-10 08:27:00" itemprop="dateCreated datePublished" datetime="2020-08-10T08:27:00+08:00">2020-08-10</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-08-12 08:08:11" itemprop="dateModified" datetime="2020-08-12T08:08:11+08:00">2020-08-12</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/C/" itemprop="url" rel="index"><span itemprop="name">C#</span></a>
+                </span>
             </span>
 
           
@@ -209,11 +227,11 @@
 <a id="more"></a>
 <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a><font color=#0000FF>前言</font></h1><p>延續 <a href="https://blavince.github.io/2020/08/08/WinformUICustomized1/"><font color=#0000FF>Winform UI 客制化(一) - 窗體</font></a></p>
 <h1 id="本文"><a href="#本文" class="headerlink" title="本文"></a><font color=#0000FF>本文</font></h1><ol>
-<li>善用 panel 控件先做好排版</li>
+<li>善用 panel 控件做好排版</li>
 <li>panel 容器內新增 UserControl </li>
-<li>完成切換分頁功能.</li>
+<li>切換分頁功能.</li>
 </ol>
-<h1 id="1-善用-panel-控件先做好排版"><a href="#1-善用-panel-控件先做好排版" class="headerlink" title="1. 善用 panel 控件先做好排版"></a><font color=#0000FF>1. 善用 panel 控件先做好排版</font></h1><ol>
+<h1 id="1-善用-panel-控件做好排版"><a href="#1-善用-panel-控件做好排版" class="headerlink" title="1. 善用 panel 控件做好排版"></a><font color=#0000FF>1. 善用 panel 控件做好排版</font></h1><ol>
 <li><p><font color=#FF6600>修改 Form1 (窗體) </font>:</p>
 <ul>
 <li><font color=#1e90ff>BackColor</font>: 41, 53, 65</li>
@@ -277,7 +295,7 @@
 </ul>
 </li>
 </ol>
-<h1 id="3-完成切換分頁功能"><a href="#3-完成切換分頁功能" class="headerlink" title="3. 完成切換分頁功能"></a><font color=#0000FF>3. 完成切換分頁功能</font></h1><p>最後回到 <strong>Form1.cs</strong>: </p>
+<h1 id="3-切換分頁功能"><a href="#3-切換分頁功能" class="headerlink" title="3. 切換分頁功能"></a><font color=#0000FF>3. 切換分頁功能</font></h1><p>最後回到 <strong>Form1.cs</strong>: </p>
 <ul>
 <li><font color=#FF6600>宣告 UserControl1、UserControl2 的實例</font>:<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">WindowsFormsApp1.UserControl1 U1 = <span class="keyword">new</span> WindowsFormsApp1.UserControl1();</span><br><span class="line">WindowsFormsApp1.UserControl2 U2 = <span class="keyword">new</span> WindowsFormsApp1.UserControl2();</span><br></pre></td></tr></table></figure></li>
 <li><font color=#FF6600>button1 按下時顯示 UserControl1</font>:<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">button1_Click</span><span class="params">(object sender, EventArgs e)</span></span></span><br><span class="line"><span class="function"></span>&#123;            </span><br><span class="line">    panel5.Visible = <span class="literal">true</span>;</span><br><span class="line">    panel7.Visible = <span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (!panel2.Controls.Contains(U1))</span><br><span class="line">    &#123;</span><br><span class="line">        panel2.Controls.Add(U1);</span><br><span class="line">        U1.Dock = DockStyle.Fill;</span><br><span class="line">        U1.BringToFront();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        U1.BringToFront();</span><br><span class="line">    &#125;            </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -293,6 +311,11 @@
     
 
       <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/C/" rel="tag"># C#</a>
+              <a href="/tags/Winform/" rel="tag"># Winform</a>
+              <a href="/tags/Visual-studio/" rel="tag"># Visual studio</a>
+          </div>
 
         
 
@@ -303,7 +326,10 @@
     <a href="/2020/08/08/WinformUICustomized1/" rel="prev" title="Winform UI 客制化(一) - 窗體">
       <i class="fa fa-chevron-left"></i> Winform UI 客制化(一) - 窗體
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2020/08/12/WinformUICustomized3/" rel="next" title="Winform UI 客制化(三) - 資源檔">
+      Winform UI 客制化(三) - 資源檔 <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -363,7 +389,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#本文"><span class="nav-number">2.</span> <span class="nav-text">本文</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#1-善用-panel-控件先做好排版"><span class="nav-number">3.</span> <span class="nav-text">1. 善用 panel 控件先做好排版</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-panel-容器內新增-UserControl"><span class="nav-number">4.</span> <span class="nav-text">2. panel 容器內新增 UserControl</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-完成切換分頁功能"><span class="nav-number">5.</span> <span class="nav-text">3. 完成切換分頁功能</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#本文"><span class="nav-number">2.</span> <span class="nav-text">本文</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#1-善用-panel-控件做好排版"><span class="nav-number">3.</span> <span class="nav-text">1. 善用 panel 控件做好排版</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-panel-容器內新增-UserControl"><span class="nav-number">4.</span> <span class="nav-text">2. panel 容器內新增 UserControl</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-切換分頁功能"><span class="nav-number">5.</span> <span class="nav-text">3. 切換分頁功能</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -379,7 +405,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">7</span>
+          <span class="site-state-item-count">8</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
