@@ -28,7 +28,7 @@
 <meta property="og:description" content="C# 提供的視窗工具箱有許多好用的元件, 簡易的介紹一下常用元件!">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-08-24T06:50:00.000Z">
-<meta property="article:modified_time" content="2020-08-24T07:54:30.397Z">
+<meta property="article:modified_time" content="2020-08-24T08:26:22.552Z">
 <meta property="article:author" content="blavince">
 <meta property="article:tag" content="C#">
 <meta property="article:tag" content="Visual studio">
@@ -187,7 +187,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2020-08-24 14:50:00 / Modified: 15:54:30" itemprop="dateCreated datePublished" datetime="2020-08-24T14:50:00+08:00">2020-08-24</time>
+              <time title="Created: 2020-08-24 14:50:00 / Modified: 16:26:22" itemprop="dateCreated datePublished" datetime="2020-08-24T14:50:00+08:00">2020-08-24</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -213,7 +213,7 @@
         <p>C# 提供的視窗工具箱有許多好用的元件, 簡易的介紹一下常用元件!</p>
 <a id="more"></a>
 
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a><font color=#0000FF>前言</font></h1><p>紀錄 C# 工具箱內常用元件.</p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a><font color=#0000FF>前言</font></h1><p>紀錄 C# 工具箱內常用元件的操作.</p>
 <h1 id="本文"><a href="#本文" class="headerlink" title="本文"></a><font color=#0000FF>本文</font></h1><ol>
 <li>Label</li>
 <li>Button</li>
@@ -223,9 +223,9 @@
 <li>RadioButton</li>
 <li>PictureBox</li>
 </ol>
-<h1 id="1-Label"><a href="#1-Label" class="headerlink" title="1. Label"></a><font color=#0000FF>1. Label</font></h1><p>最常使用的顯示元件:</p>
+<h1 id="1-Label"><a href="#1-Label" class="headerlink" title="1. Label"></a><font color=#0000FF>1. Label</font></h1><p>常用來顯示的元件:</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">label1.Text = <span class="string">"Hello World!"</span>;</span><br></pre></td></tr></table></figure>
-<h1 id="2-Button"><a href="#2-Button" class="headerlink" title="2. Button"></a><font color=#0000FF>2. Button</font></h1><p>最常使用 <code>Click</code> 的 Function 屬性, 可以在 Click function 撰寫需求代碼,</p>
+<h1 id="2-Button"><a href="#2-Button" class="headerlink" title="2. Button"></a><font color=#0000FF>2. Button</font></h1><p>使用 <code>Click</code> 的 Function 屬性, 可以在 Click function 撰寫需求代碼,</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">button1_Click</span><span class="params">(object sender, EventArgs e)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>也可以呼叫撰寫好的 button 事件.</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">Form1_Load</span><span class="params">(object sender, EventArgs e)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  button1_Click(sender, e);  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -253,6 +253,11 @@
 
 <h1 id="7-PictureBox"><a href="#7-PictureBox" class="headerlink" title="7. PictureBox"></a><font color=#0000FF>7. PictureBox</font></h1><p>顯示圖案、圖片…等等的元件, 有數種顯示的模式, 如果要全圖顯示時採用 <code>Zoom</code> 自動縮放:</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">string</span> path = <span class="string">"d:\\helloWorld.png"</span>;</span><br><span class="line">pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;</span><br><span class="line">pictureBox1.Image = Image.FromFile(path);</span><br></pre></td></tr></table></figure>
+<p>　
+ 　</p>
+<blockquote>
+<p>C# 工具箱內還提供許多元件, 例如: Timer、ToolStrip、TrackBar、backgroundWorker、progressBar、groupBox、serialPort … 等等, 更多的介紹可以參考官方 (Microsoft) 的文件: <a href="https://docs.microsoft.com/zh-tw/dotnet/framework/winforms/controls/" target="_blank" rel="noopener"><font color=#0000FF><strong>Windows Forms controls</strong></font></a>.</p>
+</blockquote>
 
     </div>
 
