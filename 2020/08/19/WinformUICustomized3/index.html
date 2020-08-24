@@ -20,33 +20,28 @@
     var CONFIG = {"hostname":"blavince.github.io","root":"/","scheme":"Gemini","version":"8.0.0-rc.2","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":"flat | mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="Winform 是微軟 .NET 開發框架的圖形用戶介面的一部分,雖然已經推出許久的時間, 但仍然很有它應用的場景與價值.">
+  <meta name="description" content="透過資源檔將外部的圖案引入, 讓設計 UI 時更多元.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Visual studio + C# 建立 Winform 專案">
-<meta property="og:url" content="https://blavince.github.io/2020/08/07/VisualStudioCSharpWinform/index.html">
+<meta property="og:title" content="Winform UI 客製化(三) - 資源檔">
+<meta property="og:url" content="https://blavince.github.io/2020/08/19/WinformUICustomized3/index.html">
 <meta property="og:site_name" content="blavince&#39;s BLOG">
-<meta property="og:description" content="Winform 是微軟 .NET 開發框架的圖形用戶介面的一部分,雖然已經推出許久的時間, 但仍然很有它應用的場景與價值.">
+<meta property="og:description" content="透過資源檔將外部的圖案引入, 讓設計 UI 時更多元.">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://i.imgur.com/AcEQgmp.png">
-<meta property="og:image" content="https://i.imgur.com/G5Zoc4j.png">
-<meta property="og:image" content="https://i.imgur.com/9ts89rS.png">
-<meta property="og:image" content="https://i.imgur.com/sadVsgQ.png">
-<meta property="og:image" content="https://i.imgur.com/KchT6pP.png">
-<meta property="og:image" content="https://i.imgur.com/eHbPyK6.png">
-<meta property="og:image" content="https://i.imgur.com/G3dkKdo.png">
-<meta property="og:image" content="https://i.imgur.com/Xapsvfg.png">
-<meta property="og:image" content="https://i.imgur.com/vtOLpZQ.png">
-<meta property="og:image" content="https://i.imgur.com/AcEQgmp.png">
-<meta property="article:published_time" content="2020-08-07T11:18:00.000Z">
-<meta property="article:modified_time" content="2020-08-12T00:54:11.631Z">
+<meta property="og:image" content="https://i.imgur.com/RMrpHXY.png">
+<meta property="og:image" content="https://i.imgur.com/GLDyh0w.png">
+<meta property="og:image" content="https://i.imgur.com/HHMdrxZ.png">
+<meta property="og:image" content="https://i.imgur.com/sQMmldS.png">
+<meta property="og:image" content="https://i.imgur.com/RMrpHXY.png">
+<meta property="article:published_time" content="2020-08-19T10:28:00.000Z">
+<meta property="article:modified_time" content="2020-08-24T01:51:56.979Z">
 <meta property="article:author" content="blavince">
 <meta property="article:tag" content="C#">
 <meta property="article:tag" content="Winform">
 <meta property="article:tag" content="Visual studio">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://i.imgur.com/AcEQgmp.png">
+<meta name="twitter:image" content="https://i.imgur.com/RMrpHXY.png">
 
-<link rel="canonical" href="https://blavince.github.io/2020/08/07/VisualStudioCSharpWinform/">
+<link rel="canonical" href="https://blavince.github.io/2020/08/19/WinformUICustomized3/">
 
 
 <script id="page-configurations">
@@ -59,7 +54,7 @@
   };
 </script>
 
-  <title>Visual studio + C# 建立 Winform 專案 | blavince's BLOG</title>
+  <title>Winform UI 客製化(三) - 資源檔 | blavince's BLOG</title>
   
 
 
@@ -175,7 +170,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://blavince.github.io/2020/08/07/VisualStudioCSharpWinform/">
+    <link itemprop="mainEntityOfPage" href="https://blavince.github.io/2020/08/19/WinformUICustomized3/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -188,7 +183,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Visual studio + C# 建立 Winform 專案
+          Winform UI 客製化(三) - 資源檔
         </h1>
 
         <div class="post-meta">
@@ -198,14 +193,14 @@
               </span>
               <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2020-08-07 19:18:00" itemprop="dateCreated datePublished" datetime="2020-08-07T19:18:00+08:00">2020-08-07</time>
+              <time title="Created: 2020-08-19 18:28:00" itemprop="dateCreated datePublished" datetime="2020-08-19T18:28:00+08:00">2020-08-19</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-08-12 08:54:11" itemprop="dateModified" datetime="2020-08-12T08:54:11+08:00">2020-08-12</time>
+                <time title="Modified: 2020-08-24 09:51:56" itemprop="dateModified" datetime="2020-08-24T09:51:56+08:00">2020-08-24</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -228,24 +223,28 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p><img src="https://i.imgur.com/AcEQgmp.png" alt=""><br>Winform 是微軟 .NET 開發框架的圖形用戶介面的一部分,<br>雖然已經推出許久的時間, 但仍然很有它應用的場景與價值.</p>
+        <p><img src="https://i.imgur.com/RMrpHXY.png" alt=""><br>透過資源檔將外部的圖案引入, 讓設計 UI 時更多元.</p>
 <a id="more"></a>
 
-<h1 id="1-安裝整合開發環境-IDE"><a href="#1-安裝整合開發環境-IDE" class="headerlink" title="1. 安裝整合開發環境 (IDE):"></a>1. <font color=#FF6600>安裝整合開發環境 (IDE)</font>:</h1><p><a href="https://visualstudio.microsoft.com/zh-hant/downloads/" target="_blank" rel="noopener"><font color=#0000FF>下載 Visual studio</font></a> 並安裝, 因為商用問題這裡採用 <a href="https://aka.ms/vs/15/release/vs_WDExpress.exe" target="_blank" rel="noopener">Express 2017 for Windows Desktop</a>.</p>
-<blockquote>
-<ul>
-<li>Mircosoft 提供 Professional 和 Community 版本 (Express 版於 2017 後不再釋出)</li>
-<li>參考: <a href="https://blog.jason.tools/2016/06/visual-studio-community-express.html" target="_blank" rel="noopener">Visual Studio Community 與 Express 商業免費使用之謎</a></li>
-</ul>
-</blockquote>
-<h1 id="2-開啟新專案"><a href="#2-開啟新專案" class="headerlink" title="2. 開啟新專案"></a>2. <font color=#FF6600>開啟新專案</font></h1><p>安裝完成後, 開啟 Visual Studio 如下圖:<br><img src="https://i.imgur.com/G5Zoc4j.png" alt=""><br>點擊左上角的<font color=#008000> <strong>檔案(F)</strong></font> → <font color=#008000><strong>新增專案(P)</strong></font><br><img src="https://i.imgur.com/9ts89rS.png" alt=""><br>選擇<font color=#008000> <strong>Windows Forms App (.NET Framework)</strong></font> → <font color=#008000><strong>確定</strong></font><br><img src="https://i.imgur.com/sadVsgQ.png" alt=""><br>正在建立專案 ‘WindowsFormsApp1’…<br><img src="https://i.imgur.com/KchT6pP.png" alt=""></p>
-<h1 id="3-新增控件"><a href="#3-新增控件" class="headerlink" title="3. 新增控件"></a>3. <font color=#FF6600>新增控件</font></h1><p>開啟專案後從左側的工具箱分別拖曳「Label」和 「Button」控件到中間的設計器上.<br><img src="https://i.imgur.com/eHbPyK6.png" alt=""><br>可以任意排列,<br><img src="https://i.imgur.com/G3dkKdo.png" alt=""><br><strong>雙擊 button1 控件</strong>,<br>Form1.cs 會帶入以下 function 區塊, 區塊內就是 button1 被點擊 (Click) 時所執行的代碼:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">private void button1_Click(object sender, EventArgs e)</span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>加入以下代碼:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">private void button1_Click(object sender, EventArgs e)</span><br><span class="line">&#123;</span><br><span class="line">    label1.Text &#x3D; &quot;Hello World!&quot;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><img src="https://i.imgur.com/Xapsvfg.png" alt=""></p>
-<h1 id="4-運行"><a href="#4-運行" class="headerlink" title="4. 運行"></a>4. <font color=#FF6600>運行</font></h1><p>點擊<font color=#008000> <strong>偵錯(D)</strong></font> → <font color=#008000><strong>開始偵錯(G)</strong></font>, 編譯完成後運行如下圖:<br><img src="https://i.imgur.com/vtOLpZQ.png" alt=""><br>點擊 button1 按鈕後, label1 顯示 Hello World!<br><img src="https://i.imgur.com/AcEQgmp.png" alt=""></p>
-<p><a href="https://blavince.github.io/2020/08/08/WinformUICustomized1/"><font color=#0000cd>Winform UI 客製化(一) - 窗體</font></a></p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a><font color=#0000FF>前言</font></h1><p>除了 <a href="https://blavince.github.io/2020/08/10/WinformUICustomized2/"><font color=#0000FF>Winform UI 客製化(二) - 分頁</font></a> 方方角角的 panel 排版外, 也可以讓邊緣帶有導角, 甚至設計成圓形! 引入外部的圖案讓 UI 更順眼.</p>
+<h1 id="本文"><a href="#本文" class="headerlink" title="本文"></a><font color=#0000FF>本文</font></h1><ol>
+<li>panel 導角</li>
+<li>資源檔</li>
+<li>使用</li>
+</ol>
+<h1 id="1-panel-導角"><a href="#1-panel-導角" class="headerlink" title="1. panel 導角"></a><font color=#0000FF>1. panel 導角</font></h1><p>加入 using:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> System.Runtime.InteropServices;</span><br></pre></td></tr></table></figure>
+<p>引用 <code>.dll</code>,</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[DllImport(<span class="string">"Gdi32.dll"</span>, EntryPoint = <span class="string">"CreateRoundRectRgn"</span>)]</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">extern</span> IntPtr CreateRoundRectRgn</span><br><span class="line">(</span><br><span class="line">    <span class="keyword">int</span> nLeftRect, <span class="comment">// x-coordinate of upper-left corner</span></span><br><span class="line">    <span class="keyword">int</span> nTopRect, <span class="comment">// y-coordinate of upper-left corner</span></span><br><span class="line">    <span class="keyword">int</span> nRightRect, <span class="comment">// x-coordinate of lower-right corner</span></span><br><span class="line">    <span class="keyword">int</span> nBottomRect, <span class="comment">// y-coordinate of lower-right corner</span></span><br><span class="line">    <span class="keyword">int</span> nWidthEllipse, <span class="comment">// height of ellipse</span></span><br><span class="line">    <span class="keyword">int</span> nHeightEllipse <span class="comment">// width of ellipse</span></span><br><span class="line"> );</span><br></pre></td></tr></table></figure>
+
+<h1 id="2-資源檔"><a href="#2-資源檔" class="headerlink" title="2. 資源檔"></a><font color=#0000FF>2. 資源檔</font></h1><ol>
+<li><font color=#FF6600>新增資源檔</font><br>對解決方案點擊滑鼠右鍵: <font color=#008000> <strong>加入(D)</strong></font> → <font color=#008000><strong>新增項目(W)</strong></font>  → <font color=#008000><strong>資源檔</strong></font> → <font color=#008000><strong>新增(A)</strong></font>, 新增 Resource1.resx.<br><img src="https://i.imgur.com/GLDyh0w.png" alt=""></li>
+<li><font color=#FF6600>新增圖檔</font><br>點擊 Resource1.resx 後, <font color=#008000> <strong>加入資源檔(R)</strong></font> → <font color=#008000><strong>加入現有檔案(E)</strong></font>  →  選擇rbt.png  →  <font color=#008000><strong>開啟(O)</strong></font>.<br><img src="https://i.imgur.com/HHMdrxZ.png" alt=""></li>
+</ol>
+<h1 id="3-使用"><a href="#3-使用" class="headerlink" title="3. 使用"></a><font color=#0000FF>3. 使用</font></h1><p>在UserControl1.cs　加入 panel1 、 panel2 及 pictureBox1 層疊,<br><img src="https://i.imgur.com/sQMmldS.png" alt=""></p>
+<p>然後在 <code>UserControl1_Load</code> 加入:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">UserControl1_Load</span><span class="params">(object sender, EventArgs e)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;</span><br><span class="line">    pictureBox1.Image = WindowsFormsApp1.Resource1.rbt;</span><br><span class="line">    </span><br><span class="line">    panel1.Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(<span class="number">0</span>, <span class="number">0</span>, panel1.Width, panel1.Height, <span class="number">220</span>, <span class="number">220</span>));</span><br><span class="line">    panel2.Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(<span class="number">0</span>, <span class="number">0</span>, panel2.Width, panel2.Height, <span class="number">200</span>, <span class="number">200</span>));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>點擊<font color=#008000> <strong>偵錯(D)</strong></font> → <font color=#008000><strong>開始偵錯(G)</strong></font>, 編譯完成後運行如下圖:<br><img src="https://i.imgur.com/RMrpHXY.png" alt=""></p>
 
     </div>
 
@@ -266,12 +265,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/08/06/GitCommand/" rel="prev" title="Git 常用基礎指令">
-      <i class="fa fa-chevron-left"></i> Git 常用基礎指令
+    <a href="/2020/08/15/WinformUICustomized2/" rel="prev" title="Winform UI 客製化(二) - 分頁">
+      <i class="fa fa-chevron-left"></i> Winform UI 客製化(二) - 分頁
     </a></div>
       <div class="post-nav-item">
-    <a href="/2020/08/08/WinformUICustomized1/" rel="next" title="Winform UI 客製化(一) - 窗體">
-      Winform UI 客製化(一) - 窗體 <i class="fa fa-chevron-right"></i>
+    <a href="/2020/08/24/WinformUICustomized4/" rel="next" title="Winform UI 客製化(四) - 委派">
+      Winform UI 客製化(四) - 委派 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -332,7 +331,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-安裝整合開發環境-IDE"><span class="nav-number">1.</span> <span class="nav-text">1. 安裝整合開發環境 (IDE):</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-開啟新專案"><span class="nav-number">2.</span> <span class="nav-text">2. 開啟新專案</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-新增控件"><span class="nav-number">3.</span> <span class="nav-text">3. 新增控件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-運行"><span class="nav-number">4.</span> <span class="nav-text">4. 運行</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#本文"><span class="nav-number">2.</span> <span class="nav-text">本文</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#1-panel-導角"><span class="nav-number">3.</span> <span class="nav-text">1. panel 導角</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-資源檔"><span class="nav-number">4.</span> <span class="nav-text">2. 資源檔</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-使用"><span class="nav-number">5.</span> <span class="nav-text">3. 使用</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -478,7 +477,7 @@ NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
       repo        : 'blavince.github.io',
       owner       : 'blavince',
       admin       : ['blavince'],
-      id          : 'ea44f68ef208cd6edbf3ba0685dee9b4',
+      id          : '3005ca37350b7818ff8fed5c20dad5cb',
         language: 'zh-tW',
       distractionFreeMode: true
     });

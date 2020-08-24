@@ -20,28 +20,21 @@
     var CONFIG = {"hostname":"blavince.github.io","root":"/","scheme":"Gemini","version":"8.0.0-rc.2","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":"flat | mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="設計 UI 時, 將功能分門別類擺在不同分頁,利用 panel + UserControl 的方式來達成這個目的.">
+  <meta name="description" content="C# 提供的視窗工具箱有許多好用的元件, 簡易的介紹一下常用元件!">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Winform UI 客製化(二) - 分頁">
-<meta property="og:url" content="https://blavince.github.io/2020/08/10/WinformUICustomized2/index.html">
+<meta property="og:title" content="Winform UI 客製化(五) - 常用元件">
+<meta property="og:url" content="https://blavince.github.io/2020/08/24/WinformUICustomized5/index.html">
 <meta property="og:site_name" content="blavince&#39;s BLOG">
-<meta property="og:description" content="設計 UI 時, 將功能分門別類擺在不同分頁,利用 panel + UserControl 的方式來達成這個目的.">
+<meta property="og:description" content="C# 提供的視窗工具箱有許多好用的元件, 簡易的介紹一下常用元件!">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://i.imgur.com/kaE6aLD.png">
-<meta property="og:image" content="https://i.imgur.com/BoLknDk.png">
-<meta property="og:image" content="https://i.imgur.com/DXfHznz.png">
-<meta property="og:image" content="https://i.imgur.com/kaE6aLD.png">
-<meta property="og:image" content="https://i.imgur.com/laU7G3s.png">
-<meta property="article:published_time" content="2020-08-10T00:27:00.000Z">
-<meta property="article:modified_time" content="2020-08-12T00:53:06.321Z">
+<meta property="article:published_time" content="2020-08-24T06:50:00.000Z">
+<meta property="article:modified_time" content="2020-08-24T07:54:30.397Z">
 <meta property="article:author" content="blavince">
 <meta property="article:tag" content="C#">
-<meta property="article:tag" content="Winform">
 <meta property="article:tag" content="Visual studio">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://i.imgur.com/kaE6aLD.png">
 
-<link rel="canonical" href="https://blavince.github.io/2020/08/10/WinformUICustomized2/">
+<link rel="canonical" href="https://blavince.github.io/2020/08/24/WinformUICustomized5/">
 
 
 <script id="page-configurations">
@@ -54,7 +47,7 @@
   };
 </script>
 
-  <title>Winform UI 客製化(二) - 分頁 | blavince's BLOG</title>
+  <title>Winform UI 客製化(五) - 常用元件 | blavince's BLOG</title>
   
 
 
@@ -170,7 +163,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://blavince.github.io/2020/08/10/WinformUICustomized2/">
+    <link itemprop="mainEntityOfPage" href="https://blavince.github.io/2020/08/24/WinformUICustomized5/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -183,7 +176,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Winform UI 客製化(二) - 分頁
+          Winform UI 客製化(五) - 常用元件
         </h1>
 
         <div class="post-meta">
@@ -192,16 +185,10 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
+              
 
-              <time title="Created: 2020-08-10 08:27:00" itemprop="dateCreated datePublished" datetime="2020-08-10T08:27:00+08:00">2020-08-10</time>
+              <time title="Created: 2020-08-24 14:50:00 / Modified: 15:54:30" itemprop="dateCreated datePublished" datetime="2020-08-24T14:50:00+08:00">2020-08-24</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-08-12 08:53:06" itemprop="dateModified" datetime="2020-08-12T08:53:06+08:00">2020-08-12</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -223,86 +210,49 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p><img src="https://i.imgur.com/kaE6aLD.png" alt=""><br>設計 UI 時, 將功能分門別類擺在不同分頁,<br>利用 panel + UserControl 的方式來達成這個目的.</p>
+        <p>C# 提供的視窗工具箱有許多好用的元件, 簡易的介紹一下常用元件!</p>
 <a id="more"></a>
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a><font color=#0000FF>前言</font></h1><p>延續 <a href="https://blavince.github.io/2020/08/08/WinformUICustomized1/"><font color=#0000FF>Winform UI 客製化(一) - 窗體</font></a></p>
+
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a><font color=#0000FF>前言</font></h1><p>紀錄 C# 工具箱內常用元件.</p>
 <h1 id="本文"><a href="#本文" class="headerlink" title="本文"></a><font color=#0000FF>本文</font></h1><ol>
-<li>善用 panel 控件做排版</li>
-<li>panel 容器內新增 UserControl </li>
-<li>切換分頁功能.</li>
+<li>Label</li>
+<li>Button</li>
+<li>TextBox</li>
+<li>ComboBox</li>
+<li>CheckBox</li>
+<li>RadioButton</li>
+<li>PictureBox</li>
 </ol>
-<h1 id="1-善用-panel-控件做排版"><a href="#1-善用-panel-控件做排版" class="headerlink" title="1. 善用 panel 控件做排版"></a><font color=#0000FF>1. 善用 panel 控件做排版</font></h1><ol>
-<li><p><font color=#FF6600>修改 Form1 (窗體) </font>:</p>
-<ul>
-<li><font color=#1e90ff>BackColor</font>: 41, 53, 65</li>
-<li><font color=#1e90ff>FormBorderStyle</font>: None</li>
-<li><font color=#1e90ff>Size</font>: 500, 300</li>
-</ul>
-</li>
-<li><p><font color=#FF6600>新增 panel1 (上方標題欄) </font>:</p>
-<ul>
-<li><font color=#1e90ff>BackColor</font>: 41, 44, 50</li>
-<li><font color=#1e90ff>FormBorderStyle</font>: None</li>
-<li><font color=#1e90ff>Dock</font>: <font color=#FF0000><strong>Top</strong></font></li>
-<li><font color=#1e90ff>Location</font>: 0, 0 </li>
-<li><font color=#1e90ff>Size</font>: 500, 30</li>
-<li><font color=#1e90ff>新增 Label1、Label2 </font>:  blavince’s BLOG、X</li>
-</ul>
-</li>
-<li><p><font color=#FF6600>新增 panel2 (左側按鈕區) </font>:</p>
-<ul>
-<li><font color=#1e90ff>BackColor</font>: 41, 53, 65</li>
-<li><font color=#1e90ff>Dock</font>: <font color=#FF0000><strong>Left</strong></font></li>
-<li><font color=#1e90ff>Location</font>: 0, 30 </li>
-<li><font color=#1e90ff>Size</font>: 130, 270</li>
-<li><font color=#1e90ff>新增 button1、button2 </font>:  button1、button2</li>
-</ul>
-</li>
-<li><p><font color=#FF6600>新增 panel3 (右側內容顯示) </font>:</p>
-<ul>
-<li><font color=#1e90ff>BackColor</font>: Gainsboro</li>
-<li><font color=#1e90ff>Dock</font>: <font color=#FF0000><strong>Right</strong></font></li>
-<li><font color=#1e90ff>Location</font>: 130, 30</li>
-<li><font color=#1e90ff>Size</font>: 370, 270</li>
-</ul>
-</li>
-<li><p><font color=#FF6600>新增 panel4、panel5 (左側 button1 與 光條) </font>:</p>
-<ul>
-<li><font color=#1e90ff>BackColor</font>: 47, 152, 226</li>
-</ul>
-</li>
-<li><p><font color=#FF6600>新增 panel6、panel7 (左側 button2 與 光條) </font>:</p>
-<ul>
-<li><font color=#1e90ff>BackColor</font>: 47, 152, 226</li>
-</ul>
-</li>
-</ol>
-<blockquote>
-<p><font color=#800080><strong>做專案時, 控件名稱要做有意義的命名喔!</strong></font></p>
-</blockquote>
-<h1 id="2-panel-容器內新增-UserControl"><a href="#2-panel-容器內新增-UserControl" class="headerlink" title="2. panel 容器內新增 UserControl"></a><font color=#0000FF>2. panel 容器內新增 UserControl</font></h1><p>對解決方案點擊滑鼠右鍵: <font color=#008000> <strong>加入(D)</strong></font> → <font color=#008000><strong>新增項目(W)</strong></font><br><img src="https://i.imgur.com/BoLknDk.png" alt=""><br> → <font color=#008000><strong>使用者控制項</strong></font> → <font color=#008000><strong>新增(A)</strong></font>, 新增 UserControl1.cs<br><img src="https://i.imgur.com/DXfHznz.png" alt=""><br>重複上述動作再新增 UserControl2.cs, 並調整參數如下: </p>
+<h1 id="1-Label"><a href="#1-Label" class="headerlink" title="1. Label"></a><font color=#0000FF>1. Label</font></h1><p>最常使用的顯示元件:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">label1.Text = <span class="string">"Hello World!"</span>;</span><br></pre></td></tr></table></figure>
+<h1 id="2-Button"><a href="#2-Button" class="headerlink" title="2. Button"></a><font color=#0000FF>2. Button</font></h1><p>最常使用 <code>Click</code> 的 Function 屬性, 可以在 Click function 撰寫需求代碼,</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">button1_Click</span><span class="params">(object sender, EventArgs e)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>也可以呼叫撰寫好的 button 事件.</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">Form1_Load</span><span class="params">(object sender, EventArgs e)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  button1_Click(sender, e);  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="3-TextBox"><a href="#3-TextBox" class="headerlink" title="3. TextBox"></a><font color=#0000FF>3. TextBox</font></h1><p>顯示或者輸入資料時都很好用, </p>
 <ol>
-<li><font color=#FF6600>修改 UserControl1.cs</font>:<ul>
-<li><font color=#1e90ff>BackColor</font>: Gainsboro</li>
-<li><font color=#1e90ff>Size</font>: 370, 270</li>
-<li><font color=#1e90ff>新增 Label1</font>:  Hello World! </li>
-</ul>
+<li><p>可以打開 ☑MultiLine 一次顯示多行.</p>
 </li>
-<li><font color=#FF6600>修改 UserControl2.cs</font>:<ul>
-<li><font color=#1e90ff>BackColor</font>: Gainsboro</li>
-<li><font color=#1e90ff>Size</font>: 370, 270</li>
-<li><font color=#1e90ff>新增 Label1</font>:  WOW</li>
-</ul>
+<li><p>使用 .AppendText 直接往後新增資訊而不覆蓋.</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">TextBox1.AppendText(<span class="string">"Hello World!"</span>);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>float.Parse(TextBox.Text) 或者 Int32.Parse(TextBox.Text) 直接解析成數據.</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">float</span> data = <span class="keyword">float</span>.Parse(TextBox.Text);</span><br></pre></td></tr></table></figure>
+
 </li>
 </ol>
-<h1 id="3-切換分頁功能"><a href="#3-切換分頁功能" class="headerlink" title="3. 切換分頁功能"></a><font color=#0000FF>3. 切換分頁功能</font></h1><p>最後回到 <strong>Form1.cs</strong>: </p>
-<ul>
-<li><font color=#FF6600>宣告 UserControl1、UserControl2 的實例</font>:<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">WindowsFormsApp1.UserControl1 U1 = <span class="keyword">new</span> WindowsFormsApp1.UserControl1();</span><br><span class="line">WindowsFormsApp1.UserControl2 U2 = <span class="keyword">new</span> WindowsFormsApp1.UserControl2();</span><br></pre></td></tr></table></figure></li>
-<li><font color=#FF6600>button1 按下時顯示 UserControl1</font>:<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">button1_Click</span><span class="params">(object sender, EventArgs e)</span></span></span><br><span class="line"><span class="function"></span>&#123;            </span><br><span class="line">    panel5.Visible = <span class="literal">true</span>;</span><br><span class="line">    panel7.Visible = <span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (!panel2.Controls.Contains(U1))</span><br><span class="line">    &#123;</span><br><span class="line">        panel2.Controls.Add(U1);</span><br><span class="line">        U1.Dock = DockStyle.Fill;</span><br><span class="line">        U1.BringToFront();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        U1.BringToFront();</span><br><span class="line">    &#125;            </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<img src="https://i.imgur.com/kaE6aLD.png" alt="U1"></li>
-<li><font color=#FF6600>button2 按下時顯示 UserControl2</font>:<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">button1_Click</span><span class="params">(object sender, EventArgs e)</span></span></span><br><span class="line"><span class="function"></span>&#123;            </span><br><span class="line">    panel5.Visible = <span class="literal">false</span>;</span><br><span class="line">    panel7.Visible = <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (!panel2.Controls.Contains(U2))</span><br><span class="line">    &#123;</span><br><span class="line">        panel2.Controls.Add(U2);</span><br><span class="line">        U2.Dock = DockStyle.Fill;</span><br><span class="line">        U2.BringToFront();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        U2.BringToFront();</span><br><span class="line">    &#125;            </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<img src="https://i.imgur.com/laU7G3s.png" alt="U2"></li>
-</ul>
+<h1 id="4-ComboBox"><a href="#4-ComboBox" class="headerlink" title="4. ComboBox"></a><font color=#0000FF>4. ComboBox</font></h1><ol>
+<li>讓使用者只有 <code>running</code> 與 <code>Normal</code> 兩個選項:<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">comboBox1.Items.Clear();</span><br><span class="line">comboBox1.Items.Add(<span class="string">"running"</span>);</span><br><span class="line">comboBox1.Items.Add(<span class="string">"Normal"</span>);</span><br><span class="line">comboBox1.SelectedIndex = comboBox1.FindStringExact(<span class="string">"running"</span>);</span><br></pre></td></tr></table></figure></li>
+<li><code>DropDownStyle</code> 屬性設定為 <font color=#FF6600>DropDownList</font> 時只能從選項選取, 無法自行輸入 (如無特殊需求這設定易於滑鼠操作)!</li>
+</ol>
+<h1 id="5-CheckBox"><a href="#5-CheckBox" class="headerlink" title="5. CheckBox"></a><font color=#0000FF>5. CheckBox</font></h1><p>提供可供選取狀態的控制元件, 使用 <code>Checked</code> 屬性檢查是否被選取.</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">bool</span> <span class="title">get_checkBox1_status</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(checkBox1.Checked)</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="6-RadioButton"><a href="#6-RadioButton" class="headerlink" title="6. RadioButton"></a><font color=#0000FF>6. RadioButton</font></h1><p>承上, 多個 RadioButton 在同一個容器內的選取狀態可以做到互斥! (<font color=#FF0000><strong>只有一個能被選取</strong></font>)<br>使用 <code>Checked</code> 屬性檢查是否被選取.</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">bool</span> <span class="title">get_radioButton1_status</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(radioButton1.Checked)</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="7-PictureBox"><a href="#7-PictureBox" class="headerlink" title="7. PictureBox"></a><font color=#0000FF>7. PictureBox</font></h1><p>顯示圖案、圖片…等等的元件, 有數種顯示的模式, 如果要全圖顯示時採用 <code>Zoom</code> 自動縮放:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">string</span> path = <span class="string">"d:\\helloWorld.png"</span>;</span><br><span class="line">pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;</span><br><span class="line">pictureBox1.Image = Image.FromFile(path);</span><br></pre></td></tr></table></figure>
 
     </div>
 
@@ -313,7 +263,6 @@
       <footer class="post-footer">
           <div class="post-tags">
               <a href="/tags/C/" rel="tag"># C#</a>
-              <a href="/tags/Winform/" rel="tag"># Winform</a>
               <a href="/tags/Visual-studio/" rel="tag"># Visual studio</a>
           </div>
 
@@ -323,13 +272,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/08/08/WinformUICustomized1/" rel="prev" title="Winform UI 客製化(一) - 窗體">
-      <i class="fa fa-chevron-left"></i> Winform UI 客製化(一) - 窗體
+    <a href="/2020/08/24/WinformUICustomized4/" rel="prev" title="Winform UI 客製化(四) - 委派">
+      <i class="fa fa-chevron-left"></i> Winform UI 客製化(四) - 委派
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2020/08/12/WinformUICustomized3/" rel="next" title="Winform UI 客製化(三) - 資源檔">
-      Winform UI 客製化(三) - 資源檔 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -389,7 +335,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#本文"><span class="nav-number">2.</span> <span class="nav-text">本文</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#1-善用-panel-控件做排版"><span class="nav-number">3.</span> <span class="nav-text">1. 善用 panel 控件做排版</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-panel-容器內新增-UserControl"><span class="nav-number">4.</span> <span class="nav-text">2. panel 容器內新增 UserControl</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-切換分頁功能"><span class="nav-number">5.</span> <span class="nav-text">3. 切換分頁功能</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#本文"><span class="nav-number">2.</span> <span class="nav-text">本文</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#1-Label"><span class="nav-number">3.</span> <span class="nav-text">1. Label</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-Button"><span class="nav-number">4.</span> <span class="nav-text">2. Button</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-TextBox"><span class="nav-number">5.</span> <span class="nav-text">3. TextBox</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-ComboBox"><span class="nav-number">6.</span> <span class="nav-text">4. ComboBox</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-CheckBox"><span class="nav-number">7.</span> <span class="nav-text">5. CheckBox</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#6-RadioButton"><span class="nav-number">8.</span> <span class="nav-text">6. RadioButton</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#7-PictureBox"><span class="nav-number">9.</span> <span class="nav-text">7. PictureBox</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -405,7 +351,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">8</span>
+          <span class="site-state-item-count">10</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -535,7 +481,7 @@ NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
       repo        : 'blavince.github.io',
       owner       : 'blavince',
       admin       : ['blavince'],
-      id          : 'a558868bcce604e0fefe8409f9efb11d',
+      id          : '456dd69a78d0541cd3a1541b5586204c',
         language: 'zh-tW',
       distractionFreeMode: true
     });
