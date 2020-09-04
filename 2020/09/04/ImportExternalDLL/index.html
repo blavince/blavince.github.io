@@ -20,21 +20,26 @@
     var CONFIG = {"hostname":"blavince.github.io","root":"/","scheme":"Gemini","version":"8.0.0-rc.2","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":"flat | mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="C# 提供的視窗工具箱有許多好用的元件, 簡易的介紹一下常用元件!">
+  <meta name="description" content="引用第三方的算法時, 更常見的是導入 DLL 來呼叫 API.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Winform UI 客製化(五) - 常用元件">
-<meta property="og:url" content="https://blavince.github.io/2020/08/24/WinformUICustomized5/index.html">
+<meta property="og:title" content="C# 導入外部 DLL">
+<meta property="og:url" content="https://blavince.github.io/2020/09/04/ImportExternalDLL/index.html">
 <meta property="og:site_name" content="blavince&#39;s BLOG">
-<meta property="og:description" content="C# 提供的視窗工具箱有許多好用的元件, 簡易的介紹一下常用元件!">
+<meta property="og:description" content="引用第三方的算法時, 更常見的是導入 DLL 來呼叫 API.">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-08-24T06:50:00.000Z">
-<meta property="article:modified_time" content="2020-08-24T08:26:22.552Z">
+<meta property="og:image" content="https://i.imgur.com/Mst8nQf.png">
+<meta property="og:image" content="https://i.imgur.com/8E8FIhW.png">
+<meta property="og:image" content="https://i.imgur.com/CClG6wD.png">
+<meta property="article:published_time" content="2020-09-04T01:00:00.000Z">
+<meta property="article:modified_time" content="2020-09-04T08:26:36.983Z">
 <meta property="article:author" content="blavince">
 <meta property="article:tag" content="Visual studio">
 <meta property="article:tag" content="C#">
+<meta property="article:tag" content="DLL">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.imgur.com/Mst8nQf.png">
 
-<link rel="canonical" href="https://blavince.github.io/2020/08/24/WinformUICustomized5/">
+<link rel="canonical" href="https://blavince.github.io/2020/09/04/ImportExternalDLL/">
 
 
 <script id="page-configurations">
@@ -47,7 +52,7 @@
   };
 </script>
 
-  <title>Winform UI 客製化(五) - 常用元件 | blavince's BLOG</title>
+  <title>C# 導入外部 DLL | blavince's BLOG</title>
   
 
 
@@ -163,7 +168,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://blavince.github.io/2020/08/24/WinformUICustomized5/">
+    <link itemprop="mainEntityOfPage" href="https://blavince.github.io/2020/09/04/ImportExternalDLL/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -176,7 +181,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Winform UI 客製化(五) - 常用元件
+          C# 導入外部 DLL
         </h1>
 
         <div class="post-meta">
@@ -187,7 +192,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2020-08-24 14:50:00 / Modified: 16:26:22" itemprop="dateCreated datePublished" datetime="2020-08-24T14:50:00+08:00">2020-08-24</time>
+              <time title="Created: 2020-09-04 09:00:00 / Modified: 16:26:36" itemprop="dateCreated datePublished" datetime="2020-09-04T09:00:00+08:00">2020-09-04</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -210,54 +215,31 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>C# 提供的視窗工具箱有許多好用的元件, 簡易的介紹一下常用元件!</p>
+        <p>引用第三方的算法時, 更常見的是導入 DLL 來呼叫 API.</p>
 <a id="more"></a>
 
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a><font color=#0000FF>前言</font></h1><p>紀錄 C# 工具箱內常用元件的操作.</p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a><font color=#0000FF>前言</font></h1><p>引用外部的算法除了 <a href="https://blavince.github.io/2020/08/31/NuGetPackageManager/"><font color=#0000FF>NuGet 套件管理員</font></a> 外, 更常見的是透過 <a href="https://zh.wikipedia.org/wiki/%E5%8A%A8%E6%80%81%E9%93%BE%E6%8E%A5%E5%BA%93" target="_blank" rel="noopener"><font color=#0000FF>動態連結函式庫</font></a> (Dynamic-link library，縮寫為DLL ), 這裡實作導入 Shopfloor 提供的 DLL 並透過定義好的接口實現上傳需求.</p>
 <h1 id="本文"><a href="#本文" class="headerlink" title="本文"></a><font color=#0000FF>本文</font></h1><ol>
-<li>Label</li>
-<li>Button</li>
-<li>TextBox</li>
-<li>ComboBox</li>
-<li>CheckBox</li>
-<li>RadioButton</li>
-<li>PictureBox</li>
+<li>導入 DLL</li>
+<li>呼叫 API</li>
 </ol>
-<h1 id="1-Label"><a href="#1-Label" class="headerlink" title="1. Label"></a><font color=#0000FF>1. Label</font></h1><p>常用來顯示的元件:</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">label1.Text = <span class="string">"Hello World!"</span>;</span><br></pre></td></tr></table></figure>
-<h1 id="2-Button"><a href="#2-Button" class="headerlink" title="2. Button"></a><font color=#0000FF>2. Button</font></h1><p>使用 <code>Click</code> 的 Function 屬性, 可以在 Click function 撰寫需求代碼,</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">button1_Click</span><span class="params">(object sender, EventArgs e)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>也可以呼叫撰寫好的 button 事件.</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">Form1_Load</span><span class="params">(object sender, EventArgs e)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  button1_Click(sender, e);  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="3-TextBox"><a href="#3-TextBox" class="headerlink" title="3. TextBox"></a><font color=#0000FF>3. TextBox</font></h1><p>顯示或者輸入資料時都很好用, </p>
-<ol>
-<li><p>可以打開 ☑MultiLine 一次顯示多行.</p>
-</li>
-<li><p>使用 .AppendText 直接往後新增資訊而不覆蓋.</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">TextBox1.AppendText(<span class="string">"Hello World!"</span>);</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>float.Parse(TextBox.Text) 或者 Int32.Parse(TextBox.Text) 直接解析成數據.</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">float</span> data = <span class="keyword">float</span>.Parse(TextBox.Text);</span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-<h1 id="4-ComboBox"><a href="#4-ComboBox" class="headerlink" title="4. ComboBox"></a><font color=#0000FF>4. ComboBox</font></h1><ol>
-<li>讓使用者只有 <code>running</code> 與 <code>Normal</code> 兩個選項:<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">comboBox1.Items.Clear();</span><br><span class="line">comboBox1.Items.Add(<span class="string">"running"</span>);</span><br><span class="line">comboBox1.Items.Add(<span class="string">"Normal"</span>);</span><br><span class="line">comboBox1.SelectedIndex = comboBox1.FindStringExact(<span class="string">"running"</span>);</span><br></pre></td></tr></table></figure></li>
-<li><code>DropDownStyle</code> 屬性設定為 <font color=#FF6600>DropDownList</font> 時只能從選項選取, 無法自行輸入 (如無特殊需求這設定易於滑鼠操作)!</li>
-</ol>
-<h1 id="5-CheckBox"><a href="#5-CheckBox" class="headerlink" title="5. CheckBox"></a><font color=#0000FF>5. CheckBox</font></h1><p>提供可供選取狀態的控制元件, 使用 <code>Checked</code> 屬性檢查是否被選取.</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">bool</span> <span class="title">get_checkBox1_status</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(checkBox1.Checked)</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h1 id="6-RadioButton"><a href="#6-RadioButton" class="headerlink" title="6. RadioButton"></a><font color=#0000FF>6. RadioButton</font></h1><p>承上, 多個 RadioButton 在同一個容器內的選取狀態可以做到互斥! (<font color=#FF0000><strong>只有一個能被選取</strong></font>)<br>使用 <code>Checked</code> 屬性檢查是否被選取.</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">bool</span> <span class="title">get_radioButton1_status</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(radioButton1.Checked)</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h1 id="7-PictureBox"><a href="#7-PictureBox" class="headerlink" title="7. PictureBox"></a><font color=#0000FF>7. PictureBox</font></h1><p>顯示圖案、圖片…等等的元件, 有數種顯示的模式, 如果要全圖顯示時採用 <code>Zoom</code> 自動縮放:</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">string</span> path = <span class="string">"d:\\helloWorld.png"</span>;</span><br><span class="line">pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;</span><br><span class="line">pictureBox1.Image = Image.FromFile(path);</span><br></pre></td></tr></table></figure>
-<p>　
- 　</p>
+<h1 id="1-導入-DLL"><a href="#1-導入-DLL" class="headerlink" title="1. 導入 DLL"></a><font color=#0000FF>1. 導入 DLL</font></h1><p>在方案總管的解決方案點擊右鍵 <font color=#008000> <strong>加入(D)</strong></font> → <font color=#008000><strong>參考(R)</strong></font> 如下圖:<br><img src="https://i.imgur.com/Mst8nQf.png" alt=""></p>
+<p>點擊 <font color=#008000> <strong>瀏覽(B)…</strong></font> → <font color=#008000><strong>SFSPortal.dll</strong></font> → <font color=#008000><strong>確定</strong></font> 如下圖:<br><img src="https://i.imgur.com/8E8FIhW.png" alt=""></p>
 <blockquote>
-<p>C# 工具箱內還提供許多元件, 例如: Timer、ToolStrip、TrackBar、backgroundWorker、progressBar、groupBox、serialPort … 等等, 更多的介紹可以參考官方 (Microsoft) 的文件: <a href="https://docs.microsoft.com/zh-tw/dotnet/framework/winforms/controls/" target="_blank" rel="noopener"><font color=#0000FF><strong>Windows Forms controls</strong></font></a>.</p>
+<p>PS. <strong>將 set.ini 複製到執行檔所在資料夾</strong>.</p>
 </blockquote>
+<h1 id="2-呼叫-API"><a href="#2-呼叫-API" class="headerlink" title="2. 呼叫 API"></a><font color=#0000FF>2. 呼叫 API</font></h1><p>加入 using:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> SFSATPortal;</span><br></pre></td></tr></table></figure>
+
+<p>宣告:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Portal portal = <span class="keyword">new</span> Portal();</span><br></pre></td></tr></table></figure>
+
+<p>接口定義如下:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">namespace</span> SFSATPortal</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Portal</span></span></span><br><span class="line"><span class="class">    &#123;</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">Portal</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="built_in">string</span> <span class="title">ATPortal</span><span class="params">(<span class="built_in">string</span> station, <span class="built_in">string</span> <span class="built_in">step</span>, <span class="built_in">string</span> inputStr)</span></span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>餵入參數:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">string</span> str_temp;</span><br><span class="line"><span class="built_in">string</span> t = DateTime.Now.ToString(<span class="string">"yyyyMMddHHmmss"</span>);</span><br><span class="line"></span><br><span class="line">str_temp = portal.ATPortal(<span class="string">"EQ"</span>, <span class="string">"EQMonitor"</span>, <span class="string">"EQ_SN=EQ1600001345;$;EQ_LocationID=01;$;EQ_LocationID 2=NA;$;EQ_Status=Normal;$;EQ_ErrCode=;$;EQ_Msg=;$;EQ_Datetime="</span> + t + <span class="string">";$;"</span>);</span><br><span class="line"><span class="built_in">Console</span>.WriteLine(<span class="string">"EQ1600001345 "</span> + str_temp);</span><br></pre></td></tr></table></figure>
+<p>傳輸成功, 結果如下圖:<br><img src="https://i.imgur.com/CClG6wD.png" alt=""></p>
 
     </div>
 
@@ -269,6 +251,7 @@
           <div class="post-tags">
               <a href="/tags/Visual-studio/" rel="tag"># Visual studio</a>
               <a href="/tags/C/" rel="tag"># C#</a>
+              <a href="/tags/DLL/" rel="tag"># DLL</a>
           </div>
 
         
@@ -277,13 +260,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/08/24/WinformUICustomized4/" rel="prev" title="Winform UI 客製化(四) - 委派">
-      <i class="fa fa-chevron-left"></i> Winform UI 客製化(四) - 委派
+    <a href="/2020/08/31/NuGetPackageManager/" rel="prev" title="NuGet 套件管理員">
+      <i class="fa fa-chevron-left"></i> NuGet 套件管理員
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2020/08/31/NuGetPackageManager/" rel="next" title="NuGet 套件管理員">
-      NuGet 套件管理員 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -343,7 +323,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#本文"><span class="nav-number">2.</span> <span class="nav-text">本文</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#1-Label"><span class="nav-number">3.</span> <span class="nav-text">1. Label</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-Button"><span class="nav-number">4.</span> <span class="nav-text">2. Button</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-TextBox"><span class="nav-number">5.</span> <span class="nav-text">3. TextBox</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-ComboBox"><span class="nav-number">6.</span> <span class="nav-text">4. ComboBox</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-CheckBox"><span class="nav-number">7.</span> <span class="nav-text">5. CheckBox</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#6-RadioButton"><span class="nav-number">8.</span> <span class="nav-text">6. RadioButton</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#7-PictureBox"><span class="nav-number">9.</span> <span class="nav-text">7. PictureBox</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#本文"><span class="nav-number">2.</span> <span class="nav-text">本文</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#1-導入-DLL"><span class="nav-number">3.</span> <span class="nav-text">1. 導入 DLL</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-呼叫-API"><span class="nav-number">4.</span> <span class="nav-text">2. 呼叫 API</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -489,7 +469,7 @@ NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
       repo        : 'blavince.github.io',
       owner       : 'blavince',
       admin       : ['blavince'],
-      id          : '456dd69a78d0541cd3a1541b5586204c',
+      id          : 'd7d0e8d95a48fdd452f6c36364531b2f',
         language: 'zh-tW',
       distractionFreeMode: true
     });
