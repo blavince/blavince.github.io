@@ -31,11 +31,11 @@
 <meta property="og:image" content="https://i.imgur.com/8E8FIhW.png">
 <meta property="og:image" content="https://i.imgur.com/CClG6wD.png">
 <meta property="article:published_time" content="2020-09-04T01:00:00.000Z">
-<meta property="article:modified_time" content="2020-09-04T08:26:36.983Z">
+<meta property="article:modified_time" content="2020-09-04T08:38:20.216Z">
 <meta property="article:author" content="blavince">
-<meta property="article:tag" content="Visual studio">
 <meta property="article:tag" content="C#">
 <meta property="article:tag" content="DLL">
+<meta property="article:tag" content="Visual studio">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://i.imgur.com/Mst8nQf.png">
 
@@ -192,7 +192,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2020-09-04 09:00:00 / Modified: 16:26:36" itemprop="dateCreated datePublished" datetime="2020-09-04T09:00:00+08:00">2020-09-04</time>
+              <time title="Created: 2020-09-04 09:00:00 / Modified: 16:38:20" itemprop="dateCreated datePublished" datetime="2020-09-04T09:00:00+08:00">2020-09-04</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -240,6 +240,9 @@
 <p>餵入參數:</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">string</span> str_temp;</span><br><span class="line"><span class="built_in">string</span> t = DateTime.Now.ToString(<span class="string">"yyyyMMddHHmmss"</span>);</span><br><span class="line"></span><br><span class="line">str_temp = portal.ATPortal(<span class="string">"EQ"</span>, <span class="string">"EQMonitor"</span>, <span class="string">"EQ_SN=EQ1600001345;$;EQ_LocationID=01;$;EQ_LocationID 2=NA;$;EQ_Status=Normal;$;EQ_ErrCode=;$;EQ_Msg=;$;EQ_Datetime="</span> + t + <span class="string">";$;"</span>);</span><br><span class="line"><span class="built_in">Console</span>.WriteLine(<span class="string">"EQ1600001345 "</span> + str_temp);</span><br></pre></td></tr></table></figure>
 <p>傳輸成功, 結果如下圖:<br><img src="https://i.imgur.com/CClG6wD.png" alt=""></p>
+<blockquote>
+<p><font color=#800080>同理, 自己編寫 function 的存取修飾詞為 public 就可以提供 DLL 給他人引用</font>.</p>
+</blockquote>
 
     </div>
 
@@ -249,9 +252,9 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/Visual-studio/" rel="tag"># Visual studio</a>
               <a href="/tags/C/" rel="tag"># C#</a>
               <a href="/tags/DLL/" rel="tag"># DLL</a>
+              <a href="/tags/Visual-studio/" rel="tag"># Visual studio</a>
           </div>
 
         
@@ -263,7 +266,10 @@
     <a href="/2020/08/31/NuGetPackageManager/" rel="prev" title="NuGet 套件管理員">
       <i class="fa fa-chevron-left"></i> NuGet 套件管理員
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2020/09/14/EPSONRobotAndBaslerCamera/" rel="next" title="C# 整合 EPSON Robot 與 Basler Camera">
+      C# 整合 EPSON Robot 與 Basler Camera <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -339,7 +345,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">12</span>
+          <span class="site-state-item-count">13</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -352,7 +358,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-count">16</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
