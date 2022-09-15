@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"blavince.github.io","root":"/","scheme":"Gemini","version":"8.0.0-rc.2","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":"flat | mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="機械手臂常用於取代重複性工作, 而機械手臂有眾多的廠家, 如: ABB、EPSON、TM、Nachi、Kawasaki…等等; 剛好有機會接觸 Epson Robot + Basler Camera 的組合.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C# 整合 EPSON Robot 與 Basler Camera">
+<meta property="og:url" content="https://blavince.github.io/2020/09/14/EPSONRobotAndBaslerCamera/index.html">
+<meta property="og:site_name" content="blavince&#39;s BLOG">
+<meta property="og:description" content="機械手臂常用於取代重複性工作, 而機械手臂有眾多的廠家, 如: ABB、EPSON、TM、Nachi、Kawasaki…等等; 剛好有機會接觸 Epson Robot + Basler Camera 的組合.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://i.imgur.com/0Ov93bS.png">
+<meta property="og:image" content="https://i.imgur.com/hfYdr8v.png">
+<meta property="og:image" content="https://i.imgur.com/re3kCH3.png">
+<meta property="og:image" content="https://i.imgur.com/DLmRL5T.png">
+<meta property="article:published_time" content="2020-09-14T08:39:00.000Z">
+<meta property="article:modified_time" content="2020-09-18T01:39:48.000Z">
+<meta property="article:author" content="blavince">
+<meta property="article:tag" content="C#">
+<meta property="article:tag" content="DLL">
+<meta property="article:tag" content="Epson Robot">
+<meta property="article:tag" content="Basler Camera">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.imgur.com/0Ov93bS.png">
+
+<link rel="canonical" href="https://blavince.github.io/2020/09/14/EPSONRobotAndBaslerCamera/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>C# 整合 EPSON Robot 與 Basler Camera | blavince's BLOG</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+        <span class="toggle-line toggle-line-first"></span>
+        <span class="toggle-line toggle-line-middle"></span>
+        <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">blavince's BLOG</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Giving is a reward in itself.</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://blavince.github.io/2020/09/14/EPSONRobotAndBaslerCamera/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="blavince">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="blavince's BLOG">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          C# 整合 EPSON Robot 與 Basler Camera
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-09-14 16:39:00" itemprop="dateCreated datePublished" datetime="2020-09-14T16:39:00+08:00">2020-09-14</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-09-18 09:39:48" itemprop="dateModified" datetime="2020-09-18T09:39:48+08:00">2020-09-18</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/C/" itemprop="url" rel="index"><span itemprop="name">C#</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><img src="https://i.imgur.com/0Ov93bS.png" alt=""><br>機械手臂常用於取代重複性工作, 而機械手臂有眾多的廠家, 如: ABB、EPSON、TM、Nachi、Kawasaki…等等; 剛好有機會接觸 Epson Robot + Basler Camera 的組合.</p>
+<a id="more"></a>
+
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a><font color=#0000FF>前言</font></h1><p>導入 EPSON 與 Basler 提供的 DLL  ( <a href="https://blavince.github.io/2020/09/04/ImportExternalDLL/"><font color=#0000FF>C# 導入外部 DLL</font></a> ), 建立開發環境, 整合後呼叫方法完成定點取像任務.</p>
+<blockquote>
+<p><em>RCAPINet.dll</em> 及 <em>Basler.Pylon.dll</em></p>
+</blockquote>
+<h1 id="本文"><a href="#本文" class="headerlink" title="本文"></a><font color=#0000FF>本文</font></h1><ol>
+<li><p>Basler 擷取圖像</p>
+</li>
+<li><p>Epson Robot </p>
+<ul>
+<li>座標軸</li>
+<li>移動指令<ul>
+<li>Jump</li>
+<li>Go</li>
+<li>Move</li>
+<li>Bgo</li>
+<li>…</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>定點取像</p>
+</li>
+</ol>
+<h1 id="1-Basler-擷取圖像"><a href="#1-Basler-擷取圖像" class="headerlink" title="1. Basler 擷取圖像"></a><font color=#0000FF>1. Basler 擷取圖像</font></h1><p>Basler 的相機提供 USB 和乙太網路的連接方式, 透過官方軟件 - pylon 設定好 Camera 的 IP, 使開發環境在同一個網域內; 如下圖確認已經在同一個網域 (<font color=#FF0000><strong>192.168.10</strong></font><strong>.102</strong>)  後, 透過 <font color=#008000><strong>Tool</strong></font> → <font color=#008000><strong>Pylon IP Configurator</strong></font> 來確認是否判讀到裝置.<br><img src="https://i.imgur.com/hfYdr8v.png" alt=""><br><img src="https://i.imgur.com/re3kCH3.png" alt=""></p>
+<p>編寫操作方法, </p>
+<ol>
+<li><p><font color=#FF6600>加入 using</font>:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> Basler.Pylon;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><font color=#FF6600>宣告 Camera 實例及方法(對應裝置 S/N 碼)</font>:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">namespace</span> CCD</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Basler</span></span></span><br><span class="line"><span class="class">    &#123;</span></span><br><span class="line">        <span class="keyword">private</span> Camera _camera;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">camera_init</span><span class="params">(<span class="built_in">string</span> camera_sn)</span></span></span><br><span class="line"><span class="function">        </span>&#123;</span><br><span class="line">            _camera = <span class="keyword">new</span> Camera(camera_sn);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><font color=#FF6600>開啟/關閉 攝像頭</font>:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">bool</span> <span class="title">ccd_on</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;           </span><br><span class="line">    <span class="keyword">try</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">int</span> timeout = <span class="number">1000</span>;</span><br><span class="line">        _camera.Open(timeout, TimeoutHandling.ThrowException);</span><br><span class="line">        _camera.Parameters[PLCamera.PixelFormat].SetValue(<span class="string">"Mono8"</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">catch</span>(Exception ex)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;                                   </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">ccd_off</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    _camera.Close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><font color=#FF6600>擷取圖像</font>:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> Bitmap <span class="title">GrabResult2Bmp</span><span class="params">(IGrabResult grabResult)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    Bitmap b = <span class="keyword">new</span> Bitmap(grabResult.Width, grabResult.Height, PixelFormat.Format32bppRgb);</span><br><span class="line">    BitmapData bmpData = b.LockBits(<span class="keyword">new</span> Rectangle(<span class="number">0</span>, <span class="number">0</span>, b.Width, b.Height), ImageLockMode.ReadWrite, b.PixelFormat);</span><br><span class="line">    pxConvert.OutputPixelFormat = PixelType.BGRA8packed;</span><br><span class="line">    IntPtr bmpIntpr = bmpData.Scan0;</span><br><span class="line">    pxConvert.Convert(bmpIntpr, bmpData.Stride * b.Height, grabResult);</span><br><span class="line">    b.UnlockBits(bmpData);</span><br><span class="line">    <span class="keyword">return</span> b;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> Bitmap <span class="title">take_one_picture</span><span class="params">(<span class="keyword">int</span> exposure_time)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    _camera.Parameters[PLCamera.ExposureTimeRaw].SetValue(exposure_time);</span><br><span class="line">    IGrabResult grab_pic = _camera.StreamGrabber.GrabOne(<span class="number">5000</span>);</span><br><span class="line">    <span class="keyword">return</span> GrabResult2Bmp(grab_pic);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<p>呼叫方法 take_one_picture(int exposure_time) 就能夠得到 Bitmap 格式的圖像.</p>
+<h1 id="2-Epson-Robot"><a href="#2-Epson-Robot" class="headerlink" title="2. Epson Robot "></a><font color=#0000FF>2. Epson Robot </font></h1><ol>
+<li><p><font color=#FF6600>座標軸</font>:<br>不管四軸或者六軸手臂, 所謂的 <strong>座標點</strong> 皆是指機械手臂的末端位置, 而手臂本身就是座標系. 在此認知下, 可以定義出 座標點(x,y,z,u) 所代表的 3D 空間位置及當下位置的旋轉角度(u). 座標系可再分成機器人座標系、工具座標系及本地座標系, 但在此先不介紹.</p>
+</li>
+<li><p><font color=#FF6600>移動指令</font>:<br>機械臂的移動大致分成 <strong>直線移動</strong> 和 <strong>點到點 (PTP)</strong> 移動:</p>
+</li>
+</ol>
+<ul>
+<li><p>Jump: 以門控動作移動至目標座標的動作 (PIP 動作), 優點可以避開障礙物.<br><img src="https://i.imgur.com/DLmRL5T.png" alt=""></p>
+</li>
+<li><p>Go: 用於在當前位置～指定位置之間以 <font color=#FF0000><strong>PTP 動作</strong></font> 移動機械臂</p>
+</li>
+<li><p>Move: 用於在當前位置～指定位置之間以 <font color=#FF0000><strong>直線插補動作</strong></font> 移動機械臂, 與 Go 最大不同在於所有關節同時移動.</p>
+</li>
+</ul>
+<ul>
+<li><p>BGo: 用於在已選擇的本地座標系上執行偏移 PTP 動作</p>
+</li>
+<li><p>…</p>
+</li>
+</ul>
+<p><font color=#FF6600>宣告實例及變數</font>:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">namespace</span> Robot</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Epson</span></span></span><br><span class="line"><span class="class">    &#123;</span></span><br><span class="line">        <span class="keyword">private</span> RCAPINet.Spel spl;</span><br><span class="line">        <span class="keyword">private</span> <span class="built_in">string</span> Projectpath;</span><br><span class="line">        <span class="keyword">private</span> <span class="built_in">string</span> pts_path;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><font color=#FF6600>開啟方法</font>:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">ini_robot_on</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    spl = <span class="keyword">new</span> RCAPINet.Spel();</span><br><span class="line">    spl.AsyncMode = <span class="literal">true</span>;	<span class="comment">//開啟同步模式</span></span><br><span class="line">    spl.ServerInstance = <span class="number">1</span>;	<span class="comment">//指定實例, 如果同時使用 2 隻以上的手臂就 2, 3, ...</span></span><br><span class="line">    spl.Connect(<span class="number">2</span>);		<span class="comment">//指定實例的編號, 對應 RC+ 程序內的編號</span></span><br><span class="line"></span><br><span class="line">    spl.Initialize();</span><br><span class="line">    spl.Project = Projectpath;	<span class="comment">//指定到 &lt;專案路徑&gt; 的方案檔(main.sprj)</span></span><br><span class="line">    spl.Reset();</span><br><span class="line"></span><br><span class="line">    reload_points();		<span class="comment">//重新讀取點位檔</span></span><br><span class="line">    spl.MotorsOn = <span class="literal">true</span>;	<span class="comment">//打開馬達</span></span><br><span class="line">    spl.PowerHigh = <span class="literal">true</span>;	<span class="comment">//設為高功率</span></span><br><span class="line">    initial_output_IO();	<span class="comment">//初始化I/O狀態</span></span><br><span class="line">    robot_para();		<span class="comment">//初始化機械手臂參數</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">set_project_path</span><span class="params">(<span class="built_in">string</span> path)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    Projectpath = path + <span class="string">"\\Data\\main\\main.sprj"</span>;</span><br><span class="line">    pts_path = path + <span class="string">"\\Data\\main\\robot_project_points.pts"</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">reload_points</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    spl.ClearPoints();</span><br><span class="line">    spl.ImportPoints(pts_path, <span class="string">"robot1.pts"</span>);</span><br><span class="line">    spl.LoadPoints(<span class="string">"robot1.pts"</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">robot_para</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    spl.Accel(<span class="number">100</span>, <span class="number">100</span>);	<span class="comment">//(加速度,減速度)設置 0~100</span></span><br><span class="line">    spl.Speed(<span class="number">100</span>);		<span class="comment">//速度設置 0~100</span></span><br><span class="line">    spl.Fine(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>);	<span class="comment">//馬達以 pulse 作定位, 設為 0 代表需為最精準</span></span><br><span class="line">    spl.Tool(<span class="number">0</span>);		<span class="comment">// Tool 座標系</span></span><br><span class="line">    spl.LimZ(<span class="number">0</span>);		<span class="comment">// Limz: Jump 上升時的高度限制</span></span><br><span class="line">    spl.MemOff(<span class="number">1</span>);		<span class="comment">// Epson 提供的 memory 管理系統</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">jump</span><span class="params">(<span class="built_in">string</span> <span class="built_in">position</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    spl.Jump(<span class="built_in">position</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>機械臂還有許多進階的指令如: 並行處理 !..!、 CP、 Till、 Local … 等等, 可以針對開發需求去優化機械臂, 例如可改寫 jump 方法如下透過監控 MemSw(1)、MemSw(2) 及 Sw(0) 的訊號來判斷是否暫停/繼續機械臂動作任務 :</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">jump</span><span class="params">(<span class="built_in">string</span> <span class="built_in">position</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    spl.Till(<span class="string">"MemSw(1) = On Or MemSw(2) = On Or Sw(0) = On"</span>);</span><br><span class="line">    spl.Jump(<span class="built_in">position</span>);</span><br><span class="line">    <span class="keyword">if</span> (spl.TillOn())</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">do</span></span><br><span class="line">        &#123;</span><br><span class="line">            spl.WaitMem(<span class="number">1</span>, <span class="literal">false</span>, <span class="number">5</span>);</span><br><span class="line">        &#125; <span class="keyword">while</span> (spl.TW());</span><br><span class="line">        jump(<span class="built_in">position</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><font color=#800080><strong>HINT</strong>: </font><br><font color=#800080>更多詳細介紹參照 EPSON 的官方文件.</font><br><font color=#800080>ex:</font><br><font color=#800080>安裝完 EPSON SDK 後, 在 C:\EpsonRC70\manuals\English\ … 底下</font><br><font color=#800080>1. e_SPEL+Ref73_r1.pdf</font><br><font color=#800080>2. e_RC+API70_r9.pdf</font><br><font color=#800080>3. … </font></p>
+</blockquote>
+<h1 id="3-定點取像"><a href="#3-定點取像" class="headerlink" title="3. 定點取像 "></a><font color=#0000FF>3. 定點取像 </font></h1><p>整合上述兩個 dll 及方法後, 將攝像頭架設於機械臂的末端並完成定點 (P1點) 取像任務:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">capture_task</span><span class="params">(<span class="built_in">string</span> camera_sn, <span class="built_in">string</span> P1, <span class="keyword">int</span> exposure_time)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    Robot.Epson rbt;					<span class="comment">//宣告機械臂實例</span></span><br><span class="line">    CCD.Basler bsr;					<span class="comment">//宣告攝像頭實例</span></span><br><span class="line"></span><br><span class="line">    rbt.ini_robot_on();					<span class="comment">//開啟機械臂</span></span><br><span class="line">    bsr.camera_init(camera_sn);				<span class="comment">//設置攝像頭S/N</span></span><br><span class="line">    bsr.ccd_on()					<span class="comment">//開啟攝像頭</span></span><br><span class="line"></span><br><span class="line">    rbt.jump(P1);                       		<span class="comment">//以 jump 方式移動至 P1 點</span></span><br><span class="line">    Thread.Sleep(<span class="number">100</span>);</span><br><span class="line">    Bitmap Image = bsr.take_one_picture(exposure_time);	<span class="comment">//取像</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/C/" rel="tag"># C#</a>
+              <a href="/tags/DLL/" rel="tag"># DLL</a>
+              <a href="/tags/Epson-Robot/" rel="tag"># Epson Robot</a>
+              <a href="/tags/Basler-Camera/" rel="tag"># Basler Camera</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/09/04/ImportExternalDLL/" rel="prev" title="C# 導入外部 DLL">
+      <i class="fa fa-chevron-left"></i> C# 導入外部 DLL
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/05/01/DimmAutomaticAssembly/" rel="next" title="[自動化專案] 記憶體自動化組裝設備">
+      [自動化專案] 記憶體自動化組裝設備 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#本文"><span class="nav-number">2.</span> <span class="nav-text">本文</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#1-Basler-擷取圖像"><span class="nav-number">3.</span> <span class="nav-text">1. Basler 擷取圖像</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-Epson-Robot"><span class="nav-number">4.</span> <span class="nav-text">2. Epson Robot </span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-定點取像"><span class="nav-number">5.</span> <span class="nav-text">3. 定點取像 </span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="blavince"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">blavince</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">17</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://www.github.com/" title="GitHub → https:&#x2F;&#x2F;www.github.com" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.google.com/" title="Google → https:&#x2F;&#x2F;www.google.com&#x2F;" rel="noopener" target="_blank"><i class="fab fa-google fa-fw"></i>Google</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.facebook.com/" title="FB Page → https:&#x2F;&#x2F;www.facebook.com&#x2F;" rel="noopener" target="_blank"><i class="fab fa-facebook fa-fw"></i>FB Page</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.youtube.com/" title="YouTube → https:&#x2F;&#x2F;www.youtube.com&#x2F;" rel="noopener" target="_blank"><i class="fab fa-youtube fa-fw"></i>YouTube</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://blavince.github.io/" title="blavince&#39;s BLOG → https:&#x2F;&#x2F;blavince.github.io"><i class=" fa-fw"></i>blavince's BLOG</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">blavince</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : 'ed67e34961bb62dd1d01',
+      clientSecret: '515895bdf15f66c4a615b6089d670915cdb1772c',
+      repo        : 'blavince.github.io',
+      owner       : 'blavince',
+      admin       : ['blavince'],
+      id          : '79ac62443822a328cfb4a4a876e916ea',
+        language: 'zh-tW',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+</body>
+</html>

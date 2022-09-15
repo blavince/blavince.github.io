@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"blavince.github.io","root":"/","scheme":"Gemini","version":"8.0.0-rc.2","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":"flat | mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="C# 提供的視窗工具箱有許多好用的元件, 簡易的介紹一下常用元件!">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Winform UI 客製化(五) - 常用元件">
+<meta property="og:url" content="https://blavince.github.io/2020/08/24/WinformUICustomized5/index.html">
+<meta property="og:site_name" content="blavince&#39;s BLOG">
+<meta property="og:description" content="C# 提供的視窗工具箱有許多好用的元件, 簡易的介紹一下常用元件!">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-08-24T06:50:00.000Z">
+<meta property="article:modified_time" content="2020-08-24T08:26:24.000Z">
+<meta property="article:author" content="blavince">
+<meta property="article:tag" content="C#">
+<meta property="article:tag" content="Visual studio">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://blavince.github.io/2020/08/24/WinformUICustomized5/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>Winform UI 客製化(五) - 常用元件 | blavince's BLOG</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+        <span class="toggle-line toggle-line-first"></span>
+        <span class="toggle-line toggle-line-middle"></span>
+        <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">blavince's BLOG</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Giving is a reward in itself.</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://blavince.github.io/2020/08/24/WinformUICustomized5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="blavince">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="blavince's BLOG">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Winform UI 客製化(五) - 常用元件
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-08-24 14:50:00 / Modified: 16:26:24" itemprop="dateCreated datePublished" datetime="2020-08-24T14:50:00+08:00">2020-08-24</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/C/" itemprop="url" rel="index"><span itemprop="name">C#</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>C# 提供的視窗工具箱有許多好用的元件, 簡易的介紹一下常用元件!</p>
+<a id="more"></a>
+
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a><font color=#0000FF>前言</font></h1><p>紀錄 C# 工具箱內常用元件的操作.</p>
+<h1 id="本文"><a href="#本文" class="headerlink" title="本文"></a><font color=#0000FF>本文</font></h1><ol>
+<li>Label</li>
+<li>Button</li>
+<li>TextBox</li>
+<li>ComboBox</li>
+<li>CheckBox</li>
+<li>RadioButton</li>
+<li>PictureBox</li>
+</ol>
+<h1 id="1-Label"><a href="#1-Label" class="headerlink" title="1. Label"></a><font color=#0000FF>1. Label</font></h1><p>常用來顯示的元件:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">label1.Text = <span class="string">"Hello World!"</span>;</span><br></pre></td></tr></table></figure>
+<h1 id="2-Button"><a href="#2-Button" class="headerlink" title="2. Button"></a><font color=#0000FF>2. Button</font></h1><p>使用 <code>Click</code> 的 Function 屬性, 可以在 Click function 撰寫需求代碼,</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">button1_Click</span><span class="params">(object sender, EventArgs e)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>也可以呼叫撰寫好的 button 事件.</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">Form1_Load</span><span class="params">(object sender, EventArgs e)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  button1_Click(sender, e);  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="3-TextBox"><a href="#3-TextBox" class="headerlink" title="3. TextBox"></a><font color=#0000FF>3. TextBox</font></h1><p>顯示或者輸入資料時都很好用, </p>
+<ol>
+<li><p>可以打開 ☑MultiLine 一次顯示多行.</p>
+</li>
+<li><p>使用 .AppendText 直接往後新增資訊而不覆蓋.</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">TextBox1.AppendText(<span class="string">"Hello World!"</span>);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>float.Parse(TextBox.Text) 或者 Int32.Parse(TextBox.Text) 直接解析成數據.</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">float</span> data = <span class="keyword">float</span>.Parse(TextBox.Text);</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h1 id="4-ComboBox"><a href="#4-ComboBox" class="headerlink" title="4. ComboBox"></a><font color=#0000FF>4. ComboBox</font></h1><ol>
+<li>讓使用者只有 <code>running</code> 與 <code>Normal</code> 兩個選項:<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">comboBox1.Items.Clear();</span><br><span class="line">comboBox1.Items.Add(<span class="string">"running"</span>);</span><br><span class="line">comboBox1.Items.Add(<span class="string">"Normal"</span>);</span><br><span class="line">comboBox1.SelectedIndex = comboBox1.FindStringExact(<span class="string">"running"</span>);</span><br></pre></td></tr></table></figure></li>
+<li><code>DropDownStyle</code> 屬性設定為 <font color=#FF6600>DropDownList</font> 時只能從選項選取, 無法自行輸入 (如無特殊需求這設定易於滑鼠操作)!</li>
+</ol>
+<h1 id="5-CheckBox"><a href="#5-CheckBox" class="headerlink" title="5. CheckBox"></a><font color=#0000FF>5. CheckBox</font></h1><p>提供可供選取狀態的控制元件, 使用 <code>Checked</code> 屬性檢查是否被選取.</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">bool</span> <span class="title">get_checkBox1_status</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(checkBox1.Checked)</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="6-RadioButton"><a href="#6-RadioButton" class="headerlink" title="6. RadioButton"></a><font color=#0000FF>6. RadioButton</font></h1><p>承上, 多個 RadioButton 在同一個容器內的選取狀態可以做到互斥! (<font color=#FF0000><strong>只有一個能被選取</strong></font>)<br>使用 <code>Checked</code> 屬性檢查是否被選取.</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">bool</span> <span class="title">get_radioButton1_status</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(radioButton1.Checked)</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="7-PictureBox"><a href="#7-PictureBox" class="headerlink" title="7. PictureBox"></a><font color=#0000FF>7. PictureBox</font></h1><p>顯示圖案、圖片…等等的元件, 有數種顯示的模式, 如果要全圖顯示時採用 <code>Zoom</code> 自動縮放:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">string</span> path = <span class="string">"d:\\helloWorld.png"</span>;</span><br><span class="line">pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;</span><br><span class="line">pictureBox1.Image = Image.FromFile(path);</span><br></pre></td></tr></table></figure>
+<p>　
+ 　</p>
+<blockquote>
+<p>C# 工具箱內還提供許多元件, 例如: Timer、ToolStrip、TrackBar、backgroundWorker、progressBar、groupBox、serialPort … 等等, 更多的介紹可以參考官方 (Microsoft) 的文件: <a href="https://docs.microsoft.com/zh-tw/dotnet/framework/winforms/controls/" target="_blank" rel="noopener"><font color=#0000FF><strong>Windows Forms controls</strong></font></a>.</p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/C/" rel="tag"># C#</a>
+              <a href="/tags/Visual-studio/" rel="tag"># Visual studio</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/08/24/WinformUICustomized4/" rel="prev" title="Winform UI 客製化(四) - 委派">
+      <i class="fa fa-chevron-left"></i> Winform UI 客製化(四) - 委派
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/08/31/NuGetPackageManager/" rel="next" title="NuGet 套件管理員">
+      NuGet 套件管理員 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#本文"><span class="nav-number">2.</span> <span class="nav-text">本文</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#1-Label"><span class="nav-number">3.</span> <span class="nav-text">1. Label</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-Button"><span class="nav-number">4.</span> <span class="nav-text">2. Button</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-TextBox"><span class="nav-number">5.</span> <span class="nav-text">3. TextBox</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-ComboBox"><span class="nav-number">6.</span> <span class="nav-text">4. ComboBox</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-CheckBox"><span class="nav-number">7.</span> <span class="nav-text">5. CheckBox</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#6-RadioButton"><span class="nav-number">8.</span> <span class="nav-text">6. RadioButton</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#7-PictureBox"><span class="nav-number">9.</span> <span class="nav-text">7. PictureBox</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="blavince"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">blavince</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">17</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://www.github.com/" title="GitHub → https:&#x2F;&#x2F;www.github.com" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.google.com/" title="Google → https:&#x2F;&#x2F;www.google.com&#x2F;" rel="noopener" target="_blank"><i class="fab fa-google fa-fw"></i>Google</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.facebook.com/" title="FB Page → https:&#x2F;&#x2F;www.facebook.com&#x2F;" rel="noopener" target="_blank"><i class="fab fa-facebook fa-fw"></i>FB Page</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.youtube.com/" title="YouTube → https:&#x2F;&#x2F;www.youtube.com&#x2F;" rel="noopener" target="_blank"><i class="fab fa-youtube fa-fw"></i>YouTube</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://blavince.github.io/" title="blavince&#39;s BLOG → https:&#x2F;&#x2F;blavince.github.io"><i class=" fa-fw"></i>blavince's BLOG</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">blavince</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : 'ed67e34961bb62dd1d01',
+      clientSecret: '515895bdf15f66c4a615b6089d670915cdb1772c',
+      repo        : 'blavince.github.io',
+      owner       : 'blavince',
+      admin       : ['blavince'],
+      id          : '456dd69a78d0541cd3a1541b5586204c',
+        language: 'zh-tW',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+</body>
+</html>

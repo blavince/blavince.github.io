@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"blavince.github.io","root":"/","scheme":"Gemini","version":"8.0.0-rc.2","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":"flat | mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="因為團隊內部調試時使用 GUI (圖形使用者介面 Graphical User Interface，縮寫：GUI) 小工具會比手動輸入 command 更有效率且較不易出錯, 同時考量儀控需求及網路上有許多 Python 的資源可參考. 站在巨人的肩上讓開發事半功倍.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="VScode + Python3.7 + PySide2">
+<meta property="og:url" content="https://blavince.github.io/2022/09/14/VScode-Python3-7-PyQT/index.html">
+<meta property="og:site_name" content="blavince&#39;s BLOG">
+<meta property="og:description" content="因為團隊內部調試時使用 GUI (圖形使用者介面 Graphical User Interface，縮寫：GUI) 小工具會比手動輸入 command 更有效率且較不易出錯, 同時考量儀控需求及網路上有許多 Python 的資源可參考. 站在巨人的肩上讓開發事半功倍.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://code.visualstudio.com/assets/home/home-screenshot-win-lg.png">
+<meta property="og:image" content="https://i.imgur.com/OpLBUnS.png">
+<meta property="og:image" content="https://i.imgur.com/RyojqPH.png">
+<meta property="og:image" content="https://i.imgur.com/Uqp5Tqz.png">
+<meta property="og:image" content="https://i.imgur.com/yNrPxvl.png">
+<meta property="og:image" content="https://i.imgur.com/BdHJFzW.png">
+<meta property="og:image" content="https://i.imgur.com/RbMCGMu.png">
+<meta property="og:image" content="https://i.imgur.com/H4GP1Zh.png">
+<meta property="og:image" content="https://i.imgur.com/ANpyhDC.png">
+<meta property="article:published_time" content="2022-09-14T08:46:00.000Z">
+<meta property="article:modified_time" content="2022-09-15T06:18:15.276Z">
+<meta property="article:author" content="blavince">
+<meta property="article:tag" content="Python">
+<meta property="article:tag" content="VScode">
+<meta property="article:tag" content="Pyside2">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://code.visualstudio.com/assets/home/home-screenshot-win-lg.png">
+
+<link rel="canonical" href="https://blavince.github.io/2022/09/14/VScode-Python3-7-PyQT/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>VScode + Python3.7 + PySide2 | blavince's BLOG</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+        <span class="toggle-line toggle-line-first"></span>
+        <span class="toggle-line toggle-line-middle"></span>
+        <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">blavince's BLOG</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Giving is a reward in itself.</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://blavince.github.io/2022/09/14/VScode-Python3-7-PyQT/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="blavince">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="blavince's BLOG">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          VScode + Python3.7 + PySide2
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2022-09-14 16:46:00" itemprop="dateCreated datePublished" datetime="2022-09-14T16:46:00+08:00">2022-09-14</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2022-09-15 14:18:15" itemprop="dateModified" datetime="2022-09-15T14:18:15+08:00">2022-09-15</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>因為團隊內部調試時使用 GUI (圖形使用者介面 Graphical User Interface，縮寫：GUI) 小工具會比手動輸入 command 更有效率且較不易出錯, 同時考量儀控需求及網路上有許多 Python 的資源可參考. 站在巨人的肩上讓開發事半功倍.</p>
+<a id="more"></a>
+<h1 id="前言"><a href="#前言" class="headerlink" title=" 前言 "></a><font color=#0000FF> 前言 </font></h1><p>學習開發 Python 有多種途徑, 亦有多種 IDE 可以選擇, 我最早期曾用 <a href="https://www.anaconda.com/products/distribution" target="_blank" rel="noopener">Anaconda</a> 安裝整個環境, 不只是 <a href="https://jupyter.org/install" target="_blank" rel="noopener">Jupyter notebook</a> 我也有下載過 <a href="https://www.jetbrains.com/pycharm/" target="_blank" rel="noopener">Pycharm</a> , 都是很好的起手式, 但是都試過之後個人偏好微軟的輕量化 Visual studio code, 不只介面設計的很好看又簡潔, 環境配置不難還可以讓開發更直覺; GUI 庫因為看了很多大神分析利弊, 最後不選擇 PyQT 而選擇 PySide2 (最主要還是因為 LGPL 授權, <a href="https://pypi.org/project/PySide2/" target="_blank" rel="noopener">PySide2 Introduction</a>).</p>
+<h1 id="大綱"><a href="#大綱" class="headerlink" title=" 大綱 "></a><font color=#0000FF> 大綱 </font></h1><ol>
+<li>安裝 Python3.7</li>
+<li>安裝 Visual studio code</li>
+<li>安裝 PySide2</li>
+<li>配置 VSCode </li>
+<li>第一支 GUI 程式: Hello world </li>
+</ol>
+<h1 id="1-安裝-Python3-7"><a href="#1-安裝-Python3-7" class="headerlink" title=" 1. 安裝 Python3.7"></a><font color=#0000FF> 1. 安裝 Python3.7</font></h1><p>現在已經釋出 Python 3.10, 但我選擇較為常見的 Python 3.7 (各版本 Python 下載: <a href="https://www.python.org/downloads/windows/" target="_blank" rel="noopener">Python Download</a>), 比較需要注意的是 Python3.x 並不相容 Python2.x, 網路上有許多方法可以共存切換.</p>
+<p>下載 <a href="https://www.python.org/ftp/python/3.7.9/python-3.7.9-amd64.exe" target="_blank" rel="noopener"><font color=#0000FF>Python 3.7.9</font></a> 安裝完成之後, 打開命令提示字元 (開始 &rarr; 輸入cmd) 輸入 <code>python --version</code> 做確認, </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">C:\Users\blavince&gt;python --version</span><br><span class="line">Python 3.7.9</span><br></pre></td></tr></table></figure>
+<p>※注意安裝時不管有沒有改變預設安裝路徑, 都有讓 Python 加入環境變數, 否則再手動加入.</p>
+<p>此時在cmd 輸入 <code>python</code> 可以進入交互模式, 只是在 VScode 上更便利.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">C:\Users\blavince&gt;python</span><br><span class="line">Python 3.7.9 (tags&#x2F;v3.7.9:13c94747c7, Aug 17 2020, 18:58:18) [MSC v.1900 64 bit (AMD64)] on win32</span><br><span class="line">Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.</span><br><span class="line">&gt;&gt;&gt; a&#x3D;1</span><br><span class="line">&gt;&gt;&gt; b&#x3D;2</span><br><span class="line">&gt;&gt;&gt; a+b</span><br><span class="line">3</span><br><span class="line">&gt;&gt;&gt; quit()</span><br><span class="line"></span><br><span class="line">C:\Users\blavince&gt;</span><br></pre></td></tr></table></figure>
+
+<h1 id="2-安裝-Visual-studio-code"><a href="#2-安裝-Visual-studio-code" class="headerlink" title="2. 安裝 Visual studio code"></a><font color=#0000FF>2. 安裝 Visual studio code</font></h1><p>下載 <a href="https://code.visualstudio.com/" target="_blank" rel="noopener"><font color=#0000FF>VS Code</font></a> 並安裝. (圖片參考<a href="https://code.visualstudio.com/" target="_blank" rel="noopener">官網</a>)<br><img src="https://code.visualstudio.com/assets/home/home-screenshot-win-lg.png" alt=""></p>
+<h1 id="3-安裝-PySide2"><a href="#3-安裝-PySide2" class="headerlink" title="3. 安裝 PySide2"></a><font color=#0000FF>3. 安裝 PySide2</font></h1><p>安裝 Python3.7.9 後就自帶 pip 跟 pip3 了, 所以安裝 <a href="https://pypi.org/project/PySide2/" target="_blank" rel="noopener">PySide2</a> 只要在 cmd 輸入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install PySide2</span><br></pre></td></tr></table></figure>
+<p>安裝完成之後直接在 cmd 輸入 <code>python</code> 進入交互模式後, 輸入 <code>import PySide2</code> 做確認.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">C:\Users\blavince&gt;python</span><br><span class="line">Python 3.7.9 (tags&#x2F;v3.7.9:13c94747c7, Aug 17 2020, 18:58:18) [MSC v.1900 64 bit (AMD64)] on win32</span><br><span class="line">Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.</span><br><span class="line">&gt;&gt;&gt; import PySide2</span><br><span class="line">&gt;&gt;&gt;</span><br></pre></td></tr></table></figure>
+<h1 id="4-配置-VSCode"><a href="#4-配置-VSCode" class="headerlink" title="4. 配置 VSCode "></a><font color=#0000FF>4. 配置 VSCode </font></h1><p>按 <code>Ctrl+shift+x</code> 或者主要工具欄上的延伸模組分頁鈕安裝 VScode 的 Python/PySide2 套件, 讓 GUI 開發的過程更方便, 這個套件可以在 VScode 上加入右鍵直接快捷創建新 .ui 檔以及打開 qt designer 做 GUI 的設計, 還有將 .ui 檔轉譯成 .py 檔案</p>
+<table>
+<thead>
+<tr>
+<th align="center">延伸模組分頁鈕</th>
+<th align="center">PySide2套件</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><img src="https://i.imgur.com/OpLBUnS.png" alt=""></td>
+<td align="center"><img src="https://i.imgur.com/RyojqPH.png" alt=""></td>
+</tr>
+</tbody></table>
+<p><strong>配置 PySide2</strong><br>把 qt designer 路徑加入 <code>C:\Users\blavince\AppData\Local\Programs\Python\Python37\Scripts\pyside2-designer.exe</code><br><img src="https://i.imgur.com/Uqp5Tqz.png" alt="配置 PySide2"></p>
+<p>到這裡就完成整個環境配置了, 可以寫個簡單的 Hello world 試試看.</p>
+<h1 id="5-第一支-GUI-程式-Hello-world"><a href="#5-第一支-GUI-程式-Hello-world" class="headerlink" title="5. 第一支 GUI 程式: Hello world"></a><font color=#0000FF>5. 第一支 GUI 程式: Hello world</font></h1><p>開發思路如下流程, </p>
+<ol>
+<li>使用 qt designer 編輯 .ui 檔設計界面 (直接滑鼠拉元件)</li>
+<li>將 .ui 檔轉譯 .py 檔</li>
+<li>寫 .py 的入口函數執行 GUI 程式</li>
+</ol>
+<p><strong>1. 使用 qt designer 編輯 .ui 檔設計界面 (直接滑鼠拉元件)</strong><br>在工作區的空白處右鍵 <code>PySdie2: New Form in Designer/Creator</code> 用 qt designer 來開啟一個 .ui 檔.<br><img src="https://i.imgur.com/yNrPxvl.png" alt=""></p>
+<p>開啟 qt designer &rarr; Main Window &rarr; 建立(R)<br><img src="https://i.imgur.com/BdHJFzW.png" alt=""></p>
+<p>然後在 qt designer 上拉一個 Label 元件到表單內修改成 <strong>HELLO WORLD</strong> &rarr; 儲存 Form.ui, 內容是 <code>&lt;xml&gt;</code> 們.<br><img src="https://i.imgur.com/RbMCGMu.png" alt=""></p>
+<p><strong>2. 將 .ui 檔轉譯 .py 檔</strong></p>
+<p>入口函數動態載入 .ui 檔或者先將 .ui 轉成 .py 入口函數再靜態載入兩種做法, 各有優缺點, 這裡介紹後者, 對著 Form.ui 右鍵 &rarr; <code>PySide2: Compile Form to Python</code> &rarr; 自動產出 <code>Ui_Form.py</code> (等同於 cmd 的 <code>pyside2-uic .\Form.ui -o .\Ui_Form.py</code>)<br><img src="https://i.imgur.com/H4GP1Zh.png" alt=""></p>
+<p><strong>3. 寫 .py 的入口函數執行 GUI 程式</strong></p>
+<p>因為每次 <code>UI_Form.py</code> 的介面設計有更動後都會被覆蓋, 所以我們直接在裡面修改不好開發,<br>所以我習慣新增檔案 <code>mainWindow.py</code> 引入介面編寫邏輯, 而 <code>UI_Form.py</code> 為純介面檔案, 最後再新增一個 <code>Entry.py</code> 為入口函數</p>
+<p><strong>mainWindow.py</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> PySide2.QtCore <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> PySide2.QtGui <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> PySide2.QtWidgets <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> PySide2.QtWidgets <span class="keyword">import</span> QApplication, QMainWindow</span><br><span class="line"><span class="keyword">from</span> Ui_Form <span class="keyword">import</span> Ui_MainWindow</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">mainWindow</span><span class="params">(QMainWindow, Ui_MainWindow)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, parent=None)</span>:</span></span><br><span class="line">        super(mainWindow, self).__init__(parent)</span><br><span class="line">        self.setupUi(self)</span><br></pre></td></tr></table></figure>
+<p><strong>Entry.py</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">from</span> PySide2.QtWidgets <span class="keyword">import</span> QApplication</span><br><span class="line"><span class="keyword">from</span> mainWindow <span class="keyword">import</span> mainWindow</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</span><br><span class="line">    app = QApplication(sys.argv)</span><br><span class="line">    w = mainWindow()</span><br><span class="line">    w.show()</span><br><span class="line">    sys.exit(app.exec_())</span><br></pre></td></tr></table></figure>
+<p>然後用 python 去執行 Entry.py<br>對著 Entry.py 右鍵 &rarr; <code>Run Python File in Teminal</code> &rarr; GUI 程式 (等同於 cmd 的 <code>python ./Entry.py</code>)<br><img src="https://i.imgur.com/ANpyhDC.png" alt=""></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Python/" rel="tag"># Python</a>
+              <a href="/tags/VScode/" rel="tag"># VScode</a>
+              <a href="/tags/Pyside2/" rel="tag"># Pyside2</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/08/26/%E5%9C%A8-windows-%E5%BA%95%E4%B8%8B%E4%BD%BF%E7%94%A8-makefile-%E7%B7%A8%E8%AD%AF/" rel="prev" title="在 windows 10 使用 MinGW 編譯">
+      <i class="fa fa-chevron-left"></i> 在 windows 10 使用 MinGW 編譯
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text"> 前言 </span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#大綱"><span class="nav-number">2.</span> <span class="nav-text"> 大綱 </span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#1-安裝-Python3-7"><span class="nav-number">3.</span> <span class="nav-text"> 1. 安裝 Python3.7</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-安裝-Visual-studio-code"><span class="nav-number">4.</span> <span class="nav-text">2. 安裝 Visual studio code</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-安裝-PySide2"><span class="nav-number">5.</span> <span class="nav-text">3. 安裝 PySide2</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-配置-VSCode"><span class="nav-number">6.</span> <span class="nav-text">4. 配置 VSCode </span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-第一支-GUI-程式-Hello-world"><span class="nav-number">7.</span> <span class="nav-text">5. 第一支 GUI 程式: Hello world</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="blavince"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">blavince</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">17</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://www.github.com/" title="GitHub → https:&#x2F;&#x2F;www.github.com" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.google.com/" title="Google → https:&#x2F;&#x2F;www.google.com&#x2F;" rel="noopener" target="_blank"><i class="fab fa-google fa-fw"></i>Google</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.facebook.com/" title="FB Page → https:&#x2F;&#x2F;www.facebook.com&#x2F;" rel="noopener" target="_blank"><i class="fab fa-facebook fa-fw"></i>FB Page</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.youtube.com/" title="YouTube → https:&#x2F;&#x2F;www.youtube.com&#x2F;" rel="noopener" target="_blank"><i class="fab fa-youtube fa-fw"></i>YouTube</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://blavince.github.io/" title="blavince&#39;s BLOG → https:&#x2F;&#x2F;blavince.github.io"><i class=" fa-fw"></i>blavince's BLOG</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">blavince</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : 'ed67e34961bb62dd1d01',
+      clientSecret: '515895bdf15f66c4a615b6089d670915cdb1772c',
+      repo        : 'blavince.github.io',
+      owner       : 'blavince',
+      admin       : ['blavince'],
+      id          : '62ee665869cee512698c9d3067e5acc2',
+        language: 'zh-tW',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+</body>
+</html>

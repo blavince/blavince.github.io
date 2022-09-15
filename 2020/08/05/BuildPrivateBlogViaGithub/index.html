@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"blavince.github.io","root":"/","scheme":"Gemini","version":"8.0.0-rc.2","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":"flat | mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="因為想做學習筆記, 經過一些評估後,決定透過 Github + Hexo 的方式架設個人部落格; 這個方案雖然有幾點限制:">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Github + Hexo 架設個人 BLOG">
+<meta property="og:url" content="https://blavince.github.io/2020/08/05/BuildPrivateBlogViaGithub/index.html">
+<meta property="og:site_name" content="blavince&#39;s BLOG">
+<meta property="og:description" content="因為想做學習筆記, 經過一些評估後,決定透過 Github + Hexo 的方式架設個人部落格; 這個方案雖然有幾點限制:">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-08-05T10:19:00.000Z">
+<meta property="article:modified_time" content="2022-08-14T09:30:25.000Z">
+<meta property="article:author" content="blavince">
+<meta property="article:tag" content="Github">
+<meta property="article:tag" content="Hexo">
+<meta property="article:tag" content="BLOG">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://blavince.github.io/2020/08/05/BuildPrivateBlogViaGithub/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>Github + Hexo 架設個人 BLOG | blavince's BLOG</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+        <span class="toggle-line toggle-line-first"></span>
+        <span class="toggle-line toggle-line-middle"></span>
+        <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">blavince's BLOG</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Giving is a reward in itself.</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://blavince.github.io/2020/08/05/BuildPrivateBlogViaGithub/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="blavince">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="blavince's BLOG">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Github + Hexo 架設個人 BLOG
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-08-05 18:19:00" itemprop="dateCreated datePublished" datetime="2020-08-05T18:19:00+08:00">2020-08-05</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2022-08-14 17:30:25" itemprop="dateModified" datetime="2022-08-14T17:30:25+08:00">2022-08-14</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/BLOG/" itemprop="url" rel="index"><span itemprop="name">BLOG</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>因為想做學習筆記, 經過一些評估後,<br>決定透過 Github + Hexo 的方式架設個人部落格; 這個方案雖然有幾點限制:</p>
+<a id="more"></a>
+<p><font color=#008000>GitHub Pages source repositories have a recommended limit of 1GB.</font><br><font color=#008000>Published GitHub Pages sites may be no larger than 1 GB.</font><br><font color=#008000>GitHub Pages sites have a soft limit of 10 builds per hour.</font><br><font color=#008000>GitHub Pages sites have a soft bandwidth limit of 100GB per month.</font></p>
+<p>總結來說, 網站的上限不能超過 1GB, 一個小時內的網站更新不得高於 10 次以及每月流量不能大於 100GB! 但對於記錄學習筆記, 瑕不掩瑜!</p>
+<h1 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a><font color=#0000FF>一、前言</font></h1><p>使用 <a href="https://github.com/" target="_blank" rel="noopener">Github</a> 的靜態網頁服務架設個人的 BLOG, 從本地端運行的 <a href="https://hexo.io/zh-tw/" target="_blank" rel="noopener">Hexo</a> 後台服務編輯文章; 等到離線編輯完成後, 再佈署上去即可 (如本站: <a href="https://blavince.github.io">https://blavince.github.io</a>).</p>
+<blockquote>
+<p>免費、可離線編輯文章和佈署方便的特性是選擇這個解決方案的主因.</p>
+</blockquote>
+<h1 id="二、總覽"><a href="#二、總覽" class="headerlink" title="二、總覽"></a><font color=#0000FF>二、總覽</font></h1><ol>
+<li>申請 <a href="https://github.com/" target="_blank" rel="noopener">Github</a> 帳號, 創建 repository, 設定 GitHub Pages.</li>
+<li>安裝軟體:  <a href="https://git-scm.com/downloads" target="_blank" rel="noopener">Git</a>、<a href="https://nodejs.org/en/" target="_blank" rel="noopener">Node.js</a></li>
+<li>部署本地資料夾 (用來放整個網站的資料)</li>
+<li>本地編輯文章.</li>
+<li>部署到 <a href="https://github.com/" target="_blank" rel="noopener">Github</a> 上.</li>
+</ol>
+<h1 id="三、實現"><a href="#三、實現" class="headerlink" title="三、實現"></a><font color=#0000FF>三、實現</font></h1><p>這裡是 Windows 10 環境的實現.</p>
+<ol>
+<li><p><font color=#FF6600>申請 <a href="https://github.com/" target="_blank" rel="noopener">Github</a> 帳號, 創建 repository, 設定 GitHub Pages.</font><br>1.1. 建立 GitHub repository, Repository name 填入: blavince.github.io , Create repository.</p>
+<p>1.2. 接著到 repository 的 Settings 頁面並往下滑找到「GitHub Pages」點一下「Choose a theme」然後隨便選一個就好. (後續 Hexo 佈署後會蓋掉.)</p>
+</li>
+<li><p><font color=#FF6600>安裝軟體: <a href="https://git-scm.com/downloads" target="_blank" rel="noopener">Git</a> 及 <a href="https://nodejs.org/en/" target="_blank" rel="noopener">Node.js</a>, 安裝完 Node.js 後就會自帶 npm, 輸入以下指令安裝 Hexo:</font></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo-cli  <span class="comment">#安裝 Hexo</span></span><br></pre></td></tr></table></figure></li>
+<li><p><font color=#FF6600>部署本地資料夾 (用來放整個網站的資料), 這裡指定 E: 底下</font></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">e:</span><br><span class="line">hexo init blavince  <span class="comment">#初始化新的 Hexo</span></span><br><span class="line">cd blavince         </span><br><span class="line">npm install         <span class="comment">#安裝 Hexo</span></span><br><span class="line">npm install hexo-deployer-git --save  <span class="comment">#安裝 git 部署套件</span></span><br><span class="line">npm install hexo-admin --save  <span class="comment">#安裝 hexo-admin 文章管理的後台插件</span></span><br></pre></td></tr></table></figure>
+<p>完成安裝後, 打開 <code>_config.yml</code>, 修改第 6~12 行資訊, </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">title:   <span class="comment">#輸入部落格標題</span></span><br><span class="line">subtitle:  <span class="comment">#輸入副標題</span></span><br><span class="line">description:  <span class="comment">#輸入網站描述 </span></span><br><span class="line">keywords:  <span class="comment">#輸入網站關鍵字(以逗號隔開)，方便 SEO </span></span><br><span class="line">author:   <span class="comment">#輸入姓名或暱稱</span></span><br><span class="line">language: zh-TW  <span class="comment">#輸入您所使用的語言</span></span><br><span class="line">timezone:  <span class="comment">#留空以使用系統時間</span></span><br></pre></td></tr></table></figure>
+<p>接著第 16 行的地方，url 換成自己網站的連結  <code>https://blavince.github.io/</code>,</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">url: https://blavince.github.io/</span><br></pre></td></tr></table></figure>
+<p>最後找到文件的底部修改, </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: https://github.com/blavince/blavince.github.io.git</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
+<p>到此完成本地資料夾部署了!</p>
+</li>
+<li><p><font color=#FF6600>本地編輯文章</font><br>第一件事就是先在本地驗證是否部署正確,</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo cl  <span class="comment">#清除之前建立的靜態檔案，也可以輸入 hexo clean</span></span><br><span class="line">hexo g  <span class="comment">#建立靜態檔案，也可以輸入 hexo generate</span></span><br></pre></td></tr></table></figure>
+<p>然後輸入:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo s <span class="comment">#架設本地端伺服器，也可以輸入 hexo server</span></span><br></pre></td></tr></table></figure>
+<p>在瀏覽器輸入 <code>http://localhost:4000</code> 就能看到該部落格,<br>網址尾端加入 <strong><font color=#800000>/admin</font></strong> (例如 <a href="http://localhost:4000/admin" target="_blank" rel="noopener">http://localhost:4000/admin</a> )就能進入後台開始編輯文章.</p>
+</li>
+</ol>
+<h1 id="四、個人化修改"><a href="#四、個人化修改" class="headerlink" title="四、個人化修改"></a><font color=#0000FF>四、個人化修改</font></h1><p>很多客製化功能在網路上都可以找得到, 在此列出我自己的修改:</p>
+<ol>
+<li><font color=#FF6600>套用主題 NexT:</font><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd blavince</span><br><span class="line">git clone https://github.com/next-theme/hexo-theme-next themes/next</span><br></pre></td></tr></table></figure>
+將根目錄 <code>/blavince/_config.yml</code> 下的 <code>theme</code> 從預設的 <code>landscape</code> 改成 <code>next</code>:<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">theme: next</span><br></pre></td></tr></table></figure>
+再將 <code>/blavince/themes/next/_config.yml</code> 下的 <code>theme</code> 修改成:<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Schemes</span></span><br><span class="line"><span class="comment">#scheme: Muse</span></span><br><span class="line"><span class="comment">#scheme: Mist</span></span><br><span class="line"><span class="comment">#scheme: Pisces</span></span><br><span class="line">scheme: Gemini</span><br></pre></td></tr></table></figure>
+最後修改,<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">codeblock:</span><br><span class="line">  <span class="comment"># Code Highlight theme</span></span><br><span class="line">  <span class="comment"># See: https://github.com/highlightjs/highlight.js/tree/master/src/styles</span></span><br><span class="line">  theme:</span><br><span class="line">    light: dark</span><br><span class="line">    dark: default</span><br></pre></td></tr></table></figure></li>
+<li><font color=#FF6600>修改頭像(avatar)及 sidebar </font><br>修改 <code>/blavince/themes/next/_config.yml</code> 下的<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sidebar:</span><br><span class="line">  <span class="comment"># Sidebar Position.</span></span><br><span class="line">  <span class="comment">#position: left</span></span><br><span class="line">  position: right</span><br></pre></td></tr></table></figure>
+將它固定在右側, 然後在 <code>\blavince\themes\next\source\images\avatar.jpg</code> 底下放入頭像照, 並修改路徑<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Sidebar Avatar</span></span><br><span class="line">avatar:</span><br><span class="line">  <span class="comment"># Replace the default image and set the url here.</span></span><br><span class="line">  url: /images/avatar.jpg</span><br></pre></td></tr></table></figure>
+然後啟用和修改 social 的連結:<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">social:</span><br><span class="line">  GitHub: https://www.github.com || fab fa-github</span><br><span class="line">  <span class="comment">#E-Mail: mailto:blanc131@gmail.com || fa fa-envelope</span></span><br><span class="line">  Google: https://www.google.com/ || fab fa-google</span><br><span class="line">  <span class="comment">#Weibo: https://weibo.com/yourname || fab fa-weibo</span></span><br><span class="line">  <span class="comment">#Twitter: https://twitter.com/ || fab fa-twitter</span></span><br><span class="line">  FB Page: https://www.facebook.com/ || fab fa-facebook</span><br><span class="line">  <span class="comment">#StackOverflow: https://stackoverflow.com/yourname || fab fa-stack-overflow</span></span><br><span class="line">  YouTube: https://www.youtube.com/ || fab fa-youtube</span><br><span class="line">  <span class="comment">#Instagram: https://instagram.com/yourname || fab fa-instagram</span></span><br><span class="line">  <span class="comment">#Skype: skype:yourname?call|chat || fab fa-skype</span></span><br><span class="line">  blavince<span class="string">'s BLOG: https://blavince.github.io ||</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">social_icons:</span></span><br><span class="line"><span class="string">  enable: true</span></span><br><span class="line"><span class="string">  icons_only: false</span></span><br><span class="line"><span class="string">  transition: false</span></span><br></pre></td></tr></table></figure></li>
+<li><font color=#FF6600>修改背景顏色</font><br>可以到 <a href="https://www.ifreesite.com/color/web-color-code.htm" target="_blank" rel="noopener"><font color=#0000FF>常用顏色表</font></a>, 查詢顏色的編號, 再到<br><code>\blavince\themes\next\source\css\_variables</code>, 修改:<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$body-bg-color                &#x3D; #c8c9cb;</span><br></pre></td></tr></table></figure></li>
+<li><font color=#FF6600>開啟留言板功能</font> (gittalk)<br>登入 <a href="https://github.com/" target="_blank" rel="noopener">Github</a> 到右上角的 <code>Settings</code> → 左下角的 <code>Developer settings</code> → 左邊的 <code>OAuth Apps</code>  → 右上角的 <code>New OAuth Apps</code> , 分別填入:<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Application name - blavince BLOG <span class="comment">#應用程式名稱</span></span><br><span class="line">Homepage URL - https://blavince.github.io/ <span class="comment">#應用程式網域 → 填你部落格網址</span></span><br><span class="line">Application description - OAuth <span class="keyword">for</span> BLOG <span class="comment">#應用程式描述</span></span><br><span class="line">Authorization callback URL - https://blavince.github.io/ <span class="comment">#授權回應網址 → 填你部落格網址</span></span><br></pre></td></tr></table></figure>
+申請完會獲得 Client ID、 Client Secret, 不要外流, 重新打開<br><code>/blavince/themes/next/_config.yml</code> 找到 gittalk 填入:<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">gitalk:</span><br><span class="line">  enable: true</span><br><span class="line">  github_id:  blavince <span class="comment"># GitHub 作者帳號</span></span><br><span class="line">  repo: blavince.github.io <span class="comment"># 你的 Repo 名稱，通常就是網域</span></span><br><span class="line">  client_id: xxxxxxxx <span class="comment"># 剛剛申請的 Client ID</span></span><br><span class="line">  client_secret: xxxxxxxx <span class="comment"># 剛剛申請的 Client Secret</span></span><br><span class="line">  admin_user: blavince <span class="comment"># 管理者的帳號</span></span><br><span class="line">  distraction_free_mode: true <span class="comment"># 無干擾模式</span></span><br><span class="line">  language: zh-TW <span class="comment">## 語系</span></span><br></pre></td></tr></table></figure></li>
+<li><font color=#FF6600>添加分類(Categories)及標籤(Tags)</font><br>5-1. <font color=#800080>在 hexo 的根目錄下添加分類, 輸入:</font><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new page categories</span><br></pre></td></tr></table></figure>
+然後會顯示:<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">INFO  Created: ~&#x2F;blavince&#x2F;source&#x2F;categories&#x2F;index.md</span><br></pre></td></tr></table></figure>
+然後根據顯示的路徑將文檔修改成:<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: categories</span><br><span class="line">date: <span class="number">2020</span><span class="number">-05</span><span class="number">-29</span> <span class="number">13</span>:<span class="number">24</span>:<span class="number">29</span></span><br><span class="line">type: <span class="string">"categories"</span></span><br><span class="line">---</span><br></pre></td></tr></table></figure>
+5-2. <font color=#800080>同理, 標籤也是這樣:</font><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new page tags</span><br></pre></td></tr></table></figure>
+根據顯示的路徑將文檔修改成:<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: tags</span><br><span class="line">date: <span class="number">2020</span><span class="number">-05</span><span class="number">-29</span> <span class="number">13</span>:<span class="number">24</span>:<span class="number">51</span></span><br><span class="line">type: <span class="string">"tags"</span></span><br><span class="line">---</span><br></pre></td></tr></table></figure>
+5-3. <font color=#800080>最後把 <code>\blavince\themes\next\_config.yml</code> 的 menu 啟用:</font><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">menu:</span><br><span class="line">  home: / || fa fa-home</span><br><span class="line">  archives: /archives/ || fa fa-archive</span><br><span class="line">  <span class="comment">#about: /about/ || fa fa-user</span></span><br><span class="line">  tags: /tags/ || fa fa-tags</span><br><span class="line">  categories: /categories/ || fa fa-th</span><br></pre></td></tr></table></figure>
+使用 hexo-admin 後台編寫文章時, 右上角的設定可以添加分類及標籤, <strong>一篇文章只能有一個分類 (其餘為次分類), 但可以有很多標籤!</strong></li>
+<li><font color=#FF6600>開啟書籤功能</font><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Bookmark Support</span></span><br><span class="line">bookmark:</span><br><span class="line">  enable: true</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h1 id="五、部署到Github"><a href="#五、部署到Github" class="headerlink" title="五、部署到Github"></a><font color=#0000FF>五、部署到Github</font></h1><p>最後部署到 <a href="https://github.com/" target="_blank" rel="noopener">Github</a> 上.</p>
+<ol>
+<li><font color=#FF6600>先按 <code>Ctrl+c, 再按 Y</code> 或者 <code>Ctrl+c 再按 Ctrl+c</code> 停止本地伺服器</font><br>然後輸入:<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo cl  <span class="comment">#清除之前建立的靜態檔案，也可以輸入 hexo clean</span></span><br><span class="line">hexo g  <span class="comment">#建立靜態檔案，也可以輸入 hexo generate</span></span><br></pre></td></tr></table></figure></li>
+<li><font color=#FF6600>將個人部落格部署至 Github Pages</font><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo d  <span class="comment">#部署至 Github Pages，也可以輸入 hexo deploy</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+<ul>
+<li><del>輸入 <a href="https://github.com/" target="_blank" rel="noopener">Github</a> 帳號、密碼並等待 push 完成!</del></li>
+<li>輸入 Github 帳號密碼授權已經於2021 Aug 取消了, 可以參考 <a href="https://benpaodewoniu.github.io/2021/08/15/github6/" target="_blank" rel="noopener">Github tokens</a> 使用 Personal access tokens 的方式完成授權部屬.</li>
+<li>測試是否部署成功 <a href="https://blavince.github.io/">blavince’s BLOG</a>.</li>
+</ul>
+<p><em>*注意: <font color=#800000>本地資料夾很重要</font>!!! 如同原始碼, 而 clone 下來的僅是被編譯的檔案, 無法修改! <font color=#800000>要好好保存</font>!</em></p>
+<p>引用文章: <a href="https://ed521.github.io/2019/07/hexo-install/" target="_blank" rel="noopener">瑪利歐的部落格</a></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Github/" rel="tag"># Github</a>
+              <a href="/tags/Hexo/" rel="tag"># Hexo</a>
+              <a href="/tags/BLOG/" rel="tag"># BLOG</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2020/08/05/HexoWithMarkdown/" rel="next" title="Hexo 編輯文章常用 Markdown 基本語法">
+      Hexo 編輯文章常用 Markdown 基本語法 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一、前言"><span class="nav-number">1.</span> <span class="nav-text">一、前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、總覽"><span class="nav-number">2.</span> <span class="nav-text">二、總覽</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三、實現"><span class="nav-number">3.</span> <span class="nav-text">三、實現</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#四、個人化修改"><span class="nav-number">4.</span> <span class="nav-text">四、個人化修改</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#五、部署到Github"><span class="nav-number">5.</span> <span class="nav-text">五、部署到Github</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="blavince"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">blavince</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">17</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://www.github.com/" title="GitHub → https:&#x2F;&#x2F;www.github.com" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.google.com/" title="Google → https:&#x2F;&#x2F;www.google.com&#x2F;" rel="noopener" target="_blank"><i class="fab fa-google fa-fw"></i>Google</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.facebook.com/" title="FB Page → https:&#x2F;&#x2F;www.facebook.com&#x2F;" rel="noopener" target="_blank"><i class="fab fa-facebook fa-fw"></i>FB Page</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.youtube.com/" title="YouTube → https:&#x2F;&#x2F;www.youtube.com&#x2F;" rel="noopener" target="_blank"><i class="fab fa-youtube fa-fw"></i>YouTube</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://blavince.github.io/" title="blavince&#39;s BLOG → https:&#x2F;&#x2F;blavince.github.io"><i class=" fa-fw"></i>blavince's BLOG</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">blavince</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : 'ed67e34961bb62dd1d01',
+      clientSecret: '515895bdf15f66c4a615b6089d670915cdb1772c',
+      repo        : 'blavince.github.io',
+      owner       : 'blavince',
+      admin       : ['blavince'],
+      id          : 'fa1f8139a513fd6beb7eaeb10e877798',
+        language: 'zh-tW',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+</body>
+</html>

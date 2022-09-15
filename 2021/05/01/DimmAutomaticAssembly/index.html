@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"blavince.github.io","root":"/","scheme":"Gemini","version":"8.0.0-rc.2","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":"flat | mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="這個專案盡量使用現有資源獨立開發, 過程中學習到不少東西 , 做個簡易的紀錄! (基於 EPSON Robot + Basler Camera + OpenCV + ZXing)">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[自動化專案] 記憶體自動化組裝設備">
+<meta property="og:url" content="https://blavince.github.io/2021/05/01/DimmAutomaticAssembly/index.html">
+<meta property="og:site_name" content="blavince&#39;s BLOG">
+<meta property="og:description" content="這個專案盡量使用現有資源獨立開發, 過程中學習到不少東西 , 做個簡易的紀錄! (基於 EPSON Robot + Basler Camera + OpenCV + ZXing)">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://p0.pikist.com/photos/455/728/memory-chips-memory-ram-ram-memory-board-electronics-transistor-conductors-components.jpg">
+<meta property="og:image" content="https://imgur.com/QQKswT7.png">
+<meta property="og:image" content="https://i.imgur.com/UJVzyt7.png">
+<meta property="og:image" content="https://i.imgur.com/X3Y2xYQ.png">
+<meta property="og:image" content="https://i.imgur.com/HCmb4a0.png">
+<meta property="og:image" content="https://i.imgur.com/A99zKnK.png">
+<meta property="og:image" content="https://i.imgur.com/jfztYGJ.png">
+<meta property="og:image" content="https://imgur.com/Mze0JH2.png">
+<meta property="article:published_time" content="2021-05-01T01:08:00.000Z">
+<meta property="article:modified_time" content="2022-08-13T16:24:46.000Z">
+<meta property="article:author" content="blavince">
+<meta property="article:tag" content="C#">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://p0.pikist.com/photos/455/728/memory-chips-memory-ram-ram-memory-board-electronics-transistor-conductors-components.jpg">
+
+<link rel="canonical" href="https://blavince.github.io/2021/05/01/DimmAutomaticAssembly/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>[自動化專案] 記憶體自動化組裝設備 | blavince's BLOG</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+        <span class="toggle-line toggle-line-first"></span>
+        <span class="toggle-line toggle-line-middle"></span>
+        <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">blavince's BLOG</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Giving is a reward in itself.</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://blavince.github.io/2021/05/01/DimmAutomaticAssembly/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="blavince">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="blavince's BLOG">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          [自動化專案] 記憶體自動化組裝設備
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-05-01 09:08:00" itemprop="dateCreated datePublished" datetime="2021-05-01T09:08:00+08:00">2021-05-01</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2022-08-14 00:24:46" itemprop="dateModified" datetime="2022-08-14T00:24:46+08:00">2022-08-14</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/C/" itemprop="url" rel="index"><span itemprop="name">C#</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>這個專案盡量使用現有資源獨立開發, 過程中學習到不少東西 , 做個簡易的紀錄!<br> (基於 EPSON Robot + Basler Camera + OpenCV + ZXing)</p>
+<a id="more"></a>
+
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a><font color=#0000FF>前言</font></h1><p><font color=#800080><strong><em>長時間人工記憶體插拔, 作業員會消耗大量體力而且手指容易受傷順帶影響組裝品質; 由此發想, 設計自動化機台取代這個動作(工作站), 同時確保生產品質</em></strong>.</font></p>
+<p><img src="https://p0.pikist.com/photos/455/728/memory-chips-memory-ram-ram-memory-board-electronics-transistor-conductors-components.jpg" alt="InsertDimm"><br>圖片來源: <a href="https://www.pikist.com/free-photo-iwopg" target="_blank" rel="noopener">pikist</a></p>
+<h1 id="應用範圍"><a href="#應用範圍" class="headerlink" title="應用範圍"></a><font color=#0000FF>應用範圍</font></h1><p>設計的範圍是伺服器組裝等級的 Level 6 → Level 10.</p>
+<p>伺服器組裝等級定義可參考<a href="https://www.amax.com/blog/?p=668" target="_blank" rel="noopener"><font color=#0000FF>AMAX Blog and Insights</font>
+</a>,<br>其中 Level 6 的定義為:<br><font color=#008000>Level 6: Integration of motherboard into chassis enclosure and power on test.</p>
+<p>Level 6 manufactured platforms are what ODMs provide when they ship out “server barebones” which are integrated motherboard/chassis combinations with parts included, but missing components such as CPU, memory, hard drives, networking cards, etc. Often systems integrators will buy these barebones and populate with components to create specific server configurations. How much value that integrator can add in terms of services and further building out the solution depends on their capabilities in the next levels:</font>    </p>
+<p>Level 10 的定義為:<br><font color=#008000>Level 10: Full assembly of server with full system and component level testing, OS/software integration, product kitted with user manual and other required documentation and delivered as a fully-integrated server solution.</p>
+<p>A manufacturer capable of up to Level 10 manufacturing will deliver a working server solution. But if you need multiple servers networked together as a rack-level or even multi-rack level solution, you will need at least a Level 11 manufacturer (like AMAX):<br></font>    </p>
+<p><strong>簡單來說</strong>, Level 6 出貨 <font color=#FF0000><strong><u>不</u></font>包含</strong>: </p>
+<ol>
+<li>中央處理器(CPU)</li>
+<li>記憶體(RAM)</li>
+<li>儲存裝置(HDD or SSD)</li>
+<li>網卡</li>
+<li>…等等零件,</li>
+</ol>
+<p>而 Level 10 <strong>包含</strong> 這些零件.<br>為什麼要 Level 6 出貨, Level 10 又組裝呢? 主要是為了<strong><font color=#0000FF>客製化配置</font></strong> 及 <strong><font color=#0000FF>降低關稅</font></strong> !</p>
+<p>因為應用在這個場景, 所以機械手臂(Robot)的靈活性再加上攝像頭(Camera)的定位輔助就是最佳解了!</p>
+<h1 id="硬體佈局"><a href="#硬體佈局" class="headerlink" title="硬體佈局"></a><font color=#0000FF>硬體佈局</font></h1><p>規劃 2 個工作站來達成這個任務, 簡易的佈局圖如下:</p>
+<ol>
+<li>第一站(<strong>Dimm1</strong>) 取記憶體放至插槽內.</li>
+<li>第二站(<strong>Dimm2</strong>) 將插槽內的記憶體壓合到位.<br><img src="https://imgur.com/QQKswT7.png" alt="layout"></li>
+</ol>
+<h1 id="部件"><a href="#部件" class="headerlink" title="部件"></a><font color=#0000FF>部件</font></h1><p>組成這兩站的最基本硬體單位有: </p>
+<ol>
+<li><p>機械手臂<br><img src="https://i.imgur.com/UJVzyt7.png" alt="Robot"></p>
+</li>
+<li><p>攝像頭<br><img src="https://i.imgur.com/X3Y2xYQ.png" alt="Cmaera"></p>
+</li>
+<li><p>第一站(Dimm1) 使用夾取記憶體的夾爪,<br><img src="https://i.imgur.com/HCmb4a0.png" alt="MainGrab"></p>
+</li>
+<li><p>第二站(Dimm2) 使用可開啟和壓入記憶體的夾爪,<br><img src="https://i.imgur.com/A99zKnK.png" alt="SubGrab"></p>
+</li>
+</ol>
+<h1 id="流程思路"><a href="#流程思路" class="headerlink" title="流程思路"></a><font color=#0000FF>流程思路</font></h1><p>當產品流入時感應器激活 Dimm1/2 的到位信號, 停止流水線轉動; 接著 Dimm1/2 做機器視覺判斷, 計算產品的偏移量並補償回去, 隨後開始取、放記憶體 (或者壓合記憶體)直到結束.</p>
+<p>綜上整理工站的基本流程應切成 5 個子部分:</p>
+<ol>
+<li><font color=#008000>確定到位信號為空, 流水線轉動使產品流入</font></li>
+<li><font color=#008000>產品流入激活到位信號, 停止流水線轉動</font></li>
+<li><font color=#008000>機器視覺判斷特徵點、計算偏移量並補償</font></li>
+<li><font color=#008000>重複取、放記憶體 (或者壓合記憶體) 的動作</font></li>
+<li><font color=#008000>確定下一站到位信號為空, 流水線轉動使產品流出</font></li>
+</ol>
+<h1 id="控制權"><a href="#控制權" class="headerlink" title="控制權"></a><font color=#0000FF>控制權</font></h1><p>上述各部分由 電腦 與 <a href="https://zh.wikipedia.org/wiki/%E5%8F%AF%E7%BC%96%E7%A8%8B%E9%80%BB%E8%BE%91%E6%8E%A7%E5%88%B6%E5%99%A8" target="_blank" rel="noopener"><font color=#0000FF>PLC</font></a> (<font color=#808080>programmable logic controller, 可程式化邏輯控制器</font>) 分別控制; 基本的硬體邏輯由 PLC 控制, 其餘由電腦來控制, 而電腦與 PLC 有 I/O (Input/Output) 的交換, 可以獲得及控制相關的硬體狀態, 以便電腦做邏輯的判斷, 硬體關係羅列如下表:</p>
+<table>
+<thead>
+<tr>
+<th>編號</th>
+<th>項目</th>
+<th>控制權</th>
+<th>數量</th>
+<th>備註</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1.</td>
+<td><font color=#FF6600>電腦</font></td>
+<td><font color=#ff0000>使用者</font></td>
+<td>1</td>
+<td>使用者執行組裝程式</td>
+</tr>
+<tr>
+<td>2.</td>
+<td>機械手臂</td>
+<td><font color=#FF6600>電腦</font></td>
+<td>2</td>
+<td>Dimm1 + Dimm2 共 2 台</td>
+</tr>
+<tr>
+<td>3.</td>
+<td>攝像頭</td>
+<td><font color=#FF6600>電腦</font></td>
+<td>2</td>
+<td>手臂上含攝像頭共 2 台</td>
+</tr>
+<tr>
+<td>4.</td>
+<td>夾爪</td>
+<td><font color=#FF6600>電腦</font></td>
+<td>2</td>
+<td>手臂上含夾爪共 2 台</td>
+</tr>
+<tr>
+<td>5.</td>
+<td><font color=#FF00FF>PLC</font></td>
+<td><font color=#FF6600>電腦</font></td>
+<td>1</td>
+<td>電腦可以透過 I/O 交換取得硬體狀態</td>
+</tr>
+<tr>
+<td>6.</td>
+<td>供料器</td>
+<td><font color=#FF00FF>PLC</font></td>
+<td>2</td>
+<td>電腦從 PLC 的 I/O 讀取狀態</td>
+</tr>
+<tr>
+<td>7.</td>
+<td>流水線</td>
+<td><font color=#FF00FF>PLC</font></td>
+<td>2</td>
+<td>電腦從 PLC 的 I/O 讀取狀態</td>
+</tr>
+<tr>
+<td>8.</td>
+<td>感應器</td>
+<td><font color=#FF00FF>PLC</font></td>
+<td>4</td>
+<td>電腦從 PLC 的 I/O 讀取狀態, 包含前一站與後一站的感應器也是必要的訊號</td>
+</tr>
+<tr>
+<td>9.</td>
+<td>泡棉供應器</td>
+<td><font color=#FF00FF>PLC</font></td>
+<td>1</td>
+<td><em>由多個感應器組成</em></td>
+</tr>
+</tbody></table>
+<h1 id="軟體方塊圖"><a href="#軟體方塊圖" class="headerlink" title="軟體方塊圖"></a><font color=#0000FF>軟體方塊圖</font></h1><p>專案的功能整合選擇用 <code>c#</code> 來實現, 呼叫 API (<a href="https://zh.wikipedia.org/wiki/%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E6%8E%A5%E5%8F%A3" target="_blank" rel="noopener"><font color=#0000FF>甚麼是API?</font></a>) 來完成各個功能!<br>如圖:<br><img src="https://i.imgur.com/jfztYGJ.png" alt="SoftwareFlow"></p>
+<table>
+<thead>
+<tr>
+<th>編號</th>
+<th>API接口</th>
+<th>功能</th>
+<th>備註</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1.</td>
+<td>Robot</td>
+<td>手臂控制</td>
+<td>控制手臂動作及 I/O 交換</td>
+</tr>
+<tr>
+<td>2.</td>
+<td>Camera</td>
+<td>圖像擷取</td>
+<td>輸出圖像 raw data</td>
+</tr>
+<tr>
+<td>3.</td>
+<td>ZXing</td>
+<td>條碼處理</td>
+<td>解碼 Barcode 及 QRcode</td>
+</tr>
+<tr>
+<td>4.</td>
+<td>OpenCV</td>
+<td>影像定位</td>
+<td>影像處理庫</td>
+</tr>
+<tr>
+<td>5.</td>
+<td>SF</td>
+<td>日誌系統</td>
+<td>生產系統提供的 Log 接口</td>
+</tr>
+</tbody></table>
+<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a><font color=#0000FF>結論</font></h1><p>經過一段時間的開發及反覆修改 (尤其是機構修改及影像定位的演算優化), 終於成功完成 prototype 及 online pilot run.<br><img src="https://imgur.com/Mze0JH2.png" alt="DIMMMachine"></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/C/" rel="tag"># C#</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/09/14/EPSONRobotAndBaslerCamera/" rel="prev" title="C# 整合 EPSON Robot 與 Basler Camera">
+      <i class="fa fa-chevron-left"></i> C# 整合 EPSON Robot 與 Basler Camera
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/08/14/VIM-%E8%B7%9F-SSH-server-%E8%A8%AD%E5%AE%9A/" rel="next" title="VIM 跟 SSH server 設定">
+      VIM 跟 SSH server 設定 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#應用範圍"><span class="nav-number">2.</span> <span class="nav-text">應用範圍</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#硬體佈局"><span class="nav-number">3.</span> <span class="nav-text">硬體佈局</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#部件"><span class="nav-number">4.</span> <span class="nav-text">部件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#流程思路"><span class="nav-number">5.</span> <span class="nav-text">流程思路</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#控制權"><span class="nav-number">6.</span> <span class="nav-text">控制權</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#軟體方塊圖"><span class="nav-number">7.</span> <span class="nav-text">軟體方塊圖</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#結論"><span class="nav-number">8.</span> <span class="nav-text">結論</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="blavince"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">blavince</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">17</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://www.github.com/" title="GitHub → https:&#x2F;&#x2F;www.github.com" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.google.com/" title="Google → https:&#x2F;&#x2F;www.google.com&#x2F;" rel="noopener" target="_blank"><i class="fab fa-google fa-fw"></i>Google</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.facebook.com/" title="FB Page → https:&#x2F;&#x2F;www.facebook.com&#x2F;" rel="noopener" target="_blank"><i class="fab fa-facebook fa-fw"></i>FB Page</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.youtube.com/" title="YouTube → https:&#x2F;&#x2F;www.youtube.com&#x2F;" rel="noopener" target="_blank"><i class="fab fa-youtube fa-fw"></i>YouTube</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://blavince.github.io/" title="blavince&#39;s BLOG → https:&#x2F;&#x2F;blavince.github.io"><i class=" fa-fw"></i>blavince's BLOG</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">blavince</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : 'ed67e34961bb62dd1d01',
+      clientSecret: '515895bdf15f66c4a615b6089d670915cdb1772c',
+      repo        : 'blavince.github.io',
+      owner       : 'blavince',
+      admin       : ['blavince'],
+      id          : 'da3627dfc21e397c482dc696788d2047',
+        language: 'zh-tW',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+</body>
+</html>

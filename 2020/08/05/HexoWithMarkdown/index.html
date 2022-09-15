@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"blavince.github.io","root":"/","scheme":"Gemini","version":"8.0.0-rc.2","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":"flat | mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="架設好個人部落格後, 開始撰寫文章!Hexo 在編輯文章時支援 Markdown 語法, 所以在這裡列出常用的語法.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo 編輯文章常用 Markdown 基本語法">
+<meta property="og:url" content="https://blavince.github.io/2020/08/05/HexoWithMarkdown/index.html">
+<meta property="og:site_name" content="blavince&#39;s BLOG">
+<meta property="og:description" content="架設好個人部落格後, 開始撰寫文章!Hexo 在編輯文章時支援 Markdown 語法, 所以在這裡列出常用的語法.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://markdown.tw/images/208x128.png">
+<meta property="og:image" content="https://i.imgur.com/e8iA9AX.jpg">
+<meta property="og:image" content="https://www.google.com.tw/images/branding/googlelogo/2x/googlelogo_color_160x56dp.png">
+<meta property="article:published_time" content="2020-08-05T10:21:00.000Z">
+<meta property="article:modified_time" content="2022-08-26T09:39:55.000Z">
+<meta property="article:author" content="blavince">
+<meta property="article:tag" content="Hexo">
+<meta property="article:tag" content="BLOG">
+<meta property="article:tag" content="Markdown">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://markdown.tw/images/208x128.png">
+
+<link rel="canonical" href="https://blavince.github.io/2020/08/05/HexoWithMarkdown/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>Hexo 編輯文章常用 Markdown 基本語法 | blavince's BLOG</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+        <span class="toggle-line toggle-line-first"></span>
+        <span class="toggle-line toggle-line-middle"></span>
+        <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">blavince's BLOG</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Giving is a reward in itself.</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://blavince.github.io/2020/08/05/HexoWithMarkdown/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="blavince">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="blavince's BLOG">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Hexo 編輯文章常用 Markdown 基本語法
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-08-05 18:21:00" itemprop="dateCreated datePublished" datetime="2020-08-05T18:21:00+08:00">2020-08-05</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2022-08-26 17:39:55" itemprop="dateModified" datetime="2022-08-26T17:39:55+08:00">2022-08-26</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/BLOG/" itemprop="url" rel="index"><span itemprop="name">BLOG</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><img src="https://markdown.tw/images/208x128.png" alt=""><br>架設好個人部落格後, 開始撰寫文章!<br>Hexo 在編輯文章時支援 Markdown 語法, 所以在這裡列出常用的語法.</p>
+<a id="more"></a>
+
+
+<p><strong>哲學</strong><br>Markdown 的目標是實現「易讀易寫」。 ( 參考: <a href="https://markdown.tw/" target="_blank" rel="noopener">Markdown</a> )</p>
+<h1 id="標題"><a href="#標題" class="headerlink" title="標題"></a><font color=#0000FF>標題</font></h1><p>使用 <code>#</code> 來表示等級一的標題，總共有六個等級，且 <font color=#FF0000>    # 字符號和文字間要空一格</font>。語法依此類推：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># 等級一標題</span><br><span class="line">## 等級二標題</span><br><span class="line">### 等級三標題</span><br><span class="line">#### 等級四標題</span><br><span class="line">##### 等級五標題</span><br><span class="line">###### 等級六標題</span><br></pre></td></tr></table></figure>
+<h1 id="文字字體"><a href="#文字字體" class="headerlink" title="文字字體"></a><font color=#0000FF>文字字體</font></h1><table>
+<thead>
+<tr>
+<th>類別</th>
+<th>語法</th>
+<th>顯示結果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>粗體</td>
+<td><code>**我是粗體**</code></td>
+<td><strong>我是粗體</strong></td>
+</tr>
+<tr>
+<td>斜體</td>
+<td><code>*我是斜體*</code></td>
+<td><em>我是斜體</em></td>
+</tr>
+<tr>
+<td>粗斜體</td>
+<td><code>***我是粗斜體***</code></td>
+<td><strong><em>我是粗斜體</em></strong></td>
+</tr>
+<tr>
+<td>刪除線</td>
+<td><code>~~我是刪除線~~</code></td>
+<td><del>我是刪除線</del></td>
+</tr>
+<tr>
+<td>底線</td>
+<td><code>&lt;u&gt;我是底線&lt;u&gt;</code></td>
+<td><u>我是底線<u></td>
+</tr>
+</tbody></table>
+<h1 id="文字顏色"><a href="#文字顏色" class="headerlink" title="文字顏色"></a><font color=#0000FF>文字顏色</font></h1><p>Markdown 並沒有更改文字顏色的語法, 因此只能我們靠自己加入 HTML 語法來修改文字顏色, 例如 <code>&lt;font color=#008000&gt;我是深綠色&lt;/font&gt;</code> : <font color=#008000>我是深綠色</font>,<br>除了以下列出的顏色, 也可以到 <a href="https://www.ifreesite.com/color/web-color-code.htm" target="_blank" rel="noopener"><font color=#0000FF>常用顏色表</font></a> 自行查詢顏色。</p>
+<table>
+<thead>
+<tr>
+<th>語法</th>
+<th>顯示結果</th>
+<th>語法</th>
+<th>顯示結果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>&lt;font color=#800000&gt;酒紅色&lt;/font&gt;</code></td>
+<td><font color=#800000>酒紅色</font></td>
+<td><code>&lt;font color=#FF0000&gt;紅色&lt;/font&gt;</code></td>
+<td><font color=#FF0000>紅色</font></td>
+</tr>
+<tr>
+<td><code>&lt;font color=#FF6600&gt;橘色&lt;/font&gt;</code></td>
+<td><font color=#FF6600>橘色</font></td>
+<td><code>&lt;font color=#FFD700&gt;金色&lt;/font&gt;</code></td>
+<td><font color=#FFD700>金色</font></td>
+</tr>
+<tr>
+<td><code>&lt;font color=#FFFF00&gt;黃色&lt;/font&gt;</code></td>
+<td><font color=#FFFF00>黃色</font></td>
+<td><code>&lt;font color=#00FF00&gt;綠色&lt;/font&gt;</code></td>
+<td><font color=#00FF00>綠色</font></td>
+</tr>
+<tr>
+<td><code>&lt;font color=#008000&gt;墨綠色&lt;/font&gt;</code></td>
+<td><font color=#008000>墨綠色</font></td>
+<td><code>&lt;font color=#00FFFF&gt;青色&lt;/font&gt;</code></td>
+<td><font color=#00FFFF>青色</font></td>
+</tr>
+<tr>
+<td><code>&lt;font color=#0000FF&gt;深藍色&lt;/font&gt;</code></td>
+<td><font color=#0000FF>深藍色</font></td>
+<td><code>&lt;font color=#FF00FF&gt;粉紅色&lt;/font&gt;</code></td>
+<td><font color=#FF00FF>粉紅色</font></td>
+</tr>
+<tr>
+<td><code>&lt;font color=#800080&gt;紫色&lt;/font&gt;</code></td>
+<td><font color=#800080>紫色</font></td>
+<td><code>&lt;font color=#808080&gt;灰色&lt;/font&gt;</code></td>
+<td><font color=#808080>灰色</font></td>
+</tr>
+</tbody></table>
+<h1 id="程式碼"><a href="#程式碼" class="headerlink" title="程式碼"></a><font color=#0000FF>程式碼</font></h1><ul>
+<li><font color=#FF6600>文字間程式碼</font><br>使用 1 個反引號包起來: </li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">執行 &#96;blavince()&#96; 函式</span><br></pre></td></tr></table></figure>
+<p>結果如下:<br>執行 <code>blavince()</code> 函式</p>
+<ul>
+<li><font color=#FF6600>段落程式碼</font><br>使用 3 個反引號包起來:<br><img src="https://i.imgur.com/e8iA9AX.jpg" alt=""></li>
+</ul>
+<p>顯示結果如下:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// HelloWorld 程式</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">( )</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"Hello World!\n"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="分隔線"><a href="#分隔線" class="headerlink" title="分隔線"></a><font color=#0000FF>分隔線</font></h1><p>一整列中輸入三個以上的 <code>***</code> 或三個以上的 <code>---</code>，且整列不能有其它文字，結果顯示如下：</p>
+<hr>
+<h1 id="項目符號-編號"><a href="#項目符號-編號" class="headerlink" title="項目符號/編號"></a><font color=#0000FF>項目符號/編號</font></h1><p>可使用 <code>+</code> 、 <code>1.</code> 、 <code>縮排</code> 或者 <code>階層式</code>, 但要記得在符號與內文加一個空格</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">1. 數字</span><br><span class="line">2. 縮排</span><br><span class="line">    + How</span><br><span class="line">    + Are</span><br><span class="line">    + you</span><br><span class="line">3. 代辦事項</span><br><span class="line">- [x] 電腦</span><br><span class="line">- [ ] I&#x2F;O</span><br><span class="line">    - [x] 滑鼠</span><br><span class="line">    - [ ] 鍵盤</span><br></pre></td></tr></table></figure>
+<ol>
+<li>數字</li>
+<li>縮排<ul>
+<li>How</li>
+<li>are</li>
+<li>you</li>
+</ul>
+</li>
+<li>代辦事項</li>
+</ol>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> 電腦</li>
+<li><input disabled="" type="checkbox"> I/O<ul>
+<li><input checked="" disabled="" type="checkbox"> 滑鼠</li>
+<li><input disabled="" type="checkbox"> 鍵盤</li>
+</ul>
+</li>
+</ul>
+<h1 id="箭頭"><a href="#箭頭" class="headerlink" title="箭頭"></a><font color=#0000FF>箭頭</font></h1><table>
+<thead>
+<tr>
+<th>符號</th>
+<th>解釋</th>
+<th>代碼</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>←</td>
+<td>左箭頭</td>
+<td><code>&amp;larr;</code></td>
+</tr>
+<tr>
+<td>→</td>
+<td>右箭頭</td>
+<td><code>&amp;rarr;</code></td>
+</tr>
+<tr>
+<td>↑</td>
+<td>上箭頭</td>
+<td><code>&amp;uarr;</code></td>
+</tr>
+<tr>
+<td>↓</td>
+<td>下箭頭</td>
+<td><code>&amp;darr;</code></td>
+</tr>
+<tr>
+<td>↔</td>
+<td>水平箭頭</td>
+<td><code>&amp;harr;</code></td>
+</tr>
+<tr>
+<td>↕</td>
+<td>豎直箭頭</td>
+<td><code>&amp;varr;</code></td>
+</tr>
+<tr>
+<td>⇐</td>
+<td>雙線左箭頭</td>
+<td><code>&amp;lArr;</code></td>
+</tr>
+<tr>
+<td>⇒</td>
+<td>雙線右箭頭</td>
+<td><code>&amp;rArr;</code></td>
+</tr>
+<tr>
+<td>⇑</td>
+<td>雙線上箭頭</td>
+<td><code>&amp;uArr;</code></td>
+</tr>
+<tr>
+<td>⇓</td>
+<td>雙線上箭頭</td>
+<td><code>&amp;dArr;</code></td>
+</tr>
+<tr>
+<td>⇔</td>
+<td>雙線水平雙箭頭</td>
+<td><code>&amp;hArr;</code></td>
+</tr>
+<tr>
+<td>⇕</td>
+<td>雙線豎直箭頭</td>
+<td><code>&amp;vArr;</code></td>
+</tr>
+</tbody></table>
+<h1 id="引用區塊"><a href="#引用區塊" class="headerlink" title="引用區塊"></a><font color=#0000FF>引用區塊</font></h1><p>使用 <code>&gt;</code> 放在整列的開頭當作引用區塊，且 <code>&gt;</code> 和文字間要空一格，語法範例如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; 東風夜放花千樹，更吹落、星如雨。寶馬雕車香滿路。鳳簫聲動，玉壺光轉，一夜魚龍舞。</span><br><span class="line">&gt; 蛾兒雪柳黃金縷，笑語盈盈暗香去。眾裡尋他千百度，驀然回首，那人卻在，燈火闌珊處。</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>東風夜放花千樹，更吹落、星如雨。寶馬雕車香滿路。鳳簫聲動，玉壺光轉，一夜魚龍舞。<br>蛾兒雪柳黃金縷，笑語盈盈暗香去。眾裡尋他千百度，驀然回首，那人卻在，燈火闌珊處。</p>
+</blockquote>
+<p>同時也支持階層式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt; 東風夜放花千樹，更吹落、星如雨。寶馬雕車香滿路。</span><br><span class="line">&gt; &gt; 鳳簫聲動，玉壺光轉，一夜魚龍舞。</span><br><span class="line">&gt; &gt; &gt; 蛾兒雪柳黃金縷，笑語盈盈暗香去。</span><br><span class="line">&gt; &gt; &gt; &gt; 眾裡尋他千百度，驀然回首，那人卻在，燈火闌珊處。</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>東風夜放花千樹，更吹落、星如雨。寶馬雕車香滿路。</p>
+<blockquote>
+<p>鳳簫聲動，玉壺光轉，一夜魚龍舞。</p>
+<blockquote>
+<p>蛾兒雪柳黃金縷，笑語盈盈暗香去。</p>
+<blockquote>
+<p>眾裡尋他千百度，驀然回首，那人卻在，燈火闌珊處。</p>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+<h1 id="超連結"><a href="#超連結" class="headerlink" title="超連結"></a><font color=#0000FF>超連結</font></h1><ul>
+<li><p><font color=#FF6600>文字超連結</font></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[Google](https:&#x2F;&#x2F;www.google.com.tw&#x2F;)</span><br></pre></td></tr></table></figure>
+<p><a href="https://www.google.com.tw/" target="_blank" rel="noopener">Google</a></p>
+</li>
+<li><p><font color=#FF6600>圖片超連結</font><br>差別在於前面加入驚嘆號<font color=#FF0000> <strong>!</strong></font>[Google]</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">![Google](https:&#x2F;&#x2F;www.google.com.tw&#x2F;images&#x2F;branding&#x2F;googlelogo&#x2F;2x&#x2F;googlelogo_color_160x56dp.png)</span><br></pre></td></tr></table></figure>
+<p><img src="https://www.google.com.tw/images/branding/googlelogo/2x/googlelogo_color_160x56dp.png" alt="Google"></p>
+</li>
+</ul>
+<h1 id="表格"><a href="#表格" class="headerlink" title="表格"></a><font color=#0000FF>表格</font></h1><p>表格的基本語法如下，<br>第一列是表格的標題列，<br>第二列固定要是以 <code>---</code> 做區隔，加欄位都是使用 <code>|</code> 來添加。<br>注意表格的每欄寬度會自動分配，所以可以忽略一切的空格(也就是每列的 <code>|</code> 沒有對齊也沒關係，且加多少空格也不會影響每欄的寬度)。</p>
+<p>而每欄可以決定要如何對齊，對齊方式取決於第二列的 <code>---</code>，再加上 <code>:</code> 符號：</p>
+<ul>
+<li><code>:---</code> 靠左對齊。</li>
+<li><code>---:</code> 靠右對齊。</li>
+<li><code>:---:</code> 置中對齊。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">| 預設對齊 | 靠左對齊 | 靠右對齊 | 置中對齊 |</span><br><span class="line">| ----- | :----- | -----: | :-----: |</span><br><span class="line">| Text1 | Text2 | Text3 | Text4 |</span><br><span class="line">| Text5 | Text6 | Text7 | Text8 |</span><br><span class="line">| Text9 | Text10 | Text11 | Text12 |</span><br></pre></td></tr></table></figure>
+<p>顯示如下:</p>
+<table>
+<thead>
+<tr>
+<th>預設對齊</th>
+<th align="left">靠左對齊</th>
+<th align="right">靠右對齊</th>
+<th align="center">置中對齊</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Text1</td>
+<td align="left">Text2</td>
+<td align="right">Text3</td>
+<td align="center">Text4</td>
+</tr>
+<tr>
+<td>Text5</td>
+<td align="left">Text6</td>
+<td align="right">Text7</td>
+<td align="center">Text8</td>
+</tr>
+<tr>
+<td>Text9</td>
+<td align="left">Text10</td>
+<td align="right">Text11</td>
+<td align="center">Text12</td>
+</tr>
+</tbody></table>
+<p>引用文章: <a href="https://ed521.github.io/2019/08/hexo-markdown/" target="_blank" rel="noopener">瑪利歐的部落格</a></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Hexo/" rel="tag"># Hexo</a>
+              <a href="/tags/BLOG/" rel="tag"># BLOG</a>
+              <a href="/tags/Markdown/" rel="tag"># Markdown</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/08/05/BuildPrivateBlogViaGithub/" rel="prev" title="Github + Hexo 架設個人 BLOG">
+      <i class="fa fa-chevron-left"></i> Github + Hexo 架設個人 BLOG
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/08/05/BuildPrivateGitServer/" rel="next" title="Ubuntu 18.04 LTS + Gitea 架設個人 Git 伺服器">
+      Ubuntu 18.04 LTS + Gitea 架設個人 Git 伺服器 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#標題"><span class="nav-number">1.</span> <span class="nav-text">標題</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#文字字體"><span class="nav-number">2.</span> <span class="nav-text">文字字體</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#文字顏色"><span class="nav-number">3.</span> <span class="nav-text">文字顏色</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#程式碼"><span class="nav-number">4.</span> <span class="nav-text">程式碼</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#分隔線"><span class="nav-number">5.</span> <span class="nav-text">分隔線</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#項目符號-編號"><span class="nav-number">6.</span> <span class="nav-text">項目符號&#x2F;編號</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#箭頭"><span class="nav-number">7.</span> <span class="nav-text">箭頭</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#引用區塊"><span class="nav-number">8.</span> <span class="nav-text">引用區塊</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#超連結"><span class="nav-number">9.</span> <span class="nav-text">超連結</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#表格"><span class="nav-number">10.</span> <span class="nav-text">表格</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="blavince"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">blavince</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">17</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://www.github.com/" title="GitHub → https:&#x2F;&#x2F;www.github.com" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.google.com/" title="Google → https:&#x2F;&#x2F;www.google.com&#x2F;" rel="noopener" target="_blank"><i class="fab fa-google fa-fw"></i>Google</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.facebook.com/" title="FB Page → https:&#x2F;&#x2F;www.facebook.com&#x2F;" rel="noopener" target="_blank"><i class="fab fa-facebook fa-fw"></i>FB Page</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.youtube.com/" title="YouTube → https:&#x2F;&#x2F;www.youtube.com&#x2F;" rel="noopener" target="_blank"><i class="fab fa-youtube fa-fw"></i>YouTube</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://blavince.github.io/" title="blavince&#39;s BLOG → https:&#x2F;&#x2F;blavince.github.io"><i class=" fa-fw"></i>blavince's BLOG</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">blavince</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : 'ed67e34961bb62dd1d01',
+      clientSecret: '515895bdf15f66c4a615b6089d670915cdb1772c',
+      repo        : 'blavince.github.io',
+      owner       : 'blavince',
+      admin       : ['blavince'],
+      id          : '3507eec837aab81dece2f237b8d1c7a9',
+        language: 'zh-tW',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+</body>
+</html>

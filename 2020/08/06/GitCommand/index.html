@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"blavince.github.io","root":"/","scheme":"Gemini","version":"8.0.0-rc.2","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":"flat | mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="網路上有許多好用的 GUI 軟體工具來操作 Git,但我常用的基礎功能, 習慣用命令行 (Command line) 的方式來操作.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Git 常用基礎指令">
+<meta property="og:url" content="https://blavince.github.io/2020/08/06/GitCommand/index.html">
+<meta property="og:site_name" content="blavince&#39;s BLOG">
+<meta property="og:description" content="網路上有許多好用的 GUI 軟體工具來操作 Git,但我常用的基礎功能, 習慣用命令行 (Command line) 的方式來操作.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://i.imgur.com/5qRjhut.png">
+<meta property="og:image" content="https://i.imgur.com/iRPHEdI.png">
+<meta property="og:image" content="https://i.imgur.com/buA4Iuz.png">
+<meta property="og:image" content="https://i.imgur.com/qjvnnco.png">
+<meta property="og:image" content="https://i.imgur.com/gc2G2hR.png">
+<meta property="og:image" content="https://i.imgur.com/wkkV1TB.png">
+<meta property="og:image" content="https://i.imgur.com/4A4y2oi.png">
+<meta property="og:image" content="https://i.imgur.com/7dUshKR.png">
+<meta property="article:published_time" content="2020-08-06T06:39:00.000Z">
+<meta property="article:modified_time" content="2020-08-10T00:23:20.000Z">
+<meta property="article:author" content="blavince">
+<meta property="article:tag" content="Git">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.imgur.com/5qRjhut.png">
+
+<link rel="canonical" href="https://blavince.github.io/2020/08/06/GitCommand/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>Git 常用基礎指令 | blavince's BLOG</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+        <span class="toggle-line toggle-line-first"></span>
+        <span class="toggle-line toggle-line-middle"></span>
+        <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">blavince's BLOG</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Giving is a reward in itself.</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://blavince.github.io/2020/08/06/GitCommand/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="blavince">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="blavince's BLOG">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Git 常用基礎指令
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-08-06 14:39:00" itemprop="dateCreated datePublished" datetime="2020-08-06T14:39:00+08:00">2020-08-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-08-10 08:23:20" itemprop="dateModified" datetime="2020-08-10T08:23:20+08:00">2020-08-10</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Git/" itemprop="url" rel="index"><span itemprop="name">Git</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><img src="https://i.imgur.com/5qRjhut.png" alt=""><br>網路上有許多好用的 GUI 軟體工具來操作 Git,<br>但我常用的基礎功能, 習慣用命令行 (Command line) 的方式來操作.</p>
+<a id="more"></a>
+
+<h1 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a><font color=#0000FF>一、前言</font></h1><p>先來認識這三個關鍵字, 因為分散式版本控制就是透過這個概念來實現.</p>
+<ol>
+<li><font color=#FF6600><strong>Repository</strong></font>: 想像成一個倉庫, 將完整的程式碼和開發歷程存放在裡面; 分成 remote 和 local 兩個 repository, 彼此間透過 pull 和 push 來互動.</li>
+<li><font color=#FF6600><strong>Pull</strong></font>: 將 local repository 和 remote repository 的差異 (commit) <font color=#008000>拉下來</font>.</li>
+<li><font color=#FF6600><strong>Push</strong></font>: 將 local repository 和 remote repository 的差異 (commit) <font color=#0000ff>推上去</font>.</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">———————————————————</span><br><span class="line">|Remote repository|</span><br><span class="line">———————————————————</span><br><span class="line">   |        ↑</span><br><span class="line">   |Pull    | Push</span><br><span class="line">   ↓        |</span><br><span class="line">———————————————————</span><br><span class="line">|Local  repository|</span><br><span class="line">———————————————————</span><br></pre></td></tr></table></figure>
+
+<h1 id="二、常用指令"><a href="#二、常用指令" class="headerlink" title="二、常用指令"></a><font color=#0000FF>二、常用指令</font></h1><p>列出常用的 Git 指令 (順序無直接關聯性):</p>
+<p><font color=#000000>1. </font><code>git init</code><font color=#FF6600> 對資料夾進行 git 初始化, 產生一個隱藏資料夾 .git/ 負責紀錄各種資訊</font>.<br><font color=#000000>2. </font><code>git clone</code><font color=#FF6600> clone(克隆) 複製一個 repository 下來</font>.<br><font color=#000000>3. </font><code>git pull</code><font color=#FF6600> 將 remote repository 和 local repository 的差異 commit 拉下來</font>.<br><font color=#000000>4. </font><code>git log</code><font color=#FF6600> 印出 repository 所有 commit. (只顯示最後一個: git log -1)</font>.<br><font color=#000000>5. </font><code>git show</code><font color=#FF6600> 印出 commit 的內容. ((顯示最後一個: git show -1))</font>.<br><font color=#000000>6. </font><code>git status</code><font color=#FF6600> 印出當前 repository 的狀態</font>.<br><font color=#000000>7. </font><code>git diff</code><font color=#FF6600> 印出當前 repository 狀態和最後 commit 狀態下的差異</font>.<br><font color=#000000>8. </font><code>git add</code><font color=#FF6600> 將有差異或者要新增的檔案加入</font>.<br><font color=#000000>9. </font><code>git commit</code><font color=#FF6600> 將有差異或者要新增的檔案都加入完畢之後, 把這些做成一個 commit</font>.<br><font color=#000000>10. </font><code>git branch</code><font color=#FF6600> git 分支指令.(顯示當前處在哪一個分支: git branch -ra)</font>.<br><font color=#000000>11. </font><code>git push</code><font color=#FF6600> 將 remote repository 和 local repository 的差異 commit 推上去</font>.<br><font color=#000000>12. </font><code>git checkout</code><font color=#FF6600>將特定的檔案退回最後的 commit 的狀態或者切換分支 (branch)</font>.<br><font color=#000000>13. </font><code>git reset</code><font color=#FF6600>將當前 repository 退回特定的 commit 的狀態. (例如: git reset –hard commit_ID)</font>.<br><font color=#000000>14. </font><code>git revert</code><font color=#FF6600>可以將 commit 還原</font>.<br><font color=#000000>15. </font><code>git stash/ git stash pop</code><font color=#FF6600>將修改到一半的差異檔案先暫存起來/ 拋出來, 修改到一半時要切換分支特別好用</font>.<br><font color=#000000>16. </font><code>git format-patch</code><font color=#FF6600>將 commit 輸出成 patch 供其他 repostory 使用</font>.<br><font color=#000000>17. </font><code>git apply</code><font color=#FF6600>將差異性檔案帶入目前的 repository</font>.<br><font color=#000000>18. </font><code>git am</code><font color=#FF6600>將 patch 檔的資訊完整 commit 進 repository</font>.</p>
+<h1 id="三、實例操作"><a href="#三、實例操作" class="headerlink" title="三、實例操作"></a><font color=#0000FF>三、實例操作</font></h1><p>搭配自己架設的 Git 伺服器 <a href="https://blavince.github.io/2020/08/05/BuildPrivateGitServer/">(<font color=#0000FF>Ubuntu 18.04 LTS + Gitea 架設個人 Git 伺服器</font>)</a> 進行操作. </p>
+<h2 id="建立-Repository"><a href="#建立-Repository" class="headerlink" title="建立 Repository :"></a><font color=#d2691e>建立 Repository </font>:</h2><p>這裡提供兩種建立的方式:<br><font color=#000000>1. </font><font color=#00bfff>Clone remote repository 到 local 端</font>:</p>
+<ol>
+<li>打開 repository 的頁面後, 找到 Http/ssh 的連結 (如下圖):<br><img src="https://i.imgur.com/iRPHEdI.png" alt=""></li>
+<li>複製其中的連結然後鍵入命令:<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone http:&#x2F;&#x2F;172.21.140.140:80&#x2F;towen.lai&#x2F;SeleniumCSharp.git</span><br></pre></td></tr></table></figure>
+輸入<strong>帳號</strong>與<strong>密碼</strong>後就開始從 remote repository clone 一份下來.<br><img src="https://i.imgur.com/buA4Iuz.png" alt=""></li>
+</ol>
+<p><font color=#000000>2. </font><font color=#00bfff>建立新的 repository</font>:</p>
+<ol>
+<li>從右上角 <strong>＋新增儲存庫</strong></li>
+<li>輸入儲存庫名稱: test </li>
+<li>建立儲存庫</li>
+<li>產生的 repository 鏈結: <a href="http://172.21.140.140:80/towen.lai/test.git" target="_blank" rel="noopener">http://172.21.140.140:80/towen.lai/test.git</a></li>
+<li><code>git init</code></li>
+<li>新增 README.txt</li>
+<li><code>git add README.txt</code></li>
+<li><code>git commit -m &quot;first commit&quot;</code></li>
+<li><code>git remote add origin http://172.21.140.140:80/towen.lai/test.git</code></li>
+<li><code>git push -u origin master</code></li>
+</ol>
+<p>或者將一個已經存在 local repository 推到新創的 remote repository:</p>
+<ol>
+<li><code>git remote add origin http://172.21.140.140:80/towen.lai/test.git</code></li>
+<li><code>git push -u origin master</code></li>
+</ol>
+<h2 id="操作-Repository"><a href="#操作-Repository" class="headerlink" title="操作 Repository:"></a><font color=#d2691e>操作 Repository</font>:</h2><p><font color=#000000>1. </font><font color=#00bfff>無任何修改時輸入 <code>git status</code></font>:<br>提示: nothing to commit, working tree clean<br><img src="https://i.imgur.com/qjvnnco.png" alt=""><br><font color=#000000>2. </font><font color=#00bfff>對 README.txt 做修改後輸入<code>git status</code></font>:<br>下圖出現<font color=#FF0000>紅色字</font>, 提示 README.txt 被修改了<br><img src="https://i.imgur.com/gc2G2hR.png" alt=""><br><font color=#000000>3. </font><font color=#00bfff>輸入<code>git diff</code> 看 README.txt 的差異</font>:<br>提示: 有兩行綠色的 +, 代表新增了以下兩行:<br><font color=#008000>+</font><br><font color=#008000>+ test</font><br><img src="https://i.imgur.com/wkkV1TB.png" alt=""><br><font color=#000000>4. </font><font color=#00bfff>接下來如上面的流程將 commit push 到 remote repository</font>.<br>  <code>git add README.txt</code> 、<br>  <code>git commit -m &quot;insert string test&quot;</code> 、<br>  <code>git push</code></p>
+<p><font color=#000000>5. </font><font color=#00bfff>若 remote repository 比 local repository 有更新的 commit 時輸入 <code>git pull</code></font>:<br>將 local repository 更新到和 remote repository 一樣.<br><img src="https://i.imgur.com/4A4y2oi.png" alt=""><br><font color=#000000>6. </font><font color=#00bfff>輸入 <code>git log</code> 看開發歷程</font>:<br>顯示這個 repository 的開發歷程 (由 commit 堆成)<br><img src="https://i.imgur.com/7dUshKR.png" alt=""></p>
+<blockquote>
+<p><strong>HINT:</strong><br>不管 <code>git push</code> 還是 <code>git pull</code> 在互動前都要注意 conflict (專案多人開發, 修改到同一支檔案) 的情況, 如果有的話就要先將 conflict 處理好後再操作.</p>
+</blockquote>
+<p><em>*以上內容都是自己的理解, 如果有誤煩請指教!</em></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Git/" rel="tag"># Git</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/08/05/BuildPrivateGitServer/" rel="prev" title="Ubuntu 18.04 LTS + Gitea 架設個人 Git 伺服器">
+      <i class="fa fa-chevron-left"></i> Ubuntu 18.04 LTS + Gitea 架設個人 Git 伺服器
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/08/07/VisualStudioCSharpWinform/" rel="next" title="Visual studio + C# 建立 Winform 專案">
+      Visual studio + C# 建立 Winform 專案 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一、前言"><span class="nav-number">1.</span> <span class="nav-text">一、前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、常用指令"><span class="nav-number">2.</span> <span class="nav-text">二、常用指令</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三、實例操作"><span class="nav-number">3.</span> <span class="nav-text">三、實例操作</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#建立-Repository"><span class="nav-number">3.1.</span> <span class="nav-text">建立 Repository :</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#操作-Repository"><span class="nav-number">3.2.</span> <span class="nav-text">操作 Repository:</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="blavince"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">blavince</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">17</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://www.github.com/" title="GitHub → https:&#x2F;&#x2F;www.github.com" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.google.com/" title="Google → https:&#x2F;&#x2F;www.google.com&#x2F;" rel="noopener" target="_blank"><i class="fab fa-google fa-fw"></i>Google</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.facebook.com/" title="FB Page → https:&#x2F;&#x2F;www.facebook.com&#x2F;" rel="noopener" target="_blank"><i class="fab fa-facebook fa-fw"></i>FB Page</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.youtube.com/" title="YouTube → https:&#x2F;&#x2F;www.youtube.com&#x2F;" rel="noopener" target="_blank"><i class="fab fa-youtube fa-fw"></i>YouTube</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://blavince.github.io/" title="blavince&#39;s BLOG → https:&#x2F;&#x2F;blavince.github.io"><i class=" fa-fw"></i>blavince's BLOG</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">blavince</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : 'ed67e34961bb62dd1d01',
+      clientSecret: '515895bdf15f66c4a615b6089d670915cdb1772c',
+      repo        : 'blavince.github.io',
+      owner       : 'blavince',
+      admin       : ['blavince'],
+      id          : '266325b42b161bea53724e882dfc396d',
+        language: 'zh-tW',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+</body>
+</html>
