@@ -37,7 +37,7 @@
 <meta property="og:image" content="https://i.imgur.com/H4GP1Zh.png">
 <meta property="og:image" content="https://i.imgur.com/ANpyhDC.png">
 <meta property="article:published_time" content="2022-09-14T08:46:00.000Z">
-<meta property="article:modified_time" content="2022-09-15T06:18:15.276Z">
+<meta property="article:modified_time" content="2022-10-04T03:41:21.320Z">
 <meta property="article:author" content="blavince">
 <meta property="article:tag" content="Python">
 <meta property="article:tag" content="VScode">
@@ -204,7 +204,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-09-15 14:18:15" itemprop="dateModified" datetime="2022-09-15T14:18:15+08:00">2022-09-15</time>
+                <time title="Modified: 2022-10-04 11:41:21" itemprop="dateModified" datetime="2022-10-04T11:41:21+08:00">2022-10-04</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -282,6 +282,47 @@
 <p><strong>Entry.py</strong></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">from</span> PySide2.QtWidgets <span class="keyword">import</span> QApplication</span><br><span class="line"><span class="keyword">from</span> mainWindow <span class="keyword">import</span> mainWindow</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</span><br><span class="line">    app = QApplication(sys.argv)</span><br><span class="line">    w = mainWindow()</span><br><span class="line">    w.show()</span><br><span class="line">    sys.exit(app.exec_())</span><br></pre></td></tr></table></figure>
 <p>然後用 python 去執行 Entry.py<br>對著 Entry.py 右鍵 &rarr; <code>Run Python File in Teminal</code> &rarr; GUI 程式 (等同於 cmd 的 <code>python ./Entry.py</code>)<br><img src="https://i.imgur.com/ANpyhDC.png" alt=""></p>
+<h1 id="6-Python-導入-dll"><a href="#6-Python-導入-dll" class="headerlink" title="6. Python 導入 dll"></a><font color=#0000FF>6. Python 導入 dll</font></h1><p>若 <code>myChipLibrary.cpp</code> 導出有 get_chip_id 的 API 如下時 (<code>myChipLibrary.dll</code>),</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">EXPORT_DLL int __cdecl get_chip_id(PBYTE Res)</span><br><span class="line">&#123;</span><br><span class="line">    int err &#x3D; 0;</span><br><span class="line">    Res  &#x3D; ...;</span><br><span class="line">    err &#x3D; ...;</span><br><span class="line">    </span><br><span class="line">    return err;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>將 <code>myChipLibrary.dll</code> 與 Python 檔放在同資料夾然後程式碼最上方加 <code>ctypes</code>, 只要簡單的一行 CDLL 就可以導入並使用這個 API,</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">from ctypes import *</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">chipApi &#x3D; CDLL(&quot;myChipLibrary.dll&quot;)</span><br><span class="line">getID &#x3D; chipApi.get_chip_id</span><br><span class="line">_chipid &#x3D; c_byte(0x0)</span><br><span class="line">err &#x3D; getID(byref(_chipid))</span><br></pre></td></tr></table></figure>
+<h1 id="7-pyinstaller-打包成執行檔"><a href="#7-pyinstaller-打包成執行檔" class="headerlink" title="7. pyinstaller 打包成執行檔"></a><font color=#0000FF>7. pyinstaller 打包成執行檔</font></h1><p>可以直接打包成一個執行檔案 <code>*.exe</code> , 但要注意如果將含有需授權或者版權問題.</p>
+<p>從 pip 安裝</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install pyinstaller</span><br></pre></td></tr></table></figure>
+<p><strong><em>常用參數</em></strong></p>
+<p>常用參數介紹</p>
+<p>pyinstaller -h 來查看參數</p>
+<table>
+<thead>
+<tr>
+<th align="center">參數</th>
+<th align="left">說明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">-F</td>
+<td align="left">打包成一個exe文件</td>
+</tr>
+<tr>
+<td align="center">–icon</td>
+<td align="left">–icon=圖標路徑</td>
+</tr>
+<tr>
+<td align="center">-w</td>
+<td align="left">將背景黑控制台隱藏</td>
+</tr>
+<tr>
+<td align="center">-c</td>
+<td align="left">使用控制台，無視窗</td>
+</tr>
+<tr>
+<td align="center">-D</td>
+<td align="left">創建一個目錄，包含exe以及其他一些依賴性文件</td>
+</tr>
+</tbody></table>
+<p>舉例:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pyinstaller.exe -F -w Entry.py</span><br></pre></td></tr></table></figure>
+<p>會產生 <code>build/</code> 是打包過程的資料夾及 <code>dist/</code> 因為我們有加 <code>-F</code> 會產生只一個 Entry.exe.</p>
 
     </div>
 
@@ -368,7 +409,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text"> 前言 </span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#大綱"><span class="nav-number">2.</span> <span class="nav-text"> 大綱 </span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#1-安裝-Python3-7"><span class="nav-number">3.</span> <span class="nav-text"> 1. 安裝 Python3.7</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-安裝-Visual-studio-code"><span class="nav-number">4.</span> <span class="nav-text">2. 安裝 Visual studio code</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-安裝-PySide2"><span class="nav-number">5.</span> <span class="nav-text">3. 安裝 PySide2</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-配置-VSCode"><span class="nav-number">6.</span> <span class="nav-text">4. 配置 VSCode </span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-第一支-GUI-程式-Hello-world"><span class="nav-number">7.</span> <span class="nav-text">5. 第一支 GUI 程式: Hello world</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text"> 前言 </span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#大綱"><span class="nav-number">2.</span> <span class="nav-text"> 大綱 </span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#1-安裝-Python3-7"><span class="nav-number">3.</span> <span class="nav-text"> 1. 安裝 Python3.7</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-安裝-Visual-studio-code"><span class="nav-number">4.</span> <span class="nav-text">2. 安裝 Visual studio code</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-安裝-PySide2"><span class="nav-number">5.</span> <span class="nav-text">3. 安裝 PySide2</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-配置-VSCode"><span class="nav-number">6.</span> <span class="nav-text">4. 配置 VSCode </span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-第一支-GUI-程式-Hello-world"><span class="nav-number">7.</span> <span class="nav-text">5. 第一支 GUI 程式: Hello world</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#6-Python-導入-dll"><span class="nav-number">8.</span> <span class="nav-text">6. Python 導入 dll</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#7-pyinstaller-打包成執行檔"><span class="nav-number">9.</span> <span class="nav-text">7. pyinstaller 打包成執行檔</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
