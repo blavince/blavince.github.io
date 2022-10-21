@@ -37,7 +37,7 @@
 <meta property="og:image" content="https://i.imgur.com/H4GP1Zh.png">
 <meta property="og:image" content="https://i.imgur.com/ANpyhDC.png">
 <meta property="article:published_time" content="2022-09-14T08:46:00.000Z">
-<meta property="article:modified_time" content="2022-10-04T03:41:21.320Z">
+<meta property="article:modified_time" content="2022-10-21T08:12:16.245Z">
 <meta property="article:author" content="blavince">
 <meta property="article:tag" content="Python">
 <meta property="article:tag" content="VScode">
@@ -204,7 +204,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-10-04 11:41:21" itemprop="dateModified" datetime="2022-10-04T11:41:21+08:00">2022-10-04</time>
+                <time title="Modified: 2022-10-21 16:12:16" itemprop="dateModified" datetime="2022-10-21T16:12:16+08:00">2022-10-21</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -244,7 +244,7 @@
 <p>此時在cmd 輸入 <code>python</code> 可以進入交互模式, 只是在 VScode 上更便利.</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">C:\Users\blavince&gt;python</span><br><span class="line">Python 3.7.9 (tags&#x2F;v3.7.9:13c94747c7, Aug 17 2020, 18:58:18) [MSC v.1900 64 bit (AMD64)] on win32</span><br><span class="line">Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.</span><br><span class="line">&gt;&gt;&gt; a&#x3D;1</span><br><span class="line">&gt;&gt;&gt; b&#x3D;2</span><br><span class="line">&gt;&gt;&gt; a+b</span><br><span class="line">3</span><br><span class="line">&gt;&gt;&gt; quit()</span><br><span class="line"></span><br><span class="line">C:\Users\blavince&gt;</span><br></pre></td></tr></table></figure>
 
-<h1 id="2-安裝-Visual-studio-code"><a href="#2-安裝-Visual-studio-code" class="headerlink" title="2. 安裝 Visual studio code"></a><font color=#0000FF>2. 安裝 Visual studio code</font></h1><p>下載 <a href="https://code.visualstudio.com/" target="_blank" rel="noopener"><font color=#0000FF>VS Code</font></a> 並安裝. (圖片參考<a href="https://code.visualstudio.com/" target="_blank" rel="noopener">官網</a>)<br><img src="https://code.visualstudio.com/assets/home/home-screenshot-win-lg.png" alt=""></p>
+<h1 id="2-安裝-Visual-studio-code"><a href="#2-安裝-Visual-studio-code" class="headerlink" title="2. 安裝 Visual studio code"></a><font color=#0000FF>2. 安裝 Visual studio code</font></h1><p>下載 <a href="https://code.visualstudio.com/" target="_blank" rel="noopener"><font color=#0000FF>VS Code</font></a> 並安裝. (圖片參考<a href="https://code.visualstudio.com/" target="_blank" rel="noopener">官網</a>)<br><img src="https://code.visualstudio.com/assets/home/home-screenshot-win-lg.png" width="70%" height="70%"></p>
 <h1 id="3-安裝-PySide2"><a href="#3-安裝-PySide2" class="headerlink" title="3. 安裝 PySide2"></a><font color=#0000FF>3. 安裝 PySide2</font></h1><p>安裝 Python3.7.9 後就自帶 pip 跟 pip3 了, 所以安裝 <a href="https://pypi.org/project/PySide2/" target="_blank" rel="noopener">PySide2</a> 只要在 cmd 輸入</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install PySide2</span><br></pre></td></tr></table></figure>
 <p>安裝完成之後直接在 cmd 輸入 <code>python</code> 進入交互模式後, 輸入 <code>import PySide2</code> 做確認.</p>
@@ -262,7 +262,7 @@
 <td align="center"><img src="https://i.imgur.com/RyojqPH.png" alt=""></td>
 </tr>
 </tbody></table>
-<p><strong>配置 PySide2</strong><br>把 qt designer 路徑加入 <code>C:\Users\blavince\AppData\Local\Programs\Python\Python37\Scripts\pyside2-designer.exe</code><br><img src="https://i.imgur.com/Uqp5Tqz.png" alt="配置 PySide2"></p>
+<p><strong>配置 PySide2</strong><br>把 qt designer 路徑加入 <code>C:\Users\blavince\AppData\Local\Programs\Python\Python37\Scripts\pyside2-designer.exe</code><br><img src="https://i.imgur.com/Uqp5Tqz.png" width="70%" height="70%"></p>
 <p>到這裡就完成整個環境配置了, 可以寫個簡單的 Hello world 試試看.</p>
 <h1 id="5-第一支-GUI-程式-Hello-world"><a href="#5-第一支-GUI-程式-Hello-world" class="headerlink" title="5. 第一支 GUI 程式: Hello world"></a><font color=#0000FF>5. 第一支 GUI 程式: Hello world</font></h1><p>開發思路如下流程, </p>
 <ol>
@@ -270,18 +270,18 @@
 <li>將 .ui 檔轉譯 .py 檔</li>
 <li>寫 .py 的入口函數執行 GUI 程式</li>
 </ol>
-<p><strong>1. 使用 qt designer 編輯 .ui 檔設計界面 (直接滑鼠拉元件)</strong><br>在工作區的空白處右鍵 <code>PySdie2: New Form in Designer/Creator</code> 用 qt designer 來開啟一個 .ui 檔.<br><img src="https://i.imgur.com/yNrPxvl.png" alt=""></p>
+<p><strong>1. 使用 qt designer 編輯 .ui 檔設計界面 (直接滑鼠拉元件)</strong><br>在工作區的空白處右鍵 <code>PySdie2: New Form in Designer/Creator</code> 用 qt designer 來開啟一個 .ui 檔.<br><img src="https://i.imgur.com/yNrPxvl.png" width="70%" height="70%"></p>
 <p>開啟 qt designer &rarr; Main Window &rarr; 建立(R)<br><img src="https://i.imgur.com/BdHJFzW.png" alt=""></p>
-<p>然後在 qt designer 上拉一個 Label 元件到表單內修改成 <strong>HELLO WORLD</strong> &rarr; 儲存 Form.ui, 內容是 <code>&lt;xml&gt;</code> 們.<br><img src="https://i.imgur.com/RbMCGMu.png" alt=""></p>
+<p>然後在 qt designer 上拉一個 Label 元件到表單內修改成 <strong>HELLO WORLD</strong> &rarr; 儲存 Form.ui, 內容是 <code>&lt;xml&gt;</code> 們.<br><img src="https://i.imgur.com/RbMCGMu.png" width="70%" height="70%"></p>
 <p><strong>2. 將 .ui 檔轉譯 .py 檔</strong></p>
-<p>入口函數動態載入 .ui 檔或者先將 .ui 轉成 .py 入口函數再靜態載入兩種做法, 各有優缺點, 這裡介紹後者, 對著 Form.ui 右鍵 &rarr; <code>PySide2: Compile Form to Python</code> &rarr; 自動產出 <code>Ui_Form.py</code> (等同於 cmd 的 <code>pyside2-uic .\Form.ui -o .\Ui_Form.py</code>)<br><img src="https://i.imgur.com/H4GP1Zh.png" alt=""></p>
+<p>入口函數動態載入 .ui 檔或者先將 .ui 轉成 .py 入口函數再靜態載入兩種做法, 各有優缺點, 這裡介紹後者, 對著 Form.ui 右鍵 &rarr; <code>PySide2: Compile Form to Python</code> &rarr; 自動產出 <code>Ui_Form.py</code> (等同於 cmd 的 <code>pyside2-uic .\Form.ui -o .\Ui_Form.py</code>)<br><img src="https://i.imgur.com/H4GP1Zh.png" width="70%" height="70%"></p>
 <p><strong>3. 寫 .py 的入口函數執行 GUI 程式</strong></p>
 <p>因為每次 <code>UI_Form.py</code> 的介面設計有更動後都會被覆蓋, 所以我們直接在裡面修改不好開發,<br>所以我習慣新增檔案 <code>mainWindow.py</code> 引入介面編寫邏輯, 而 <code>UI_Form.py</code> 為純介面檔案, 最後再新增一個 <code>Entry.py</code> 為入口函數</p>
 <p><strong>mainWindow.py</strong></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> PySide2.QtCore <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> PySide2.QtGui <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> PySide2.QtWidgets <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> PySide2.QtWidgets <span class="keyword">import</span> QApplication, QMainWindow</span><br><span class="line"><span class="keyword">from</span> Ui_Form <span class="keyword">import</span> Ui_MainWindow</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">mainWindow</span><span class="params">(QMainWindow, Ui_MainWindow)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, parent=None)</span>:</span></span><br><span class="line">        super(mainWindow, self).__init__(parent)</span><br><span class="line">        self.setupUi(self)</span><br></pre></td></tr></table></figure>
 <p><strong>Entry.py</strong></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">from</span> PySide2.QtWidgets <span class="keyword">import</span> QApplication</span><br><span class="line"><span class="keyword">from</span> mainWindow <span class="keyword">import</span> mainWindow</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</span><br><span class="line">    app = QApplication(sys.argv)</span><br><span class="line">    w = mainWindow()</span><br><span class="line">    w.show()</span><br><span class="line">    sys.exit(app.exec_())</span><br></pre></td></tr></table></figure>
-<p>然後用 python 去執行 Entry.py<br>對著 Entry.py 右鍵 &rarr; <code>Run Python File in Teminal</code> &rarr; GUI 程式 (等同於 cmd 的 <code>python ./Entry.py</code>)<br><img src="https://i.imgur.com/ANpyhDC.png" alt=""></p>
+<p>然後用 python 去執行 Entry.py<br>對著 Entry.py 右鍵 &rarr; <code>Run Python File in Teminal</code> &rarr; GUI 程式 (等同於 cmd 的 <code>python ./Entry.py</code>)<br><img src="https://i.imgur.com/ANpyhDC.png" width="80%" height="80%"></p>
 <h1 id="6-Python-導入-dll"><a href="#6-Python-導入-dll" class="headerlink" title="6. Python 導入 dll"></a><font color=#0000FF>6. Python 導入 dll</font></h1><p>若 <code>myChipLibrary.cpp</code> 導出有 get_chip_id 的 API 如下時 (<code>myChipLibrary.dll</code>),</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">EXPORT_DLL int __cdecl get_chip_id(PBYTE Res)</span><br><span class="line">&#123;</span><br><span class="line">    int err &#x3D; 0;</span><br><span class="line">    Res  &#x3D; ...;</span><br><span class="line">    err &#x3D; ...;</span><br><span class="line">    </span><br><span class="line">    return err;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>將 <code>myChipLibrary.dll</code> 與 Python 檔放在同資料夾然後程式碼最上方加 <code>ctypes</code>, 只要簡單的一行 CDLL 就可以導入並使用這個 API,</p>

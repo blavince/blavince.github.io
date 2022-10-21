@@ -27,6 +27,7 @@
 <meta property="og:site_name" content="blavince&#39;s BLOG">
 <meta property="og:description" content="BSP, Firmware 或 HW 工程師在 debug 時如果要驗證訊號是否正確, 通常會用示波器做量測, 與此同時也可以用邏輯分析儀來分析訊號是否正確, 這裡紀錄一下用 Saleae Logic 8 做 SPI 訊號的分析.">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://www.saleae.com/images/Logic-8-Black.png">
 <meta property="og:image" content="https://www.corelis.com/wp-content/uploads/2017/05/1-11-1.jpg">
 <meta property="og:image" content="https://www.corelis.com/wp-content/uploads/2017/05/1-21.jpg">
 <meta property="og:image" content="https://i.imgur.com/jAOr1YI.png">
@@ -35,10 +36,10 @@
 <meta property="og:image" content="https://i.imgur.com/Qn00DPg.png">
 <meta property="og:image" content="https://i.imgur.com/z4tCulS.png">
 <meta property="article:published_time" content="2022-10-11T01:26:49.000Z">
-<meta property="article:modified_time" content="2022-10-21T07:46:28.901Z">
+<meta property="article:modified_time" content="2022-10-21T08:15:15.772Z">
 <meta property="article:author" content="blavince">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://www.corelis.com/wp-content/uploads/2017/05/1-11-1.jpg">
+<meta name="twitter:image" content="https://www.saleae.com/images/Logic-8-Black.png">
 
 <link rel="canonical" href="https://blavince.github.io/2022/10/11/saleae-%E9%82%8F%E8%BC%AF%E5%88%86%E6%9E%90%E5%84%80/">
 
@@ -199,7 +200,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-10-21 15:46:28" itemprop="dateModified" datetime="2022-10-21T15:46:28+08:00">2022-10-21</time>
+                <time title="Modified: 2022-10-21 16:15:15" itemprop="dateModified" datetime="2022-10-21T16:15:15+08:00">2022-10-21</time>
               </span>
 
           
@@ -213,7 +214,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>BSP, Firmware 或 HW 工程師在 debug 時如果要驗證訊號是否正確, 通常會用示波器做量測, 與此同時也可以用邏輯分析儀來分析訊號是否正確, 這裡紀錄一下用 Saleae Logic 8 做 SPI 訊號的分析.</p>
+        <p>BSP, Firmware 或 HW 工程師在 debug 時如果要驗證訊號是否正確, 通常會用示波器做量測, 與此同時也可以用邏輯分析儀來分析訊號是否正確, 這裡紀錄一下用 Saleae Logic 8 做 SPI 訊號的分析.<br><img src="https://www.saleae.com/images/Logic-8-Black.png" width="20%" height="20%"></p>
 <a id="more"></a>
 
 <h1 id="Saleae-Logic-8-規格"><a href="#Saleae-Logic-8-規格" class="headerlink" title=" Saleae Logic 8 規格 "></a><font color=#0000FF> Saleae Logic 8 規格 </font></h1><p> <a href="https://www.saleae.com/zh-tw/" target="_blank" rel="noopener">Saleae</a> 官網有邏輯分析儀的介紹, 而 <a href="https://usd.saleae.com/products/saleae-logic-8" target="_blank" rel="noopener">Logic 8</a> 是這個系列裡面最低階的型號, 往上還有 <a href="https://usd.saleae.com/products/saleae-logic-pro-8" target="_blank" rel="noopener">Logic 8 Pro</a> 跟 <a href="https://usd.saleae.com/products/saleae-logic-pro-16" target="_blank" rel="noopener">Logic Pro 16</a>. 但是 <a href="https://usd.saleae.com/products/saleae-logic-8" target="_blank" rel="noopener">Logic 8</a> 已經符合我最常見的應用場景了 (<a href="https://zh.m.wikipedia.org/zh-tw/I%C2%B2C" target="_blank" rel="noopener">I2C</a> 和 <a href="https://zh.wikipedia.org/zh-tw/%E5%BA%8F%E5%88%97%E5%91%A8%E9%82%8A%E4%BB%8B%E9%9D%A2" target="_blank" rel="noopener">SPI</a> 的訊號分析).</p>
@@ -435,8 +436,11 @@
 <td align="center">Rising edge SCLK</td>
 </tr>
 </tbody></table>
-<p><img src="https://www.corelis.com/wp-content/uploads/2017/05/1-21.jpg" alt=""><br>參考: <a href="https://www.corelis.com/education/tutorials/spi-tutorial/" target="_blank" rel="noopener">https://www.corelis.com/education/tutorials/spi-tutorial/</a></p>
-<h3 id="※-Write-Read-Frame-介紹"><a href="#※-Write-Read-Frame-介紹" class="headerlink" title="※ Write/ Read Frame 介紹"></a><strong>※ Write/ Read Frame 介紹</strong></h3><p><img src="https://i.imgur.com/jAOr1YI.png" alt=""></p>
+<img src="https://www.corelis.com/wp-content/uploads/2017/05/1-21.jpg" width="60%" height="60%">
+參考: https://www.corelis.com/education/tutorials/spi-tutorial/
+
+<h3 id="※-Write-Read-Frame-介紹"><a href="#※-Write-Read-Frame-介紹" class="headerlink" title="※ Write/ Read Frame 介紹"></a><strong>※ Write/ Read Frame 介紹</strong></h3><img src="https://i.imgur.com/jAOr1YI.png" width="80%" height="80%">
+
 <table>
 <thead>
 <tr>
@@ -481,8 +485,7 @@
 <td align="center">Read status: <strong>1</strong> menas slave is ready with data, <strong>0</strong> means slave is not ready with data.</td>
 </tr>
 </tbody></table>
-<h1 id="Logic-2"><a href="#Logic-2" class="headerlink" title=" Logic 2 "></a><font color=#0000FF> Logic 2 </font></h1><p>官網下載 <a href="https://www.saleae.com/zh-tw/downloads/" target="_blank" rel="noopener"><strong><font color=#0000FF>Logic 2</font></strong></a> 完成安裝後, 軟體會偵測插上去的 Saleae Logic 產品.</p>
-<p><img src="https://i.imgur.com/Pi9xmx7.png" alt=""></p>
+<h1 id="Logic-2"><a href="#Logic-2" class="headerlink" title=" Logic 2 "></a><font color=#0000FF> Logic 2 </font></h1><p>官網下載 <a href="https://www.saleae.com/zh-tw/downloads/" target="_blank" rel="noopener"><strong><font color=#0000FF>Logic 2</font></strong></a> 完成安裝後, 軟體會偵測插上去的 Saleae Logic 產品.<br><img src="https://i.imgur.com/Pi9xmx7.png" width="80%" height="80%"></p>
 <h1 id="設置-SPI-訊號分析"><a href="#設置-SPI-訊號分析" class="headerlink" title="設置 SPI 訊號分析"></a><font color=#0000FF>設置 SPI 訊號分析</font></h1><p>連接 Logic 8 後, </p>
 <ol>
 <li>開啟新 Session</li>
@@ -491,11 +494,10 @@
 <li>設定對應的探針訊號 (我們用 CH0: SCLK, CH1: MISO, CH2: MOSI)</li>
 <li>SPI MODE = 1 (CPOL=0, CPHA=1)</li>
 </ol>
-<p>完成後, 就可以進行量測分析訊號是否如我們預期運作.</p>
-<p><img src="https://i.imgur.com/ydHBF7j.png" alt=""></p>
-<h1 id="量測實例"><a href="#量測實例" class="headerlink" title=" 量測實例 "></a><font color=#0000FF> 量測實例 </font></h1><h3 id="※位址-0x2B-寫入數值-0x11"><a href="#※位址-0x2B-寫入數值-0x11" class="headerlink" title="※位址 0x2B 寫入數值 0x11"></a><strong>※位址 0x2B 寫入數值 0x11</strong></h3><p><img src="https://i.imgur.com/Qn00DPg.png" alt=""></p>
-<h3 id="※位址-0x00-讀取得到-0x20"><a href="#※位址-0x00-讀取得到-0x20" class="headerlink" title="※位址 0x00 讀取得到 0x20"></a><strong>※位址 0x00 讀取得到 0x20</strong></h3><p><img src="https://i.imgur.com/z4tCulS.png" alt=""></p>
+<p>完成後, 就可以進行量測分析訊號是否如我們預期運作.<br><img src="https://i.imgur.com/ydHBF7j.png" width="80%" height="80%"></p>
+<h1 id="量測實例"><a href="#量測實例" class="headerlink" title=" 量測實例 "></a><font color=#0000FF> 量測實例 </font></h1><h3 id="※位址-0x2B-寫入數值-0x11"><a href="#※位址-0x2B-寫入數值-0x11" class="headerlink" title="※位址 0x2B 寫入數值 0x11"></a><strong>※位址 0x2B 寫入數值 0x11</strong></h3><img src="https://i.imgur.com/Qn00DPg.png" width="90%" height="90%">
 
+<h3 id="※位址-0x00-讀取得到-0x20"><a href="#※位址-0x00-讀取得到-0x20" class="headerlink" title="※位址 0x00 讀取得到 0x20"></a><strong>※位址 0x00 讀取得到 0x20</strong></h3><img src="https://i.imgur.com/z4tCulS.png" width="90%" height="90%">
     </div>
 
     
